@@ -1,4 +1,4 @@
-package com.cursosdedesarrollo;
+package com.cursosdedesarrollo.mainapp;
 
 import static org.junit.Assert.assertTrue;
 
