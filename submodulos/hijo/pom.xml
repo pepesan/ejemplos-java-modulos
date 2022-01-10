@@ -9,7 +9,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>com.cursosdedesarrollo.hijo</groupId>
     <artifactId>hijo</artifactId>
 
     <name>hijo</name>
@@ -22,7 +22,11 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
     </dependencies>
 
     <build>
