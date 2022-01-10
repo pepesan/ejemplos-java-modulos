@@ -11,6 +11,8 @@
   <modules>
     <module>submodulos/hijo</module>
     <module>submodulos/mainapp</module>
+    <module>submodulos/servicio</module>
+    <module>submodulos/dao</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
