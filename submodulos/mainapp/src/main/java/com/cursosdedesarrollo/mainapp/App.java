@@ -1,5 +1,6 @@
 package com.cursosdedesarrollo.mainapp;
 
+
 import com.cursosdedesarrollo.hijo.User;
 
 /**
@@ -12,5 +13,7 @@ public class App
     {
         System.out.println( "Hello World!" );
         User user = new User();
+        user.setName("Pepe");
+        System.out.println(user.getName());
     }
 }
