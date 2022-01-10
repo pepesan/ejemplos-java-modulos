@@ -1,17 +1,13 @@
 package com.cursosdedesarrollo.app;
 
-import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class AppTest
 {
-    /**
-     * Rigorous Test :-)
-     */
+
     @Test
     public void shouldAnswerWithTrue()
     {
