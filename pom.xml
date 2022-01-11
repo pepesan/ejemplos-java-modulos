@@ -14,6 +14,7 @@
     <module>submodulos/servicio</module>
     <module>submodulos/dao</module>
     <module>submodulos/httpclient</module>
+    <module>submodulos/colecciones</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
