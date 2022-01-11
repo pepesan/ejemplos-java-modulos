@@ -17,6 +17,7 @@
     <module>submodulos/colecciones</module>
     <module>submodulos/strings</module>
     <module>submodulos/streams</module>
+    <module>submodulos/reactivestreams</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
