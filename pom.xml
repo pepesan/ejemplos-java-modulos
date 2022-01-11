@@ -18,6 +18,7 @@
     <module>submodulos/strings</module>
     <module>submodulos/streams</module>
     <module>submodulos/reactivestreams</module>
+    <module>submodulos/privatemethodsinterfaces</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
