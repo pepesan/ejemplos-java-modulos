@@ -13,6 +13,7 @@
     <module>submodulos/mainapp</module>
     <module>submodulos/servicio</module>
     <module>submodulos/dao</module>
+    <module>submodulos/httpclient</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
