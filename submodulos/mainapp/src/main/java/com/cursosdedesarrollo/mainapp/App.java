@@ -13,7 +13,7 @@ public class App
         User user = new User();
         user.setName("Pepe");
         System.out.println(user.getName());
-        Dao service = new MyServiceImpl();
+        Dao<User> service = new MyServiceImpl();
         System.out.println(service.findAll());
 
     }
