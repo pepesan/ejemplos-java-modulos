@@ -28,8 +28,7 @@ public class App
             .version(HttpClient.Version.HTTP_1_1)
             .connectTimeout(Duration.ofSeconds(10))
             .build();
-    public static void main( String[] args )
-            throws IOException, InterruptedException, ExecutionException, TimeoutException {
+    public static void main( String[] args ) throws IOException, InterruptedException, ExecutionException, TimeoutException {
         System.out.println( "Ejemplos de HttpClient!" );
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -71,7 +70,7 @@ public class App
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
-        HttpResponse<String> response3 = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response3 = httpClient.send(request3, HttpResponse.BodyHandlers.ofString());
 
         // print status code
         System.out.println(response3.statusCode());
@@ -95,14 +94,25 @@ public class App
                 .header("Content-Type", "application/json")
                 .build();
 
-        HttpResponse<String> response4 = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response4 = httpClient.send(request4, HttpResponse.BodyHandlers.ofString());
 
         // print status code
         System.out.println(response4.statusCode());
 
         // print response body
         System.out.println(response4.body());
+        HttpRequest request5 = HttpRequest.newBuilder()
+                .uri(URI.create("https://httpbin.org/patch"))
+                .method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .header("Content-Type", "application/json")
+                .build();
+        HttpResponse<String> response5 = httpClient.send(request5, HttpResponse.BodyHandlers.ofString());
 
+        // print status code
+        System.out.println(response5.statusCode());
+
+        // print response body
+        System.out.println(response5.body());
         /*
         HttpClient httpClient2 = HttpClient.newBuilder()
                 .authenticator(new Authenticator() {
