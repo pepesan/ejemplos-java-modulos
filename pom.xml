@@ -21,6 +21,7 @@
     <module>submodulos/privatemethodsinterfaces</module>
     <module>submodulos/logging</module>
       <module>submodulos/optional</module>
+      <module>submodulos/nio</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
