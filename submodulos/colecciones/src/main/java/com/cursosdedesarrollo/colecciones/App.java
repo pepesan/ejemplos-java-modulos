@@ -17,6 +17,16 @@ public class App
         // nuevo método of
         Set<Integer> integers = Set.of(2, 6, 7, 10);
         System.out.println(integers);
+        // no se puede modificar porque es inmutable
+        //integers.add(12);
+        //System.out.println(integers);
+        // si inicializamos el objeto con los valores
+        // que nos devuelve el of podría ser mutable
+        List<Integer> integersList = new ArrayList<>(List.of(2, 6, 7, 10));
+        System.out.println(integersList);
+        integersList.add(12);
+        System.out.println(integersList);
+
         // nuevo método toArray
         List<String> list = List.of("apple", "banana", "orange");
         String[] array = list.toArray(String[]::new);
@@ -27,5 +37,6 @@ public class App
         list2.add(2);
         List<Integer> integers2 = List.copyOf(list2);
         System.out.println(integers2);
+
     }
 }

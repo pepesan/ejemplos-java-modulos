@@ -9,13 +9,15 @@ public class MySubscriber implements Flow.Subscriber<String> {
     public void onSubscribe(Flow.Subscription subscription) {
         System.out.println("onSubscribe: " + subscription);
         this.subscription = subscription;
-        subscription.request(2);
+        // solicita los primeros elementos
+        subscription.request(1);
     }
 
     @Override
     public void onNext(String item) {
         System.out.println("item: " + item);
-        // conditionally use subscription.request(n);
+        // solicita el siguiente elemento a procesar
+        subscription.request(1);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class App
         sb.submit("item 1");
         sb.submit("item 2");
         sb.submit("item 3");
-
+        sb.close();
         executor.shutdown();
     }
 }
