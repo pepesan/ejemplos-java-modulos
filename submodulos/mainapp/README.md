@@ -1,7 +1,7 @@
 # posible ejecución
 ## paso 1
-### en hijo
-$ mvn clean compile package
+### en parent /raiz
+$ mvn clean compile package install
 ## paso 2
 ### en mainapp
-java --module-path /home/pepesan/grive/cursos/java/ejemplos/ejemplos-java-modulos/submodulos/hijo/target/hijo-1.0-SNAPSHOT.jar --module com.cursosdedesarrollo.mainapp/com.cursosdedesarrollo.mainapp.App
+java  -Dfile.encoding=UTF-8 -p /home/pepesan/grive/cursos/java/ejemplos/ejemplos-java-modulos/submodulos/servicio/target/classes:/home/pepesan/grive/cursos/java/ejemplos/ejemplos-java-modulos/submodulos/mainapp/target/classes:/home/pepesan/grive/cursos/java/ejemplos/ejemplos-java-modulos/submodulos/hijo/target/classes:/home/pepesan/.m2/repository/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar:/home/pepesan/grive/cursos/java/ejemplos/ejemplos-java-modulos/submodulos/dao/target/classes -m com.cursosdedesarrollo.mainapp/com.cursosdedesarrollo.mainapp.App
