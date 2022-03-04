@@ -14,6 +14,9 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Cambios de colecciones" );
+
+        List<Integer> lIntegers = List.of(2, 6, 7, 10);
+        System.out.println(lIntegers);
         // nuevo método of
         Set<Integer> integers = Set.of(2, 6, 7, 10);
         System.out.println(integers);

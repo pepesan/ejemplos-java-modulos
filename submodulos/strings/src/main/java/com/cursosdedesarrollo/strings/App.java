@@ -23,6 +23,7 @@ public class App
         System.out.printf("stripTrailing():%n '%s'%n", striped);
 
         // ¿Está en blanco?
+        System.out.println("isBlank");
         s = "";
         boolean blank = s.isBlank();
         System.out.println(blank);
@@ -31,6 +32,7 @@ public class App
         System.out.println(blank);
 
         // líneas de la cadena
+        System.out.println("lines");
         s = "jujube\nsatsuma\nguava";
         s.lines()
                 .forEach(System.out::println);
