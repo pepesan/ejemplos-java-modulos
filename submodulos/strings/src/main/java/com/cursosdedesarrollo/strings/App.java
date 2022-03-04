@@ -40,5 +40,14 @@ public class App
         s = "-";
         String newString = s.repeat(10);
         System.out.println(newString);
+
+        String emoji = "\uD83D\uDE00";
+        System.out.println(emoji); //GRINNING FACE EMOJI
+        s = "\uD83E\uDD29 Star-Struck";
+        System.out.println(s); //GRINNING FACE EMOJI
+        s = "🧛 Vampire";
+        System.out.println(s); //GRINNING FACE EMOJI
+        s= "\uD83D\uDC83 Woman Dancing";
+        System.out.println(s); //GRINNING FACE EMOJI
     }
 }
