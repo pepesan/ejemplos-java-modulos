@@ -30,6 +30,9 @@ public class App
         System.out.println("iterate");
         Stream<String> iterate = Stream.iterate("-", s -> s.length() < 5, s -> s + "-");
         iterate.forEach(System.out::println);
+        System.out.println("iterate numeros");
+        Stream.iterate(1, n -> n < 20 , n -> n * 2)
+                .forEach(System.out::println);
         // ofNullable
         System.out.println("ofNullable con dato");
         String nullableItem = "peach";
