@@ -40,14 +40,17 @@ public class App
         s = "-";
         String newString = s.repeat(10);
         System.out.println(newString);
-
-        String emoji = "\uD83D\uDE00";
-        System.out.println(emoji); //GRINNING FACE EMOJI
+        // Uso de emojis en Strings
         s = "\uD83E\uDD29 Star-Struck";
         System.out.println(s); //GRINNING FACE EMOJI
+        s = "\uD83D\uDE00 Smiling face";
+        System.out.println(s); //Smiling FACE EMOJI
         s = "🧛 Vampire";
-        System.out.println(s); //GRINNING FACE EMOJI
+        System.out.println(s); //Vampire EMOJI
         s= "\uD83D\uDC83 Woman Dancing";
-        System.out.println(s); //GRINNING FACE EMOJI
+        System.out.println(s); //Woman Dancing EMOJI
+
+        // De momento no funciona XD (Feb  2022)
+        //String Vampire🧛 = "\uD83E\uDDDB";
     }
 }
