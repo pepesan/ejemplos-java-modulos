@@ -12,5 +12,7 @@ public class App
         Foo customFoo = new CustomFoo();
         customFoo.bar();
         Foo.buzz();
+        // no puedo es privado
+        // customFoo.baz();
     }
 }

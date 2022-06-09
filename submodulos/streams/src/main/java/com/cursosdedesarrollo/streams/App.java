@@ -28,7 +28,12 @@ public class App
         stream.forEach(System.out::println);
         // iterate
         System.out.println("iterate");
-        Stream<String> iterate = Stream.iterate("-", s -> s.length() < 5, s -> s + "-");
+        Stream<String> iterate = Stream.iterate("-",
+                (s) -> s.length() < 5,
+                s -> {
+                    // más sentencias
+                    return s + "-";
+                });
         iterate.forEach(System.out::println);
         System.out.println("iterate numeros");
         Stream.iterate(1, n -> n < 20 , n -> n * 2)
@@ -85,6 +90,8 @@ public class App
                 .boxed()
                 .collect(Collectors.toUnmodifiableList());
         System.out.println(list);
+        //no funciona añadir
+        //list.add(7);
         System.out.println(list.getClass().getName());
     }
 }

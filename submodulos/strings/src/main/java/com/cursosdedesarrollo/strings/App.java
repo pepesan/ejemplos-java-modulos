@@ -37,7 +37,7 @@ public class App
         s.lines()
                 .forEach(System.out::println);
         // repetir?
-        s = "-";
+        s = "--";
         String newString = s.repeat(10);
         System.out.println(newString);
         // Uso de emojis en Strings

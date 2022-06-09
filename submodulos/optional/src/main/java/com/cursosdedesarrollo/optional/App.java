@@ -13,6 +13,18 @@ public class App
 {
     public static void main( String[] args )
     {
+        // Java 8
+        Integer value = null;
+        Optional<Integer> objetoOpcional = Optional.ofNullable(value);
+        System.out.println("Object present: "+ objetoOpcional.isPresent());
+        if (objetoOpcional.isPresent()){
+            System.out.println("Object inside: " + objetoOpcional.get());
+        }else{
+            System.out.println("Object inside: " + "Nonai");
+        }
+        Optional<Integer> a = null;
+        Integer value1 = a.orElse(Integer.valueOf(0));
+        // Java 9
         System.out.println( "Ejemplos de Optional!" );
         // ifPresentOrElse
         IntStream.of(1, 2, 4)
