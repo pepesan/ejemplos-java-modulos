@@ -128,6 +128,21 @@ public class App
                 .build();
 
          */
+        /*
+        Manejo multihilo
+        var client = HttpClient.newBuilder()
+            .authenticator(Authenticator.getDefault())
+            .connectTimeout(Duration.ofSeconds(30))
+            .cookieHandler(CookieHandler.getDefault())
+            .executor(Executors.newFixedThreadPool(2))
+            .followRedirects(Redirect.NEVER)
+            .priority(1) //HTTP/2 priority
+            .proxy(ProxySelector.getDefault())
+            .sslContext(SSLContext.getDefault())
+            .version(Version.HTTP_2)
+            .sslParameters(new SSLParameters())
+            .build();
+         */
     }
 
     public static HttpRequest.BodyPublisher ofFormData(Map<Object, Object> data) {
