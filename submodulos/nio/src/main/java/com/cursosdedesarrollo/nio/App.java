@@ -14,13 +14,13 @@ public class App
 {
     public static void main( String[] args ) throws IOException {
         System.out.println( "Ejemplos de NIO!" );
-        // escritura
+        // lectura
         Path path = Files.writeString(
                 Files.createTempFile("test", ".txt"), "test file content");
         System.out.println(path);
         String s = Files.readString(path);
         System.out.println(s);
-        // lectura
+        // escritura
         Charset latinCharset = Charset.forName("ISO-8859-3");
         path = Files.writeString(
                 Files.createTempFile("test", ".txt"), "test filum", latinCharset);
