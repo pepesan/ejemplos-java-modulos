@@ -36,5 +36,5 @@ jshell
 END_OF_CMD
 )
 
-docker run -it --rm -u gradle gradle:jdk13 /bin/bash -c "$CMD"
+docker run -it --rm -u gradle gradle:jdk11-jammy /bin/bash -c "$CMD"
 

@@ -1,9 +1,7 @@
 package com.cursosdedesarrollo.streams;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import javax.sound.midi.Soundbank;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -93,5 +91,58 @@ public class App
         //no funciona añadir
         //list.add(7);
         System.out.println(list.getClass().getName());
+
+        System.out.println("Antes del Flatmap");
+        String[][] array = new String[][]{{"a", "b"}, {"c", "d"}, {"e", "f"}};
+        Stream.of(array).forEach(row -> {
+                System.out.println("Filas");
+                Stream.of(row).forEach(System.out::println);
+        });
+        System.out.println("Después del Flatmap");
+        var mistream  = Stream.of(array)  // Stream<String[]>
+                .flatMap(Stream::of);    // [a, b, c, d, e, f]
+        mistream.forEach(System.out::println);
+        System.out.println("Uso de Filter");
+        // Uso de filter
+        List<String> lines = Arrays.asList("uno", "dos", "tres");
+
+        List<String> result = lines.stream()                // convert list to stream
+                .filter(line -> !"tres".equals(line))       // we dont like tres
+                .collect(Collectors.toList());              // collect the output and convert streams to a List
+
+        result.forEach(System.out::println);                //output : uno , dos
+        // Ejemplo de Map
+        List<String> alpha = Arrays.asList("a", "b", "c", "d");
+        List<String> collect = alpha
+                .stream()
+                .map(String::toUpperCase)
+                /*
+                .map( item -> {
+                    return item.toUpperCase();
+                })
+                 */
+                // .map( item -> item.toUpperCase())
+                .collect(Collectors.toList());
+        System.out.println(collect); //[A, B, C, D]
+
+        // Ejemplo de reduce
+
+
+        List<Integer> gastos= new ArrayList<Integer>();
+        gastos.add(100);
+        gastos.add(200);
+        gastos.add(300);
+
+        var valor = gastos.stream().reduce(0,(acumulador,numero)-> {
+            return acumulador+numero;
+        });
+        valor = gastos.stream().reduce(0, Integer::sum);
+        System.out.println("Valor del reduce: "+ valor);
+
+        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        int max = Arrays.stream(numbers).reduce(0, (a, b) -> a > b ? a : b);  // 10
+        int max1 = Arrays.stream(numbers).reduce(0, Integer::max);            // 10
+        System.out.println("Valor del max: "+ max);
     }
 }

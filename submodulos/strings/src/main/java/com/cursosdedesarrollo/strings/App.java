@@ -15,6 +15,8 @@ public class App
         System.out.printf("'%s'%n", s);
         String striped = s.strip();
         System.out.printf("strip():%n '%s'%n", striped);
+        String trimmed = s.trim();
+        System.out.printf("trim():%n '%s'%n", trimmed);
         // quitar desde le principio
         striped = s.stripLeading();
         System.out.printf("stripLeading():%n '%s'%n", striped);
