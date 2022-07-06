@@ -38,8 +38,16 @@ public class App
         List<Integer> list2 = new ArrayList<>();
         list2.add(1);
         list2.add(2);
+        System.out.println(list2);
+        // Copy of crea una colección inmutable desde una colección mutable
         List<Integer> integers2 = List.copyOf(list2);
         System.out.println(integers2);
+        // Podemos modificar la original pero no afecta a la generada inmutable
+        list2.set(1, 4);
+        System.out.println(list2);
+        System.out.println(integers2);
+
+
 
     }
 }
