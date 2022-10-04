@@ -22,6 +22,8 @@
     <module>submodulos/logging</module>
       <module>submodulos/optional</module>
       <module>submodulos/nio</module>
+      <module>submodulos/reactive</module>
+    <module>submodulos/reactor</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
