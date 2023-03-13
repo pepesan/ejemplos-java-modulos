@@ -54,5 +54,65 @@ public class App
 
         // De momento no funciona XD (Feb  2022)
         //String Vampire🧛 = "\uD83E\uDDDB";
+
+
+        // Java 12
+        // indentado
+        String str = "a test string";
+        System.out.println(str);
+        System.out.println(str.length());
+        System.out.println("-- indented string --");
+        String indentedStr = str.indent(5);
+        System.out.println(indentedStr);
+        System.out.println(indentedStr.length());
+
+        str = "a test string";
+        System.out.println(str);
+        indentedStr = str.indent(5);
+        System.out.println(indentedStr.endsWith("\n"));
+        System.out.printf("'%s'%n", indentedStr);
+        System.out.println("-- indented string with quotes --");
+        // multilínea
+        str = "a test\nstring";
+        System.out.println(str);
+        System.out.println("-- indented string --");
+        indentedStr = str.indent(5);
+        System.out.println(indentedStr);
+
+        // negativo
+        str = "     a test\n     string";
+        System.out.println(str);
+        indentedStr = str.indent(-2);
+        System.out.println("-- negatively indented string --");
+        System.out.println(indentedStr);
+
+        // negativo sin espacio suficiente
+        str = "  a\n    test\n        string";
+        System.out.println(str);
+        indentedStr = str.indent(-6);
+        System.out.println("-- negatively indented string --");
+        System.out.println(indentedStr);
+
+        // transformaciones
+        str = "1000";
+        Integer integer = str.transform(Integer::parseInt);
+        System.out.println(integer);
+        // Java 13
+        // Strings multilínea
+        String inputElement = """
+                            Name: Jenny
+                            Phone: 8675309
+                            age: 35
+                            """;
+
+        System.out.println(inputElement);
+        // alineamiento
+        inputElement = """
+                            Name: Jenny
+                        Phone: 8675309
+                            age: 35
+                            """;
+
+        System.out.println(inputElement);
     }
 }

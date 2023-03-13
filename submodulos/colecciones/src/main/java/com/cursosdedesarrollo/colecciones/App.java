@@ -1,9 +1,9 @@
 package com.cursosdedesarrollo.colecciones;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Hello world!
@@ -47,6 +47,23 @@ public class App
         System.out.println(list2);
         System.out.println(integers2);
 
+
+
+        // Java 12
+        // uniendo colecciones con un merger
+        Collector<CharSequence, ?, String> joiningCollector = Collectors.joining("-");
+        Collector<String, ?, List<String>> listCollector = Collectors.toList();
+        //returns joined string and individual strings as array
+        Collector<String, ?, String[]> compositeCollector = Collectors.teeing(joiningCollector, listCollector,
+                (joinedString, strings) -> {
+                    ArrayList<String> list3 = new ArrayList<>(strings);
+                    list3.add(joinedString);
+                    String[] array2 = list3.toArray(new String[0]);
+                    return array2;
+                });
+
+        String[] strings = Stream.of("Apple", "Banana", "Orange").collect(compositeCollector);
+        System.out.println(Arrays.toString(strings));
 
 
     }
