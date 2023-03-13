@@ -24,6 +24,11 @@
       <module>submodulos/nio</module>
       <module>submodulos/reactive</module>
     <module>submodulos/reactor</module>
+    <module>submodulos/switch</module>
+    <module>submodulos/misc</module>
+    <module>submodulos/sealed</module>
+    <module>submodulos/record</module>
+
   </modules>
 
   <name>ejemplos-java-modulos</name>

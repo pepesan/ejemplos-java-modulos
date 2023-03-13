@@ -38,5 +38,30 @@ public class App
         path = Path.of(uri);
         System.out.println(path);
         System.out.println(Files.exists(path));
+
+        // Java 12
+        // mismo contenido
+        Path filePath1 = Files.createTempFile("my-file", ".txt");
+        Path filePath2 = Files.createTempFile("my-file2", ".txt");
+        Files.writeString(filePath1,"a test string");
+        Files.writeString(filePath2,"a test string");
+
+        long mismatch = Files.mismatch(filePath1, filePath2);
+        System.out.println(mismatch);
+
+        filePath1.toFile().deleteOnExit();
+        filePath2.toFile().deleteOnExit();
+
+        // diferente contenido
+        filePath1 = Files.createTempFile("my-file", ".txt");
+        filePath2 = Files.createTempFile("my-file2", ".txt");
+        Files.writeString(filePath1,"a test string");
+        Files.writeString(filePath2,"a test string ....");
+
+        mismatch = Files.mismatch(filePath1, filePath2);
+        System.out.println(mismatch);
+
+        filePath1.toFile().deleteOnExit();
+        filePath2.toFile().deleteOnExit();
     }
 }
