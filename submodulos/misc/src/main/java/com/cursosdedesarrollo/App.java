@@ -1,8 +1,6 @@
 package com.cursosdedesarrollo;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-import java.io.File;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -11,6 +9,7 @@ import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.random.RandomGeneratorFactory;
 
 /**
  * Hello world!
@@ -139,6 +138,11 @@ public class App
         String firstName = null;
         System.out.println(firstName.length());
          */
+
+        // Java 17
+        // Mejoras en la generación de números pseudo aleatorios
+        int ret = RandomGeneratorFactory.of("Random").create().nextInt(0, 11);
+        System.out.println(ret);
 
         // JAVA 18
         // comentarios javadoc con código

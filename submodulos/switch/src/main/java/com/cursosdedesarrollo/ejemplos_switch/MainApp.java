@@ -24,9 +24,7 @@ public class MainApp {
         System.out.println(quarter);
 
         String result = switch (mes) {
-            case JANUARY,
-                    FEBRUARY,
-                    MARCH -> {
+            case JANUARY, FEBRUARY, MARCH -> {
                 //multiple statements can be used here
                 yield "First Quarter";
             }

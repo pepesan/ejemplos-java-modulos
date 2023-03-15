@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Ejemplos de Strings!" );
-
+        // JAVA 11
         // quitar espacios en blanco
         String s = "  test string  ";
         System.out.printf("'%s'%n", s);
@@ -65,7 +65,7 @@ public class App
         String indentedStr = str.indent(5);
         System.out.println(indentedStr);
         System.out.println(indentedStr.length());
-
+        // con saltos de línea
         str = "a test string";
         System.out.println(str);
         indentedStr = str.indent(5);

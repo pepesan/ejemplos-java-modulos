@@ -15,5 +15,16 @@ public class App
         System.out.println(person.gender());
         System.out.println(person.age());
         System.out.println(person);
+
+        Rectangle rectangle = new Rectangle(1.0, 2.0);
+        System.out.println(rectangle);
+        System.out.println(rectangle.length());
+        System.out.println(rectangle.width());
+        rectangle = new Rectangle();
+        System.out.println(rectangle);
+
+        rectangle = Rectangle.createGoldenRectangle(2.0);
+        System.out.println(rectangle);
+
     }
 }

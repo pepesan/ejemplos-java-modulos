@@ -2,7 +2,7 @@ package com.cursosdedesarrollo;
 
 // las clases record son final
 // pueden tener atributos, métodos e inicializadores estáticos
-// tienen setter y getter
+// tienen setter y getter ??
 // pueden implementar interfaces
 // todos los campos van en la constructora
 // ppueden declarar una constructora aparte
