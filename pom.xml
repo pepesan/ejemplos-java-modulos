@@ -28,7 +28,7 @@
     <module>submodulos/misc</module>
     <module>submodulos/sealed</module>
     <module>submodulos/record</module>
-
+    <module>submodulos/vectorapi</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
