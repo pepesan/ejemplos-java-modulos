@@ -15,12 +15,12 @@ import java.util.List;
 public class ReactorSnippetsTest {
 
     private static List<String> words = Arrays.asList(
-            "the",
-            "quick",
+            "the", // [t,h,e]
+            "quick", // [q,u,i,c,k]
             "brown",
             "fox",
             "jumped",
-            "over",
+            "overs",
             "the",
             "lazy",
             "dog"
@@ -30,7 +30,6 @@ public class ReactorSnippetsTest {
     public void testTexto() {
         Mono<String> mensaje=Mono.just("hola");
         mensaje.subscribe(System.out::println);
-
     }
 
     @Test
@@ -63,7 +62,7 @@ public class ReactorSnippetsTest {
 
         mensaje.subscribe(System.out::println);
 
-        Thread.sleep(3000);
+        Thread.sleep(10000);
 
     }
     @Test
@@ -80,7 +79,9 @@ public class ReactorSnippetsTest {
     public void twoFluxInOne() throws InterruptedException {
         Flux<String> mensajes1=Flux.just("hola" ,"que" ,"tal","estas","tu").delayElements(Duration.ofSeconds(1));
         Flux<String> mensajes2=Flux.just("hola2" ,"que2" ,"tal2","estas2","tu2").delayElements(Duration.ofSeconds(1));
-        mensajes1.concatWith(mensajes2).subscribe(System.out::println);
+        mensajes1
+                .concatWith(mensajes2)
+                .subscribe(System.out::println);
 
         Thread.sleep(15000);
     }

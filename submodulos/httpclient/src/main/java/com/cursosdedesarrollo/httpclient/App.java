@@ -53,7 +53,7 @@ public class App
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
         String result = response2.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
-
+        System.out.println("petición asíncrona");
         System.out.println(result);
 
 
@@ -71,7 +71,7 @@ public class App
                 .build();
 
         HttpResponse<String> response3 = httpClient.send(request3, HttpResponse.BodyHandlers.ofString());
-
+        System.out.println("petición vía post con datos en body");
         // print status code
         System.out.println(response3.statusCode());
 
@@ -93,7 +93,7 @@ public class App
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .header("Content-Type", "application/json")
                 .build();
-
+        System.out.println("petición vía post con datos JSON en body");
         HttpResponse<String> response4 = httpClient.send(request4, HttpResponse.BodyHandlers.ofString());
 
         // print status code
@@ -107,7 +107,7 @@ public class App
                 .header("Content-Type", "application/json")
                 .build();
         HttpResponse<String> response5 = httpClient.send(request5, HttpResponse.BodyHandlers.ofString());
-
+        System.out.println("petición vía patch con datos JSON en body");
         // print status code
         System.out.println(response5.statusCode());
 
