@@ -14,8 +14,14 @@ public class App
     public static void main( String[] args )
     {
         // Java 8
-        Integer value = null;
+        System.out.println("optional");
+        Integer value = 2;
         Optional<Integer> objetoOpcional = Optional.ofNullable(value);
+        System.out.println(objetoOpcional);
+        System.out.println(objetoOpcional.get());
+        // el valor que meto es un null
+        value = null;
+        objetoOpcional = Optional.ofNullable(value);
         System.out.println("Object present: "+ objetoOpcional.isPresent());
         if (objetoOpcional.isPresent()){
             System.out.println("Object inside: " + objetoOpcional.get());
@@ -23,14 +29,17 @@ public class App
             System.out.println("Object inside: " + "Nonai");
         }
         Optional<Integer> a = null;
-        Integer value1 = a.orElse(Integer.valueOf(0));
+        // Integer value1 = a.orElse(Integer.valueOf(0));
+        // System.out.println(value1);
         // Java 9
         System.out.println( "Ejemplos de Optional!" );
         // ifPresentOrElse
-        IntStream.of(1, 2, 4)
+        System.out.println("ifPresentOrElse");
+        IntStream.of(1, 2, 3, 4)
                 .filter(i -> i % 3 == 0)
                 .findFirst()
                 .ifPresentOrElse(
+                        // ya me devuelve el dato sin el optional
                         System.out::println, // Plan A
                         () -> { // Plan B
                             System.out.println("No multiple of 3 found");
