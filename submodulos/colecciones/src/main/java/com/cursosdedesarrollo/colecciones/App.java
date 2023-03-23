@@ -50,6 +50,26 @@ public class App
 
 
         // Java 12
+        //teeing
+        //  tenemos una lista de números enteros
+        //  y queremos calcular la suma total
+        //  y la cantidad de números que son mayores que 10
+        //  de una sola tacada
+        List<Integer> numeros = Arrays.asList(4, 12, 6, 8, 15, 17, 20);
+
+        int suma = numeros.stream()
+                .collect(Collectors.teeing(
+                        // Primero, utilizamos el colector "summingInt" para calcular la suma total de los números
+                        Collectors.summingInt(Integer::intValue),
+                        // Luego, utilizamos el colector "filtering" para filtrar los números que son mayores que 10
+                        // y contamos cuántos hay utilizando el colector "counting"
+                        Collectors.filtering(n -> n > 10, Collectors.counting()),
+                        // utilizamos una función lambda para devolver
+                        // la suma total como resultado de la operación "teeing"
+                        (total, mayoresDe10) -> total
+                ));
+
+        System.out.println("La suma total es: " + suma);
         // uniendo colecciones con un merger
         Collector<CharSequence, ?, String> joiningCollector = Collectors.joining("-");
         Collector<String, ?, List<String>> listCollector = Collectors.toList();
