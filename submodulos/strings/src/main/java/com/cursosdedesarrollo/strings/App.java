@@ -13,11 +13,13 @@ public class App
         // quitar espacios en blanco
         String s = "  test string  ";
         System.out.printf("'%s'%n", s);
+        // quitar espacios en blanco de Unicode
         String striped = s.strip();
         System.out.printf("strip():%n '%s'%n", striped);
+        // quitar espacios en blanco de ASCII
         String trimmed = s.trim();
         System.out.printf("trim():%n '%s'%n", trimmed);
-        // quitar desde le principio
+        // quitar desde el principio
         striped = s.stripLeading();
         System.out.printf("stripLeading():%n '%s'%n", striped);
         // quitar desde el final

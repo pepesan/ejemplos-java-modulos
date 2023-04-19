@@ -17,6 +17,7 @@ public class App
         ExecutorService executor = Executors.newFixedThreadPool(1);
         SubmissionPublisher<String> sb = new SubmissionPublisher<>(executor, Flow.defaultBufferSize());
         sb.subscribe(new MySubscriber());
+        // sb.subscribe(new MySubscriber());
         sb.submit("item 1");
         sb.submit("item 2");
         sb.submit("item 3");

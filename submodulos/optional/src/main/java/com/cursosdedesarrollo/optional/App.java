@@ -21,6 +21,7 @@ public class App
         System.out.println(objetoOpcional.get());
         // el valor que meto es un null
         value = null;
+        //value.intValue();
         objetoOpcional = Optional.ofNullable(value);
         System.out.println("Object present: "+ objetoOpcional.isPresent());
         if (objetoOpcional.isPresent()){
@@ -36,7 +37,7 @@ public class App
         // ifPresentOrElse
         System.out.println("ifPresentOrElse");
         IntStream.of(1, 2, 3, 4)
-                .filter(i -> i % 3 == 0)
+                .filter(i -> i % 5 == 0)
                 .findFirst()
                 .ifPresentOrElse(
                         // ya me devuelve el dato sin el optional

@@ -6,4 +6,13 @@ public class CustomFoo implements Foo{
     public String dameAlgo() {
         return null;
     }
+
+    @Override
+    public void bar() {
+        System.out.print("Hello");
+        // no puedo usar el método privado
+        // baz();
+        // debería de reimplementar el método baz a mi manera
+        dameAlgo();
+    }
 }

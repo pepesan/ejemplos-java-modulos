@@ -52,7 +52,17 @@ public class App
         CompletableFuture<HttpResponse<String>> response2 =
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
-        String result = response2.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
+        String result = response2
+                // código a ejecutar cuando la petición se haya completado
+                .thenApply(
+                        // valor a devolver por parte de la función
+                        // (response) -> {return response.body();}
+                        // r -> {return r.body();}
+                        // r -> r.body()
+                        HttpResponse::body
+                )
+                // tiempo a esperar de timeout
+                .get(5, TimeUnit.SECONDS);
         System.out.println("petición asíncrona");
         System.out.println(result);
 
@@ -105,6 +115,7 @@ public class App
                 .uri(URI.create("https://httpbin.org/patch"))
                 .method("PATCH", HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type", "application/json")
+                .headers("Authentication", "Bearer token")
                 .build();
         HttpResponse<String> response5 = httpClient.send(request5, HttpResponse.BodyHandlers.ofString());
         System.out.println("petición vía patch con datos JSON en body");

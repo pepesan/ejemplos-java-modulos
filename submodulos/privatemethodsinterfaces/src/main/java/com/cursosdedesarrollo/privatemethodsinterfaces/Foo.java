@@ -2,7 +2,7 @@ package com.cursosdedesarrollo.privatemethodsinterfaces;
 
 public interface Foo {
 
-    public final String cadena = "";
+    public final String cadena = "Hola";
 
     default void bar() {
         System.out.print("Hello");

@@ -6,7 +6,7 @@ Ref: https://www.infoq.com/articles/reactor-by-example/
 
 import org.junit.Test;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.  Mono;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -46,7 +46,8 @@ public class ReactorSnippetsTest {
     public void testAsincrono() throws InterruptedException {
 
 
-        Mono<Persona> mensaje=Mono.just(new Persona("pepe","perez",20)).delayElement(Duration.ofSeconds(2));
+        Mono<Persona> mensaje=Mono.just(new Persona("pepe","perez",20))
+                .delayElement(Duration.ofSeconds(2));
 
         mensaje.subscribe(System.out::println);
 

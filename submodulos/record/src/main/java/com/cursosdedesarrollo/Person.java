@@ -5,7 +5,7 @@ package com.cursosdedesarrollo;
 // tienen setter y getter ??
 // pueden implementar interfaces
 // todos los campos van en la constructora
-// ppueden declarar una constructora aparte
+// pueden declarar una constructora aparte
 // pueden tener accesors explícitos
 // pueden definir más métodos
 // pueden ser clases inner
