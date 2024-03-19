@@ -1,5 +1,7 @@
 package com.cursosdedesarrollo.strings;
 
+import java.util.Base64;
+
 /**
  * Hello world!
  *
@@ -116,5 +118,20 @@ public class App
                             """;
 
         System.out.println(inputElement);
+
+        // String to encode
+        String message = "This is a secret message!";
+
+        // Encode the message using Base64.Encoder
+        Base64.Encoder encoder = Base64.getEncoder();
+        byte[] encodedBytes = encoder.encodeToString(message.getBytes()).getBytes();
+
+        System.out.println("Encoded message (Base64): " + new String(encodedBytes));
+
+        // Decode the encoded message using Base64.Decoder
+        Base64.Decoder decoder = Base64.getDecoder();
+        byte[] decodedBytes = decoder.decode(encodedBytes);
+
+        System.out.println("Decoded message: " + new String(decodedBytes));
     }
 }
