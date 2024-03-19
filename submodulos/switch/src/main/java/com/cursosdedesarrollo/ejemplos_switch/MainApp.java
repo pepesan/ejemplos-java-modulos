@@ -40,6 +40,7 @@ public class MainApp {
             default -> "Unknown Quarter";
         };
         System.out.println(result);
+        // Java 21
         Object o = new String("Hola");
         switch (o) {
             case null -> {

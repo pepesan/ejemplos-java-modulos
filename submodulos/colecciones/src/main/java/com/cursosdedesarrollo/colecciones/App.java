@@ -21,7 +21,11 @@ public class App
         Set<Integer> integers = Set.of(2, 6, 7, 10);
         System.out.println(integers);
         // no se puede modificar porque es inmutable
-        //integers.add(12);
+        try {
+            integers.add(12);
+        }catch(UnsupportedOperationException e){
+            System.out.println("Es una variable inmutable");
+        }
         //System.out.println(integers);
         // si inicializamos el objeto con los valores
         // que nos devuelve el of podría ser mutable
