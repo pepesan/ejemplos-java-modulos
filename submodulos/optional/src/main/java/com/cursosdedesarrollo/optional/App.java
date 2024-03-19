@@ -15,7 +15,9 @@ public class App
     {
         // Java 8
         System.out.println("optional");
+        // dato a guardar
         Integer value = 2;
+        // definición y rellenado de un Optional
         Optional<Integer> objetoOpcional = Optional.ofNullable(value);
         System.out.println(objetoOpcional);
         System.out.println(objetoOpcional.get());
@@ -43,7 +45,7 @@ public class App
                         // ya me devuelve el dato sin el optional
                         System.out::println, // Plan A
                         () -> { // Plan B
-                            System.out.println("No multiple of 3 found");
+                            System.out.println("No multiple of 5 found");
                         });
         // or
         char digit = Stream.of('a', 'b', 'c')
@@ -52,6 +54,15 @@ public class App
                 .or(() -> Optional.of('0')) // plan B
                 .get();
         System.out.println(digit);
+
+        // orElseThrow
+        try {
+            value = null;
+            objetoOpcional = Optional.ofNullable(value);
+            objetoOpcional.orElseThrow(ArithmeticException::new);
+        }catch (ArithmeticException e){
+            System.out.println("Ha saltado la excepción");
+        }
         // Stream
         OptionalInt opt1 = IntStream.of(2, 5, 6).max();
         OptionalInt opt2 = IntStream.of(1, 3, 7).max();

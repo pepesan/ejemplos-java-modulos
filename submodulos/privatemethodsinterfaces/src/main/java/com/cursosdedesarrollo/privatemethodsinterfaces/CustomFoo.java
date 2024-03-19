@@ -9,7 +9,7 @@ public class CustomFoo implements Foo{
 
     @Override
     public void bar() {
-        System.out.print("Hello");
+        System.out.println("Hello");
         // no puedo usar el método privado
         // baz();
         // debería de reimplementar el método baz a mi manera

@@ -47,6 +47,7 @@ public class App
         Files.writeString(filePath2,"a test string");
 
         long mismatch = Files.mismatch(filePath1, filePath2);
+        System.out.println("Comparación con mismo contenido");
         System.out.println(mismatch);
 
         filePath1.toFile().deleteOnExit();
@@ -59,6 +60,7 @@ public class App
         Files.writeString(filePath2,"a test string ....");
 
         mismatch = Files.mismatch(filePath1, filePath2);
+        System.out.println("Comparación con diferente contenido");
         System.out.println(mismatch);
 
         filePath1.toFile().deleteOnExit();
