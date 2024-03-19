@@ -1,14 +1,15 @@
 package com.cursosdedesarrollo.strings;
 
+import java.util.Base64;
+
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Ejemplos de Strings!" );
+    public static void main( String[] args ) {
+        System.out.println("Ejemplos de Strings!");
 
         // quitar espacios en blanco
         String s = "  test string  ";
@@ -23,20 +24,20 @@ public class App
         System.out.printf("stripTrailing():%n '%s'%n", striped);
 
         // ¿Está en blanco?
-        System.out.println( "¿Está en blanco?");
+        System.out.println("¿Está en blanco?");
         s = "";
         boolean blank = s.isBlank();
         System.out.println(blank);
         s = " ";
         blank = s.isBlank();
         System.out.println(blank);
-        System.out.println( "líneas de la cadena");
+        System.out.println("líneas de la cadena");
         // líneas de la cadena
         s = "jujube\nsatsuma\nguava";
         s.lines()
                 .forEach(System.out::println);
 
-        System.out.println( "repetir?");
+        System.out.println("repetir?");
         // repetir?
         s = "-";
         String newString = s.repeat(10);
@@ -44,7 +45,7 @@ public class App
 
         // Java 12
         // indentado
-        System.out.println( "indentado");
+        System.out.println("indentado");
         String str = "a test string";
         System.out.println(str);
         System.out.println(str.length());
@@ -87,19 +88,35 @@ public class App
         // Java 13
         // Strings multilínea
         String inputElement = """
-                            Name: Jenny
-                            Phone: 8675309
-                            age: 35
-                            """;
+                Name: Jenny
+                Phone: 8675309
+                age: 35
+                """;
 
         System.out.println(inputElement);
         // alineamiento
         inputElement = """
-                            Name: Jenny
-                        Phone: 8675309
-                            age: 35
-                            """;
+                    Name: Jenny
+                Phone: 8675309
+                    age: 35
+                    """;
 
         System.out.println(inputElement);
+        // base 64
+        // String to encode
+        String message = "This is a secret message!";
+
+        // Encode the message using Base64.Encoder
+        Base64.Encoder encoder = Base64.getEncoder();
+        byte[] encodedBytes = encoder.encodeToString(message.getBytes()).getBytes();
+        String cadena = "Encoded message (Base64): " + new String(encodedBytes);
+        System.out.println();
+        System.out.println(cadena);
+
+        // Decode the encoded message using Base64.Decoder
+        Base64.Decoder decoder = Base64.getDecoder();
+        byte[] decodedBytes = decoder.decode(encodedBytes);
+        s = "Decoded message: " + new String(decodedBytes);
+        System.out.println(s);
     }
 }
