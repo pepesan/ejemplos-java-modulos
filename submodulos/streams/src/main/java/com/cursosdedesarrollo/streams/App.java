@@ -189,6 +189,6 @@ public class App
                 .boxed()
                 .collect(Collectors.toUnmodifiableList());
         System.out.println(list);
-        System.out.println(list.getClass().getName());
+        // System.out.println(list.getClass().getName());
     }
 }
