@@ -32,23 +32,24 @@ public class App
         System.out.println( "Ejemplos de HttpClient!" );
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://httpbin.org/get"))
+                .uri(URI.create("https://httpbin.org/get?name=hola"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
+        System.out.println( "Ejemplos de Petición Get síncrona!" );
+        System.out.println( "Cabeceras!" );
         // print response headers
         HttpHeaders headers = response.headers();
         headers.map().forEach((k, v) -> System.out.println(k + ":" + v));
-
+        System.out.println( "Status Code!" );
         // print status code
         System.out.println(response.statusCode());
-
+        System.out.println( "Body!" );
         // print response body
         System.out.println(response.body());
 
         // Async request
-
+        System.out.println( "Ejemplos de Petición Get Asíncrona!" );
         CompletableFuture<HttpResponse<String>> response2 =
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
@@ -56,7 +57,8 @@ public class App
 
         System.out.println(result);
 
-
+        System.out.println( "Ejemplos de Petición Post Síncrona!" );
+        // definimos el objeto que queremos mandar
         Map<Object, Object> data = new HashMap<>();
         data.put("username", "abc");
         data.put("password", "123");
@@ -64,9 +66,11 @@ public class App
         data.put("ts", System.currentTimeMillis());
 
         HttpRequest request3 = HttpRequest.newBuilder()
+                // defines la llamada post con datos en el body (string param1=2&param2=4)
                 .POST(ofFormData(data))
                 .uri(URI.create("https://httpbin.org/post"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
+                // enviando como si fuera un formulario real
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
@@ -78,7 +82,7 @@ public class App
         // print response body
         System.out.println(response3.body());
 
-
+        System.out.println( "Ejemplos de Petición Post JSON Síncrona!" );
         // Envio de JSON
         String json = new StringBuilder()
                 .append("{")
@@ -91,6 +95,7 @@ public class App
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .uri(URI.create("https://httpbin.org/post"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
+                // body en formato json
                 .header("Content-Type", "application/json")
                 .build();
 
@@ -101,8 +106,10 @@ public class App
 
         // print response body
         System.out.println(response4.body());
+        System.out.println( "Ejemplos de Petición Patch JSON Síncrona!" );
         HttpRequest request5 = HttpRequest.newBuilder()
                 .uri(URI.create("https://httpbin.org/patch"))
+                // petición con verbo Patch
                 .method("PATCH", HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type", "application/json")
                 .build();

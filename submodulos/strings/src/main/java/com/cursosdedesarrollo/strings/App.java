@@ -23,17 +23,20 @@ public class App
         System.out.printf("stripTrailing():%n '%s'%n", striped);
 
         // ¿Está en blanco?
+        System.out.println( "¿Está en blanco?");
         s = "";
         boolean blank = s.isBlank();
         System.out.println(blank);
         s = " ";
         blank = s.isBlank();
         System.out.println(blank);
-
+        System.out.println( "líneas de la cadena");
         // líneas de la cadena
         s = "jujube\nsatsuma\nguava";
         s.lines()
                 .forEach(System.out::println);
+
+        System.out.println( "repetir?");
         // repetir?
         s = "-";
         String newString = s.repeat(10);
@@ -41,6 +44,7 @@ public class App
 
         // Java 12
         // indentado
+        System.out.println( "indentado");
         String str = "a test string";
         System.out.println(str);
         System.out.println(str.length());
