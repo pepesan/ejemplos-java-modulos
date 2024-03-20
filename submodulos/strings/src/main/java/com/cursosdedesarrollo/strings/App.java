@@ -2,6 +2,8 @@ package com.cursosdedesarrollo.strings;
 
 import java.util.Base64;
 
+import static java.lang.StringTemplate.STR;
+
 /**
  * Hello world!
  *
@@ -133,5 +135,31 @@ public class App
         byte[] decodedBytes = decoder.decode(encodedBytes);
 
         System.out.println("Decoded message: " + new String(decodedBytes));
+
+        // Java 21
+        /*
+            String.indexOf(String str, int beginIndex, int endIndex) – searches the specified substring in a subrange of the string.
+            String.indexOf(char ch, int beginIndex, int endIndex) – searches the specified character in a subrange of the string.
+            String.splitWithDelimiters(String regex, int limit) – splits the string at substrings matched by the regular expression and returns an array of all parts and splitting strings. The string is split at most limit-1 times, i.e., the last element of the array could be further divisible.
+
+            Both StringBuilder and StringBuffer have been extended by the following two methods:
+
+            repeat(CharSequence cs, int count) – appends to the StringBuilder or StringBuffer the string cs – count times.
+            repeat(int codePoint, int count) – appends the specified Unicode code point to the StringBuilder or StringBuffer – count times. A variable or constant of type char can also be passed as code point.
+
+            Character
+            isEmoji(int codePoint)
+            isEmojiComponent(int codePoint)
+            isEmojiModifier(int codePoint)
+            isEmojiModifierBase(int codePoint)
+            isEmojiPresentation(int codePoint)
+            isExtendedPictographic(int codePoint)
+         */
+
+        // String Templates (preview)
+        int a = 2;
+        int b = 3;
+
+        String result = STR."\{a} times \{b} = \{Math.multiplyExact(a, b)}";
     }
 }

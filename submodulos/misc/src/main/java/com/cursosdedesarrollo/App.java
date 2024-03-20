@@ -146,5 +146,16 @@ public class App
 
         // JAVA 18
         // comentarios javadoc con código
+
+        // Java 21
+        String string = "hola";
+        try {
+            int number = Integer.parseInt(string);
+            // ojo al _
+        } catch (NumberFormatException _) {
+            System.err.println("Not a number");
+        }
+
+
     }
 }

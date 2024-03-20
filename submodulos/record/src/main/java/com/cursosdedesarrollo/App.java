@@ -26,5 +26,17 @@ public class App
         rectangle = Rectangle.createGoldenRectangle(2.0);
         System.out.println(rectangle);
 
+        // Java 20
+        // Mejora la comporación de objetos de tipo Record
+        if (person instanceof Person personObject) {
+            System.out.println("Es una persona");
+            System.out.println(personObject);
+        }
+        // múltiples condiciones
+        if (person instanceof Person personObject || person instanceof Person) {
+            System.out.println("Es una persona");
+            System.out.println(person);
+        }
+
     }
 }

@@ -50,5 +50,28 @@ public class MainApp {
             case String s -> System.out.println("String: "+ s);
             default -> System.out.println("ni null ni cadena");
         }
+        // extraer y comprobar datos
+        record Point(int x, int y) {
+        }
+        Point p = new Point(1,2);
+        switch (p) {
+            // comprueba si es un Point
+            // extrae los valores x e y
+            // comprueba sus valores
+            case Point(var x, var y) when x > 0 && y > 0 ->
+                    System.out.println("first");
+            default ->
+                    System.out.println("other");
+        }
+        // comprobaciones null
+        String test = null;
+
+        switch (test) {
+            case String s -> System.out.println("String");
+            // en el caso de null
+            case null -> System.out.println("null");
+        }
+
+        // más información: https://softwaremill.com/java-21-switch-the-power-on/
     }
 }

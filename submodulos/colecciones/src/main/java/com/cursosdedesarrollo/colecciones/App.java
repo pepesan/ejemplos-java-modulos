@@ -88,7 +88,25 @@ public class App
 
         String[] strings = Stream.of("Apple", "Banana", "Orange").collect(compositeCollector);
         System.out.println(Arrays.toString(strings));
+        // Java 21
+        // Colleciones Secuenciadas
+        List<String> cadenas = List.of("hola", "mundo");
+        // pilla el último
+        System.out.println(cadenas.getLast());
+        // pilla el primero
+        System.out.println(cadenas.getFirst());
+        // también tenemos en listados addFirst, addLast,
+        // removeFirst, removeLast y reversed
 
+        // En el caso de los Set secuenciados
+        // addFirst y addLast si el elemento ya está
+        // presente se moverá al principio o al final
+
+        // En el caso de los Map tenemos más mejoras
+        // firstEntry, lastEntry, pollFirstEntry,
+        // pollLastEntry, putFirst y putLast
+
+        // más info en https://www.happycoders.eu/java/java-21-features/
 
     }
 }
