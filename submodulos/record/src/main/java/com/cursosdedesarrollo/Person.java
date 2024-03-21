@@ -12,4 +12,5 @@ package com.cursosdedesarrollo;
 // pueden ser genéricas
 // se pueden anotar
 // no pueden ser abstractas
+
 public record Person(String name, String gender, int age) {}

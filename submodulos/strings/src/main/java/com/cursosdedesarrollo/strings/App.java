@@ -1,6 +1,8 @@
 package com.cursosdedesarrollo.strings;
 
 import java.util.Base64;
+import java.util.FormatProcessor;
+import java.util.Locale;
 
 import static java.lang.StringTemplate.STR;
 import static java.util.FormatProcessor.FMT;
@@ -194,15 +196,33 @@ public class App
       """ ;
         System.out.println(saludo4);
 
-        saludo4 = FMT
-                . """
-      {
-        "feelsLike": "%1s\{ feelsLike }",
-        "temperature": "%2.2f\{ temperature }",
-        "unit": "%1s\{ unit }"
-      }
-      """ ;
-        System.out.println(saludo4);
+//        saludo4 = FMT
+//                ."""
+//      {
+//        "feelsLike": "%1s\{feelsLike}",
+//        "temperature": "%2.2f\{temperature}",
+//        "unit": "%1s\{unit}"
+//      }
+//      """;
+//        System.out.println(saludo4);
+        Locale locale = Locale.forLanguageTag("es-es");
+        FormatProcessor esFMT = FormatProcessor.create(locale);
+        int x = 10;
+        int y = 20;
+        String result4 = esFMT."%4d\{x} + %4d\{y} = %5d\{x + y}";
+        System.out.println (result4);
 
+        int x2 = 10;
+        int y2 = 20;
+        result4 = FMT."0x%04x\{x2} + 0x%04x\{y2} = 0x%04x\{x2 + y2}";
+        System.out.println (result4);
+
+
+        result4 = FMT."%05d\{x} + %05d\{y} = %05d\{x + y}";
+        System.out.println (result4);
+        float f = 1.0F;
+        float g = 2.112431231F;
+        result4 = FMT."%2.2f\{f} + %2.2f\{g} = %2.6f\{f+g}";
+        System.out.println (result4);
     }
 }
