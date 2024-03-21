@@ -3,6 +3,7 @@ package com.cursosdedesarrollo.strings;
 import java.util.Base64;
 
 import static java.lang.StringTemplate.STR;
+import static java.util.FormatProcessor.FMT;
 
 /**
  * Hello world!
@@ -161,5 +162,47 @@ public class App
         int b = 3;
 
         String result = STR."\{a} times \{b} = \{Math.multiplyExact(a, b)}";
+
+        String nombre = "Juan";
+        int edad = 30;
+        String saludo = "Hola, " + nombre + "! Tienes " + edad + " años.";
+
+        // Con String Templates:
+        String saludo2 = STR."Hola, \{nombre}! Tienes \{edad} años.";
+
+        System.out.println(saludo); // Imprime: "Hola, Juan! Tienes 30 años."
+        System.out.println(saludo2); // Imprime: "Hola, Juan! Tienes 30 años."
+        String feelsLike = "22";
+        String temperature = "17";
+        String unit = "C";
+        String saludo3 = STR
+                . """
+      {
+        "feelsLike": "\{ feelsLike }",
+        "temperature": "\{ temperature }",
+        "unit": "\{ unit }"
+      }
+      """ ;
+        System.out.println(saludo3);
+        String saludo4 = STR
+                . """
+      {
+        "feelsLike": "\{ feelsLike }",
+        "temperature": "\{ temperature }",
+        "unit": "\{ unit }"
+      }
+      """ ;
+        System.out.println(saludo4);
+
+        saludo4 = FMT
+                . """
+      {
+        "feelsLike": "%1s\{ feelsLike }",
+        "temperature": "%2.2f\{ temperature }",
+        "unit": "%1s\{ unit }"
+      }
+      """ ;
+        System.out.println(saludo4);
+
     }
 }

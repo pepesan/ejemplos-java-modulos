@@ -127,6 +127,12 @@ public class App
         // Java 14
         // manejo de instanceof
         Object o = new String("Hola!!");
+//        if(o instanceof String){
+//            String s1 = (String) o;
+//            if(s1.length()>5 ){
+//                System.out.println("cadena: "+ s1);
+//            }
+//        }
         if (o instanceof String s && s.length() > 5) {
             System.out.println("cadena: "+ s);
         }
@@ -141,6 +147,7 @@ public class App
 
         // Java 17
         // Mejoras en la generación de números pseudo aleatorios
+        System.out.println("Random");
         int ret = RandomGeneratorFactory.of("Random").create().nextInt(0, 11);
         System.out.println(ret);
 

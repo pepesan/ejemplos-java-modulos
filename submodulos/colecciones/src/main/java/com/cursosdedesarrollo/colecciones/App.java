@@ -70,10 +70,10 @@ public class App
                         Collectors.filtering(n -> n > 10, Collectors.counting()),
                         // utilizamos una función lambda para devolver
                         // la suma total como resultado de la operación "teeing"
-                        (total, mayoresDe10) -> total
+                        (total, mayoresDe10) -> (total+Integer.parseInt(""+mayoresDe10))
                 ));
-
-        System.out.println("La suma total es: " + suma);
+        System.out.println("teeing");
+        System.out.println("La suma total es: " + suma +" = 82 suma y 4 de count");
         // uniendo colecciones con un merger
         Collector<CharSequence, ?, String> joiningCollector = Collectors.joining("-");
         Collector<String, ?, List<String>> listCollector = Collectors.toList();
@@ -97,15 +97,43 @@ public class App
         System.out.println(cadenas.getFirst());
         // también tenemos en listados addFirst, addLast,
         // removeFirst, removeLast y reversed
-
         // En el caso de los Set secuenciados
         // addFirst y addLast si el elemento ya está
         // presente se moverá al principio o al final
+        // Crear un SequencedSet
+        LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>(List.of(1, 2, 3));
 
+        Integer firstElement = linkedHashSet.getFirst();   // 1
+        Integer lastElement = linkedHashSet.getLast();    // 3
+
+        linkedHashSet.addFirst(0);  //Set contiene: [0, 1, 2, 3]
+        linkedHashSet.addLast(4);   //Set contiene: [0, 1, 2, 3, 4]
+
+        System.out.println(linkedHashSet.reversed());   //Imprime [4, 3, 2, 1, 0]
         // En el caso de los Map tenemos más mejoras
         // firstEntry, lastEntry, pollFirstEntry,
         // pollLastEntry, putFirst y putLast
+        LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
 
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+
+        map.firstEntry();   //1=One
+        map.lastEntry();    //3=Three
+
+        System.out.println(map);  //{1=One, 2=Two, 3=Three}
+
+        Map.Entry<Integer, String> first = map.pollFirstEntry();   //1=One
+        Map.Entry<Integer, String> last = map.pollLastEntry();    //3=Three
+
+        System.out.println(map);  //{2=Two}
+
+        map.putFirst(1, "One");     //{1=One, 2=Two}
+        map.putLast(3, "Three");    //{1=One, 2=Two, 3=Three}
+
+        System.out.println(map);  //{1=One, 2=Two, 3=Three}
+        System.out.println(map.reversed());   //{3=Three, 2=Two, 1=One}
         // más info en https://www.happycoders.eu/java/java-21-features/
 
     }

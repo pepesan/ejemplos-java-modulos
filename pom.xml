@@ -30,6 +30,7 @@
     <module>submodulos/sealed</module>
     <module>submodulos/record</module>
     <module>submodulos/vectorapi</module>
+    <module>submodulos/virtual</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
