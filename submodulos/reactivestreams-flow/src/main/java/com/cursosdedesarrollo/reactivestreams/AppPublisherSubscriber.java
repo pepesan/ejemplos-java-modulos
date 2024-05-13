@@ -9,7 +9,7 @@ import java.util.concurrent.SubmissionPublisher;
  * Hello world!
  *
  */
-public class App 
+public class AppPublisherSubscriber
 {
     public static void main( String[] args )
     {
