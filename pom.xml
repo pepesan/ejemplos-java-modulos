@@ -18,7 +18,7 @@
     <module>submodulos/colecciones</module>
     <module>submodulos/strings</module>
     <module>submodulos/streams</module>
-    <module>submodulos/reactivestreams</module>
+    <module>submodulos/reactivestreams-flow</module>
     <module>submodulos/privatemethodsinterfaces</module>
     <module>submodulos/logging</module>
       <module>submodulos/optional</module>
