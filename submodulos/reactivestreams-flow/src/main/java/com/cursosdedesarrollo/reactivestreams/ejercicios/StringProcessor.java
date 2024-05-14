@@ -26,7 +26,8 @@ class StringProcessor<T, R> implements Flow.Processor<T, R> {
     public void onNext(T item) {
         // Realizar algún procesamiento sobre el elemento recibido
         // En este ejemplo, simplemente convertimos a mayúsculas el elemento y lo pasamos al Subscriber
-        R result = (R) item.toString().toUpperCase();
+        R result = (R) (item.toString()+ "!");
+        System.out.println("Processor: onNext: " +result);
         // Pasar el resultado al Subscriber
         subscriber.onNext(result);
         // Solicitar el siguiente elemento

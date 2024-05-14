@@ -16,7 +16,7 @@ class StringSubscriber implements Flow.Subscriber<String> {
     public void onNext(String item) {
         // Modificar los datos antes de imprimirlos
         String modifiedItem = item.toUpperCase(); // Convertir a mayúsculas
-        System.out.println("Datos modificados: " + modifiedItem);
+        System.out.println("Subscrition: onNext: " +modifiedItem);
         subscription.request(1); // Solicitar el siguiente elemento
     }
 
