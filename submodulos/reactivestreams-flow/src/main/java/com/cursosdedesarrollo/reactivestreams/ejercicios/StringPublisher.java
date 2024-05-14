@@ -17,6 +17,10 @@ class StringPublisher implements Flow.Publisher<String> {
         subscriber.onNext(data);
     }
 
+    public void close(){
+        subscriber.onComplete();
+    }
+
     // Clase interna que implementa la interfaz Flow.Subscription
     private class StringSubscription implements Flow.Subscription {
         @Override
