@@ -14,13 +14,12 @@ public class AppPublisherSubscriber
     public static void main( String[] args )
     {
         System.out.println( "Ejemplos de Streams Reactivos!" );
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(4);
         SubmissionPublisher<String> sb = new SubmissionPublisher<>(executor, Flow.defaultBufferSize());
         sb.subscribe(new MySubscriber());
-        // sb.subscribe(new MySubscriber());
-        sb.submit("item 1");
-        sb.submit("item 2");
-        sb.submit("item 3");
+        for (int i = 1; i < 11; i++) {
+            sb.submit("item " +i);
+        }
         sb.close();
         executor.shutdown();
     }

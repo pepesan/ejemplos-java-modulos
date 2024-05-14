@@ -5,6 +5,7 @@ import java.util.concurrent.Flow;
 public class MySubscriber implements Flow.Subscriber<String> {
     private Flow.Subscription subscription;
 
+    // Eventos disparables por parte del Subscriptor
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         System.out.println("onSubscribe: " + subscription);
