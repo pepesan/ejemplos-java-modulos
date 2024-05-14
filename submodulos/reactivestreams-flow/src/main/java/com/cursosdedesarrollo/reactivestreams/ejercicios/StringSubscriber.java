@@ -14,15 +14,24 @@ class StringSubscriber implements Flow.Subscriber<String> {
 
     @Override
     public void onNext(String item) {
-        // Modificar los datos antes de imprimirlos
-        String modifiedItem = item.toUpperCase(); // Convertir a mayúsculas
-        System.out.println("Subscrition: onNext: " +modifiedItem);
-        subscription.request(1); // Solicitar el siguiente elemento
+        try {
+            // Tratamiento del dato recibido
+            String itemModificado = item + "!";
+            System.out.println("Dato recibido: " + itemModificado);
+            // Simulamos un error
+            if (item.equals("error")) {
+                throw new RuntimeException("Error en el dato recibido");
+            }
+        } catch (RuntimeException e) {
+            onError(e); // Llamamos a onError en caso de error
+        }
+        subscription.request(1); // Solicitamos más datos al publisher
     }
 
     @Override
     public void onError(Throwable throwable) {
         System.err.println("Se produjo un error: " + throwable.getMessage());
+        // subscription.request(1); // Solicitamos más datos al publisher
     }
 
     @Override

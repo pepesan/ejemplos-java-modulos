@@ -17,6 +17,8 @@ public class Main {
         publisher.submit("dato1");
         publisher.submit("dato2");
         publisher.submit("dato3");
+        publisher.submit("error");
+        publisher.submit("dato4");
 
         // Crear un publicador
         SubmissionPublisher<String> publisher2 = new SubmissionPublisher<>();
