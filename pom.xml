@@ -31,6 +31,7 @@
     <module>submodulos/record</module>
     <module>submodulos/vectorapi</module>
     <module>submodulos/virtual</module>
+    <module>submodulos/futures</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
