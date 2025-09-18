@@ -1,8 +1,8 @@
 package com.cursosdedesarrollo.streams;
 
-import javax.sound.midi.Soundbank;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Gatherers;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -144,5 +144,16 @@ public class App
         int max = Arrays.stream(numbers).reduce(0, (a, b) -> a > b ? a : b);  // 10
         int max1 = Arrays.stream(numbers).reduce(0, Integer::max);            // 10
         System.out.println("Valor del max: "+ max);
+
+        // Java 25
+        // Ejemplo: agrupar en ventanas de 3 elementos
+        var ventanas = Stream.of(1,2,3,4,5,6,7,8,9)
+                .gather(Gatherers.windowFixed(3))
+                .toList();
+
+        System.out.println(ventanas);
+        // [[1,2,3], [4,5,6], [7,8,9]]
+
+
     }
 }
