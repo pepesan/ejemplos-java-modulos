@@ -21,9 +21,9 @@
     <module>submodulos/reactivestreams-flow</module>
     <module>submodulos/privatemethodsinterfaces</module>
     <module>submodulos/logging</module>
-      <module>submodulos/optional</module>
-      <module>submodulos/nio</module>
-      <module>submodulos/reactive</module>
+    <module>submodulos/optional</module>
+    <module>submodulos/nio</module>
+    <module>submodulos/reactive</module>
     <module>submodulos/reactor</module>
     <module>submodulos/switch</module>
     <module>submodulos/misc</module>
@@ -32,6 +32,10 @@
     <module>submodulos/vectorapi</module>
     <module>submodulos/virtual</module>
     <module>submodulos/futures</module>
+    <module>submodulos/nuevo_main</module>
+    <module>submodulos/flexible_constructor</module>
+    <module>submodulos/function_memory</module>
+    <module>submodulos/scoped-values</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
