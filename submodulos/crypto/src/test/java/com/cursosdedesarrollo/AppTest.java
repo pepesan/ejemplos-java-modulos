@@ -1,0 +1,59 @@
+package com.cursosdedesarrollo;
+
+
+import org.junit.jupiter.api.Test;
+
+import javax.crypto.KDF;
+import javax.crypto.SecretKey;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
+import javax.crypto.spec.HKDFParameterSpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+public class AppTest {
+
+    // Java 25
+    @Test
+    void testCosa() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+        byte[] ikm = "secret".getBytes(StandardCharsets.UTF_8);
+        byte[] salt = "salt".getBytes(StandardCharsets.UTF_8);
+
+        KDF kdf = KDF.getInstance("HKDF-SHA256");
+
+        AlgorithmParameterSpec params =
+                HKDFParameterSpec.ofExtract()
+                        .addIKM(ikm)
+                        .addSalt(salt)
+                        .thenExpand("context".getBytes(StandardCharsets.UTF_8), 32); // 32 bytes = 256 bits
+
+        SecretKey key = kdf.deriveKey("AES", params);
+
+        System.out.println("Clave (Original): secret");
+        // Algoritmo / formato / longitud (ya tenías)
+        System.out.println("Algorithm: " + key.getAlgorithm());
+        System.out.println("Format: " + key.getFormat());
+        System.out.println("Encoded length (bytes): " + key.getEncoded().length);
+
+        // --- Clave en Base64 (forma legible y común) ---
+        String base64 = Base64.getEncoder().encodeToString(key.getEncoded());
+        System.out.println("Clave (Base64): " + base64);
+
+        // --- Clave en HEX (representación "sin formato") ---
+        System.out.println("Clave (HEX): " + bytesToHex(key.getEncoded()));
+
+        // Si por alguna razón quieres ver los bytes "crudos" por println (no recomendado),
+        // puedes imprimir el array; pero normalmente se usan Base64/HEX:
+        System.out.println("Clave (bytes): " + java.util.Arrays.toString(key.getEncoded()));
+    }
+
+    // Helper: convierte bytes a hex (minúsculas)
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        return sb.toString();
+    }
+}

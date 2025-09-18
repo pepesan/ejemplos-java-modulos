@@ -36,6 +36,9 @@
     <module>submodulos/flexible_constructor</module>
     <module>submodulos/function_memory</module>
     <module>submodulos/scoped-values</module>
+    <module>submodulos/module_import</module>
+    <module>submodulos/crypto</module>
+
   </modules>
 
   <name>ejemplos-java-modulos</name>
