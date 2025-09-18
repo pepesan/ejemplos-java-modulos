@@ -2,7 +2,6 @@ package com.cursosdedesarrollo;
 
 
 import org.junit.jupiter.api.Test;
-
 import javax.crypto.KDF;
 import javax.crypto.SecretKey;
 import java.security.InvalidAlgorithmParameterException;
@@ -20,6 +19,8 @@ public class AppTest {
         byte[] ikm = "secret".getBytes(StandardCharsets.UTF_8);
         byte[] salt = "salt".getBytes(StandardCharsets.UTF_8);
 
+        // Nuevo algoritmo KDF (Key Derivation Function)
+        // También se han añadido PBKDF2 y Scrypt
         KDF kdf = KDF.getInstance("HKDF-SHA256");
 
         AlgorithmParameterSpec params =
@@ -31,6 +32,7 @@ public class AppTest {
         SecretKey key = kdf.deriveKey("AES", params);
 
         System.out.println("Clave (Original): secret");
+        System.out.println("Salt (Original): salt");
         // Algoritmo / formato / longitud (ya tenías)
         System.out.println("Algorithm: " + key.getAlgorithm());
         System.out.println("Format: " + key.getFormat());
