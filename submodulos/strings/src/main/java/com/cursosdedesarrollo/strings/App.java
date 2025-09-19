@@ -1,11 +1,11 @@
 package com.cursosdedesarrollo.strings;
 
 import java.util.Base64;
-import java.util.FormatProcessor;
+// import java.util.FormatProcessor;
 import java.util.Locale;
 
-import static java.lang.StringTemplate.STR;
-import static java.util.FormatProcessor.FMT;
+// import static java.lang.StringTemplate.STR;
+// import static java.util.FormatProcessor.FMT;
 
 /**
  * Hello world!
@@ -162,7 +162,7 @@ public class App
         // String Templates (preview)
         int a = 2;
         int b = 3;
-
+        /*
         String result = STR."\{a} times \{b} = \{Math.multiplyExact(a, b)}";
 
         String nombre = "Juan";
@@ -224,5 +224,7 @@ public class App
         float g = 2.112431231F;
         result4 = FMT."%2.2f\{f} + %2.2f\{g} = %2.6f\{f+g}";
         System.out.println (result4);
+
+         */
     }
 }

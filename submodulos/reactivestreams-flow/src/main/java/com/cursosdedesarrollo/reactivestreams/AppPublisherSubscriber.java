@@ -5,10 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 
-/**
- * Hello world!
- *
- */
+
 public class AppPublisherSubscriber
 {
     public static void main( String[] args )

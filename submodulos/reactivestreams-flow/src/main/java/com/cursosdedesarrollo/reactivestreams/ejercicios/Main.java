@@ -58,7 +58,7 @@ public class Main {
         };
 
         // Suscribir el suscriptor al procesador
-        processor.subscribe(subscriber);
+        processor.subscribe(subscriber2);
 
         // Publicar algunos elementos
         publisher2.submit("hello");
