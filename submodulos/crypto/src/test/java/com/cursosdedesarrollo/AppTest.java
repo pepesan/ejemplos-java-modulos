@@ -3,19 +3,20 @@ package com.cursosdedesarrollo;
 
 import org.junit.jupiter.api.Test;
 import javax.crypto.KDF;
+import javax.crypto.KEM;
 import javax.crypto.SecretKey;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.spec.HKDFParameterSpec;
 import java.nio.charset.StandardCharsets;
+import java.security.spec.NamedParameterSpec;
 import java.util.Base64;
 
 public class AppTest {
 
     // Java 25
     @Test
-    void testCosa() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+    void testCosa() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
         byte[] ikm = "secret".getBytes(StandardCharsets.UTF_8);
         byte[] salt = "salt".getBytes(StandardCharsets.UTF_8);
 
@@ -48,6 +49,18 @@ public class AppTest {
         // Si por alguna razón quieres ver los bytes "crudos" por println (no recomendado),
         // puedes imprimir el array; pero normalmente se usan Base64/HEX:
         System.out.println("Clave (bytes): " + java.util.Arrays.toString(key.getEncoded()));
+
+
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("X25519");
+        kpg.initialize(new NamedParameterSpec("X25519"));
+        KeyPair kp = kpg.generateKeyPair();
+
+        KEM kem = KEM.getInstance("X25519");
+        KEM.Encapsulator enc = kem.newEncapsulator(kp.getPublic());
+        KEM.Encapsulated encap = enc.encapsulate();
+
+        byte[] secret = encap.key().getEncoded();
+        System.out.println("Secret length: " + secret.length);
     }
 
     // Helper: convierte bytes a hex (minúsculas)
