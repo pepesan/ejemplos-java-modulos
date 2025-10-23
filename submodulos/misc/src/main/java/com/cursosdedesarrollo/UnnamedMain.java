@@ -74,6 +74,6 @@ public void main(){
             System.out.println("Super Verde");
             break;
         default:
-            throw new IllegalStateException(STR."Unexpected value: \{ball}");
+            throw new IllegalStateException("Unexpected value: "+ball);
     }
 }

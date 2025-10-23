@@ -9,8 +9,8 @@ import java.security.*;
 import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.spec.HKDFParameterSpec;
 import java.nio.charset.StandardCharsets;
-import java.security.spec.NamedParameterSpec;
 import java.util.Base64;
+
 
 public class AppTest {
 
@@ -50,17 +50,9 @@ public class AppTest {
         // puedes imprimir el array; pero normalmente se usan Base64/HEX:
         System.out.println("Clave (bytes): " + java.util.Arrays.toString(key.getEncoded()));
 
-
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("X25519");
-        kpg.initialize(new NamedParameterSpec("X25519"));
-        KeyPair kp = kpg.generateKeyPair();
-
-        KEM kem = KEM.getInstance("X25519");
-        KEM.Encapsulator enc = kem.newEncapsulator(kp.getPublic());
-        KEM.Encapsulated encap = enc.encapsulate();
-
-        byte[] secret = encap.key().getEncoded();
-        System.out.println("Secret length: " + secret.length);
+        for (var spi : Security.getAlgorithms("KEM")) {
+            System.out.println("KEM disponible: " + spi);
+        }
     }
 
     // Helper: convierte bytes a hex (minúsculas)

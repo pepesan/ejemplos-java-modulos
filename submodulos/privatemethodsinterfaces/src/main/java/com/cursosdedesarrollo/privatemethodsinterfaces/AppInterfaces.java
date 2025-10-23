@@ -4,7 +4,7 @@ package com.cursosdedesarrollo.privatemethodsinterfaces;
  * Hello world!
  *
  */
-public class App 
+public class AppInterfaces
 {
     public static void main( String[] args )
     {
