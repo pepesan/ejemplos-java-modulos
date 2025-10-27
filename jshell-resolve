@@ -1,40 +1,65 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Uso: ./jshell-resolve com.google.guava:guava:33.5.0-jre ...
 
 [ $# -eq 0 ] && {
-  echo "Usage: jshell-resolve [group:artifact:version]+" >&2;
-  echo "Example: jshell-resolve com.google.guava:guava:28.2-jre" >&2;
-  exit 1;
+  echo "Usage: jshell-resolve [group:artifact:version]+" >&2
+  echo "Example: jshell-resolve com.google.guava:guava:33.5.0-jre" >&2
+  exit 1
 }
 
-DEPENDENCIES=$(for dep in $@; do
-	echo "implementation '$dep'"
+# Construye las dependencias (cada línea: implementation 'group:artifact:version')
+DEPENDENCIES=$(for dep in "$@"; do
+  printf "  implementation '%s'\n" "$dep"
 done)
 
-CMD=$(cat <<-END_OF_CMD
+WORKDIR="$(pwd)"
+
+# Comando que se ejecuta dentro del contenedor
+CMD=$(cat <<'END_OF_CMD'
 set -euo pipefail
-cat > "build.gradle" <<- END_OF_BUILD
+
+# 1) Cabecera del build.gradle (Groovy DSL moderno, Java 25 toolchain, sin jcenter)
+cat > build.gradle <<'END_OF_BUILD_HEAD'
 plugins {
   id 'java'
 }
+
 repositories {
-  jcenter()
   mavenCentral()
 }
+
 dependencies {
-  $DEPENDENCIES
+END_OF_BUILD_HEAD
+
+# 2) Inyecta dependencias desde variable de entorno (si está vacía, no falla)
+#    Usamos ${DEPENDENCIES:-} para evitar "unbound variable" con set -u
+printf "%s\n" "${DEPENDENCIES:-}" >> build.gradle
+
+# 3) Cierre del bloque y tarea moderna para escribir el CLASSPATH
+cat >> build.gradle <<'END_OF_BUILD_TAIL'
 }
-task printClasspath {
+
+tasks.register('printClasspath') {
   doLast {
-    new File(projectDir, "classpath").text = 'export CLASSPATH="' + sourceSets.main.runtimeClasspath.asPath + '"'
+    def cp = configurations.runtimeClasspath.asPath
+    file('classpath').text = 'export CLASSPATH="' + cp + '"'
   }
 }
-END_OF_BUILD
-gradle --version > /dev/null 2>&1
-gradle printClasspath
+END_OF_BUILD_TAIL
+
+# Ejecuta y abre jshell con el CLASSPATH resuelto
+gradle -q printClasspath
 source classpath
-jshell
+exec jshell
 END_OF_CMD
 )
 
-docker run -it --rm -u gradle gradle:jdk11-jammy /bin/bash -c "$CMD"
-
+# Ejecuta Docker pasando DEPENDENCIES como variable de entorno
+docker run -it --rm \
+  -u gradle \
+  -w /home/gradle/project \
+  -v "$WORKDIR":/home/gradle/project \
+  -e "DEPENDENCIES=$DEPENDENCIES" \
+  gradle:jdk25-noble \
+  /bin/bash -c "$CMD"
