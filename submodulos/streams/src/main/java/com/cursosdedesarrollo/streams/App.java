@@ -92,6 +92,16 @@ public class App
         //list.add(7);
         System.out.println(list.getClass().getName());
 
+        Map<Integer, Double> map2 =
+                IntStream.range(1, 5)
+                        .boxed()
+                        .collect(Collectors.toUnmodifiableMap(
+                                i -> i,
+                                i -> Math.pow(i, 3))
+                        );
+        System.out.println(map2);
+        System.out.println(map2.getClass().getTypeName());
+
         System.out.println("Antes del Flatmap");
         String[][] array = new String[][]{{"a", "b"}, {"c", "d"}, {"e", "f"}};
         Stream.of(array).forEach(row -> {

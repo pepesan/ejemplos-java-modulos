@@ -7,7 +7,7 @@ import java.util.stream.Gatherers;
 import java.util.stream.Stream;
 
 public class EjemplosGatherers {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         ejemploWindowFixed();
         ejemploWindowSliding();
         ejemploScan();
@@ -22,6 +22,9 @@ public class EjemplosGatherers {
     // Divide el flujo en "bloques" consecutivos de tamaño fijo n.
     // Cada bloque se emite como una lista inmutable de hasta n elementos.
     // Muy útil para procesamiento por lotes o trocear datos en fragmentos.
+    // Caso práctico: Imagina que tenemos un flujo de datos de temperatura de un sensor IoT,
+    // y queremos calcular el promedio de cada bloque de 3 lecturas antes de almacenarlo o
+    // enviarlo a otra capa del sistema
     // ============================================================
     private static void ejemploWindowFixed() {
         System.out.println("=== Gatherer: windowFixed(3) ===");
@@ -44,6 +47,9 @@ public class EjemplosGatherers {
     // Crea ventanas deslizantes (superpuestas) de tamaño n.
     // Cada ventana avanza una posición respecto a la anterior.
     // Ideal para medias móviles o detección de patrones contiguos.
+    // Caso Práctico: Imagina que recibes lecturas continuas de un sensor y quieres detectar si hay
+    // una tendencia al alza o a la baja en ventanas deslizantes de 3 valores consecutivos.
+    // Esto puede servir, por ejemplo, en sistemas de monitoreo ambiental o control de climatización
     // ============================================================
     private static void ejemploWindowSliding() {
         System.out.println("=== Gatherer: windowSliding(3) ===");
@@ -70,6 +76,9 @@ public class EjemplosGatherers {
     // después de cada paso.
     // Es como reduce(), pero no espera al final.
     // Perfecto para sumas parciales, acumulaciones o trazas.
+    // Caso Práctico: Imagina que tienes una lista con las ventas diarias de
+    // una tienda, y quieres obtener la evolución del total acumulado a lo
+    // largo de los días para mostrarlo en un gráfico o informe.
     // ============================================================
     private static void ejemploScan() {
         System.out.println("=== Gatherer: scan() ===");
@@ -94,6 +103,10 @@ public class EjemplosGatherers {
     // Igual que reduce(), pero implementado como gatherer final.
     // Devuelve un único valor acumulado en el flujo resultante.
     // Útil para reducir dentro de una pipeline compleja.
+    // Caso Práctico: Supón que tienes un flujo de líneas de texto de un
+    // fichero de log, y quieres crear una única cadena concatenada
+    // (por ejemplo, para enviar el contenido completo a un sistema
+    // de auditoría o almacenamiento centralizado)
     // ============================================================
     private static void ejemploFold() {
         System.out.println("=== Gatherer: fold() ===");
@@ -115,6 +128,11 @@ public class EjemplosGatherers {
     // Aplica una función de transformación en paralelo,
     // usando hilos virtuales y manteniendo el orden original.
     // Ideal para operaciones I/O o cálculos costosos.
+    // Caso Práctico: Supongamos que queremos procesar varias URL para descargar su
+    // contenido (por ejemplo, en un crawler o validador de enlaces), pero sin
+    // saturar el sistema ni abrir demasiadas conexiones a la vez.
+    // Podemos usar Gatherers.mapConcurrent(3, ...) para ejecutar hasta
+    // 3 descargas simultáneas, manteniendo el orden original de las URLs.
     // ============================================================
     private static void ejemploMapConcurrent() {
         System.out.println("=== Gatherer: mapConcurrent(3) ===");
