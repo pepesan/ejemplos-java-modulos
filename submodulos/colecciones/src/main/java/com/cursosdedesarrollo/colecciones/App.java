@@ -54,6 +54,7 @@ public class App
 
 
         // Java 12
+        System.out.println("Java 12");
         //teeing
         //  tenemos una lista de números enteros
         //  y queremos calcular la suma total
@@ -85,7 +86,7 @@ public class App
                     String[] array2 = list3.toArray(new String[0]);
                     return array2;
                 });
-
+        System.out.println("teeing colectors");
         String[] strings = Stream.of("Apple", "Banana", "Orange").collect(compositeCollector);
         System.out.println(Arrays.toString(strings));
         // Java 21

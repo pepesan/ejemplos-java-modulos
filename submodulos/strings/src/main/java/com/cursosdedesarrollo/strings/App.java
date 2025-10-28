@@ -61,12 +61,13 @@ public class App
         s= "\uD83D\uDC83 Woman Dancing";
         System.out.println(s); //Woman Dancing EMOJI
 
-        // De momento no funciona XD (Feb  2022)
-        //String Vampire🧛 = "\uD83E\uDDDB";
+        // De momento no funciona XD (Oct 2025)
+        // String Vampire🧛 = "\uD83E\uDDDB";
 
 
         // Java 12
         // indentado
+        System.out.println("Indent");
         String str = "a test string";
         System.out.println(str);
         System.out.println(str.length());
