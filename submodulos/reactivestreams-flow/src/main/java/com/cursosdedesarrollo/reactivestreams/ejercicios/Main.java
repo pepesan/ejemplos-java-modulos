@@ -5,7 +5,7 @@ import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    static void main(String[] args) throws InterruptedException {
         // Crear una instancia de StringPublisher y StringSubscriber
         StringPublisher publisher = new StringPublisher();
         StringSubscriber subscriber = new StringSubscriber();
