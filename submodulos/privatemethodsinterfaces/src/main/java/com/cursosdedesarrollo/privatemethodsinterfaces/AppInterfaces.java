@@ -18,5 +18,6 @@ public class AppInterfaces
         Foo.buzz();
         // no puedo es privado
         // customFoo.baz();
+        customFoo.procesaAlgo();
     }
 }
