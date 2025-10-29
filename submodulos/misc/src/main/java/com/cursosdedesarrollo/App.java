@@ -91,23 +91,39 @@ public class App
 
 
         // Java 12
-        // manejo de excepciones asíncrona CompletionStage
+        // Manejo de excepciones asíncronas con CompletionStage / CompletableFuture
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        CompletableFuture.supplyAsync(() -> {
-            printThreadInfo("division task");
-            return 10 / 0;
-        }).exceptionallyAsync(exception -> {
-                    printThreadInfo("exceptionally Async");
-                    System.err.println("exception: " + exception);
-                    return 1;
-                }, executor
-        ).thenApply(input -> {
-            printThreadInfo("multiply task");
-            return input * 3;
-        }).thenAccept(System.out::println);
 
-        Thread.sleep(2000);//let the stages complete
-        executor.shutdown();
+        CompletableFuture.supplyAsync(() -> {
+                    // Tarea inicial: se ejecuta en el commonPool por defecto (hilo distinto al main)
+                    printThreadInfo("division task");
+                    // Provoca ArithmeticException (división entre cero)
+                    return 10 / 0;
+                })
+                // Si la etapa anterior falla, esta recuperación se ejecuta de forma asíncrona
+                // usando el executor proporcionado (no el commonPool).
+                .exceptionallyAsync(exception -> {
+                            printThreadInfo("exceptionally Async");
+                            System.err.println("exception: " + exception); // Log de la excepción
+                            // Valor de fallback para continuar la cadena
+                            return 1;
+                        }, executor
+                )
+                // Transforma el resultado (ya recuperado). Se ejecutará cuando
+                // termine la etapa anterior (normalmente en el mismo executor de la recuperación).
+                .thenApply(input -> {
+                    printThreadInfo("multiply task");
+                    return input * 3; // 1 * 3 = 3
+                })
+                // Consume el resultado final sin devolver nada.
+                .thenAccept(System.out::println); // Imprime: 3
+
+        // Pausa el hilo principal para dar tiempo a que terminen las etapas asíncronas.
+        // (Alternativa más robusta: bloquear explícitamente con join()/get()).
+        Thread.sleep(2000);
+
+        executor.shutdown(); // Cierre ordenado del executor
+
 
         // Java 12
         // Selector de ficheros
