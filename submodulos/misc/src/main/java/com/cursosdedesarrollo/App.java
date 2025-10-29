@@ -141,6 +141,7 @@ public class App
          */
 
         // Java 14
+        System.out.println("instanceof");
         // manejo de instanceof
         Object o = new String("Hola!!");
 //        if(o instanceof String){
@@ -149,8 +150,8 @@ public class App
 //                System.out.println("cadena: "+ s1);
 //            }
 //        }
-        if (o instanceof String s && s.length() > 5) {
-            System.out.println("cadena: "+ s);
+        if (o instanceof String s1 && s1.length() > 5) {
+            System.out.println("cadena: "+ s1);
         }
 
         // Java 14
