@@ -38,6 +38,10 @@
     <module>submodulos/scoped-values</module>
     <module>submodulos/module_import</module>
     <module>submodulos/crypto</module>
+    <module>submodulos/var</module>
+    <module>submodulos/funcional</module>
+    <module>submodulos/modulos-migracion</module>
+    <module>submodulos/jshell</module>
 
   </modules>
 

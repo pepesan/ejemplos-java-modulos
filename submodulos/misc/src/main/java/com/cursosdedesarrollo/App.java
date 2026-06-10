@@ -64,7 +64,7 @@ public class App
         num = nf.parse("1,00B");
         System.out.println(num);
     }
-    public static void main( String[] args ) throws ParseException, InterruptedException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main( String[] args ) throws ParseException, InterruptedException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException, java.io.IOException {
         System.out.println( "Ejemplos Misc" );
         // JAVA 12
         // formateo por locale
@@ -154,13 +154,88 @@ public class App
             System.out.println("cadena: "+ s1);
         }
 
-        // Java 14
-        // mejor salida de error de NullPointerException
-        // ofrece el objeto que la lanza
-        /*
-        String firstName = null;
-        System.out.println(firstName.length());
-         */
+        // Java 14 — NullPointerException con mensajes detallados (JEP 358)
+        // ----------------------------------------------------------------
+        // Antes de Java 14 el mensaje era simplemente "NullPointerException"
+        // sin indicar QUÉ referencia era null. El programador tenía que
+        // deducirlo mirando el stack trace y el código fuente.
+        //
+        // Desde Java 14 el mensaje indica:
+        //   - Qué operación se intentó (invocar método, leer campo, etc.)
+        //   - Qué referencia era null y cómo se obtuvo
+        //
+        // Esta feature se llama "Helpful NullPointerExceptions" y está
+        // activada por defecto desde Java 14.
+        // ----------------------------------------------------------------
+
+        System.out.println("\n--- NPE con variable directamente null ---");
+        // Mensaje antiguo:  NullPointerException  (sin más información)
+        // Mensaje Java 14+: Cannot invoke "String.length()"
+        //                   because "firstName" is null
+        try {
+            String firstName = null;
+            System.out.println(firstName.length());
+        } catch (NullPointerException e) {
+            System.out.println("NPE capturada: " + e.getMessage());
+        }
+
+        System.out.println("\n--- NPE en acceso a array null ---");
+        // Mensaje Java 14+: Cannot store to int array
+        //                   because "numeros" is null
+        try {
+            int[] numeros = null;
+            numeros[0] = 5;
+        } catch (NullPointerException e) {
+            System.out.println("NPE capturada: " + e.getMessage());
+        }
+
+        System.out.println("\n--- NPE en cadena de llamadas (el caso más útil) ---");
+        // Este es el escenario que más se beneficia del cambio.
+        // Antes era imposible saber cuál de los eslabones de la cadena era null
+        // sin añadir prints o un debugger.
+        //
+        // Mensaje Java 14+: Cannot invoke "com.cursosdedesarrollo.App$Direccion.getCiudad()"
+        //                   because the return value of
+        //                   "com.cursosdedesarrollo.App$Persona.getDireccion()" is null
+        //
+        // → El mensaje señala exactamente que getDireccion() devolvió null,
+        //   no que persona fuera null ni que getCiudad() fallara por otra razón.
+        try {
+            Persona persona = new Persona("Ana", null); // dirección intencionadamente null
+            String ciudad = persona.getDireccion().getCiudad(); // falla aquí
+            System.out.println(ciudad);
+        } catch (NullPointerException e) {
+            System.out.println("NPE capturada: " + e.getMessage());
+        }
+
+        System.out.println("\n--- NPE en cadena más larga ---");
+        // Con tres niveles: empresa → departamento → jefe → nombre
+        // El mensaje indicará cuál de los tres retornó null.
+        try {
+            Empresa empresa = new Empresa("Acme", new Departamento("IT", null));
+            // jefe es null → falla al llamar .getNombre() sobre él
+            String nombreJefe = empresa.getDepartamento().getJefe().getNombre();
+            System.out.println(nombreJefe);
+        } catch (NullPointerException e) {
+            System.out.println("NPE capturada: " + e.getMessage());
+        }
+
+        // Java 18 — UTF-8 como charset por defecto (JEP 400)
+        // Antes de Java 18 el charset dependía del SO (Cp1252 en Windows, UTF-8 en Linux).
+        // Desde Java 18 siempre es UTF-8. Para volver al comportamiento anterior: -Dfile.encoding=COMPAT
+        System.out.println("\n--- Java 18: UTF-8 por defecto (JEP 400) ---");
+        System.out.println("Charset por defecto: " + java.nio.charset.Charset.defaultCharset());
+        System.out.println("file.encoding:       " + System.getProperty("file.encoding"));
+        System.out.println("stdout.encoding:     " + System.getProperty("stdout.encoding"));
+
+        java.nio.file.Path tmpFile = java.nio.file.Files.createTempFile("jep400", ".txt");
+        String textoUnicode = "Caracteres Unicode: ñ, ü, 中文, 日本語, العربية";
+        java.nio.file.Files.writeString(tmpFile, textoUnicode);
+        String leido = java.nio.file.Files.readString(tmpFile);
+        System.out.println("Escrito:  " + textoUnicode);
+        System.out.println("Leído:    " + leido);
+        System.out.println("Iguales:  " + textoUnicode.equals(leido));
+        java.nio.file.Files.deleteIfExists(tmpFile);
 
         // Java 17
         // Mejoras en la generación de números pseudo aleatorios
@@ -181,5 +256,52 @@ public class App
         }
 
 
+    }
+
+    // Clases auxiliares para los ejemplos de NPE con cadena de llamadas
+
+    static class Direccion {
+        private final String ciudad;
+        Direccion(String ciudad) { this.ciudad = ciudad; }
+        public String getCiudad() { return ciudad; }
+    }
+
+    static class Persona {
+        private final String nombre;
+        private final Direccion direccion;
+        Persona(String nombre, Direccion direccion) {
+            this.nombre = nombre;
+            this.direccion = direccion;
+        }
+        public String getNombre()      { return nombre; }
+        public Direccion getDireccion() { return direccion; }
+    }
+
+    static class Empleado {
+        private final String nombre;
+        Empleado(String nombre) { this.nombre = nombre; }
+        public String getNombre() { return nombre; }
+    }
+
+    static class Departamento {
+        private final String nombre;
+        private final Empleado jefe;
+        Departamento(String nombre, Empleado jefe) {
+            this.nombre = nombre;
+            this.jefe = jefe;
+        }
+        public String getNombre()    { return nombre; }
+        public Empleado getJefe()    { return jefe; }
+    }
+
+    static class Empresa {
+        private final String nombre;
+        private final Departamento departamento;
+        Empresa(String nombre, Departamento departamento) {
+            this.nombre = nombre;
+            this.departamento = departamento;
+        }
+        public String getNombre()           { return nombre; }
+        public Departamento getDepartamento() { return departamento; }
     }
 }

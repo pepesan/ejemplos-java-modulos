@@ -65,6 +65,22 @@ public class App
         // String Vampire🧛 = "\uD83E\uDDDB";
 
 
+        // Java 11
+        // String.formatted(...) — equivalente a String.format() como método de instancia
+        System.out.println("formatted");
+        String plantilla = "Hola, %s! Tienes %d años y mides %.1f m.";
+        String resultado = plantilla.formatted("Ana", 30, 1.65);
+        System.out.println(resultado);
+
+        // Útil para formatear bloques de texto multilínea con Text Blocks (Java 15)
+        String json = """
+                {
+                  "nombre": "%s",
+                  "edad": %d
+                }
+                """.formatted("Luis", 42);
+        System.out.println(json);
+
         // Java 12
         // indentado
         System.out.println("Indent");

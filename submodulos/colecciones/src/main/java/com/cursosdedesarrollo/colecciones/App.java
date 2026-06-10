@@ -53,8 +53,58 @@ public class App
 
 
 
+        // Java 9 — Map.of y Map.ofEntries
+        System.out.println("\n--- Map.of ---");
+        // Map.of admite hasta 10 pares clave-valor
+        Map<String, Integer> codigosHttp = Map.of(
+                "OK",                   200,
+                "Created",              201,
+                "Bad Request",          400,
+                "Unauthorized",         401,
+                "Not Found",            404,
+                "Internal Server Error",500
+        );
+        System.out.println(codigosHttp);
+        // El orden de iteración NO está garantizado (igual que HashMap)
+
+        // Intento de modificación: lanza UnsupportedOperationException
+        try {
+            codigosHttp.put("Conflict", 409);
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Map.of es inmutable: " + e.getClass().getSimpleName());
+        }
+
+        // Map.entry crea una entrada suelta (útil para construir listas de entradas)
+        System.out.println("\n--- Map.ofEntries (más de 10 pares) ---");
+        // Map.of solo acepta hasta 10 pares; para más se usa Map.ofEntries + Map.entry
+        Map<String, String> capitales = Map.ofEntries(
+                Map.entry("España",     "Madrid"),
+                Map.entry("Francia",    "París"),
+                Map.entry("Alemania",   "Berlín"),
+                Map.entry("Italia",     "Roma"),
+                Map.entry("Portugal",   "Lisboa"),
+                Map.entry("Países Bajos","Ámsterdam"),
+                Map.entry("Bélgica",    "Bruselas"),
+                Map.entry("Austria",    "Viena"),
+                Map.entry("Suecia",     "Estocolmo"),
+                Map.entry("Polonia",    "Varsovia"),
+                Map.entry("Grecia",     "Atenas")   // par número 11
+        );
+        System.out.println("Número de entradas: " + capitales.size());
+        System.out.println("Capital de España: " + capitales.get("España"));
+
+        // Map.copyOf — copia inmutable de un mapa mutable
+        System.out.println("\n--- Map.copyOf ---");
+        Map<String, Integer> mutableMap = new HashMap<>();
+        mutableMap.put("a", 1);
+        mutableMap.put("b", 2);
+        Map<String, Integer> immutableCopy = Map.copyOf(mutableMap);
+        mutableMap.put("c", 3);           // modifica el original
+        System.out.println("Original modificado: " + mutableMap);
+        System.out.println("Copia inmutable sin cambios: " + immutableCopy);
+
         // Java 12
-        System.out.println("Java 12");
+        System.out.println("\nJava 12");
         //teeing
         //  tenemos una lista de números enteros
         //  y queremos calcular la suma total
