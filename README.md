@@ -23,7 +23,7 @@ mvn compile -pl submodulos/streams -am
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
 | [`var`](submodulos/var/README.md) | 10 | Inferencia de tipos locales: variables, bucles, `try-with-resources`, lambdas, límites |
-| [`switch`](submodulos/switch/README.md) | 14–21 | Switch como expresión, sintaxis `->`, `yield`, pattern matching, `case null`, deconstrucción de records |
+| [`switch`](submodulos/switch/README.md) | 14–25 | Switch como expresión, sintaxis `->`, `yield`, pattern matching, `case null`, deconstrucción de records, primitive types in patterns (`case int n when`) |
 | [`record`](submodulos/record/README.md) | 16 | Records inmutables: constructor compacto, métodos, campos estáticos, `instanceof` con binding |
 | [`sealed`](submodulos/sealed/README.md) | 17 | Clases selladas: `sealed`, `final`, `non-sealed`, switch exhaustivo sin `default` |
 | [`strings`](submodulos/strings/README.md) | 11–15 | `strip`, `isBlank`, `lines`, `indent`, `transform`, `formatted`, Text Blocks `"""..."""` |
@@ -52,7 +52,8 @@ mvn compile -pl submodulos/streams -am
 |--------|------|-----------|
 | [`virtual`](submodulos/virtual/README.md) | 21 | Hilos virtuales (Project Loom): comparativa práctica con hilos de plataforma |
 | [`futures`](submodulos/futures/README.md) | 5–8 | `Future`, `CompletableFuture`: `supplyAsync`, `thenCombine`, `thenApply`, `whenComplete` |
-| [`scoped-values`](submodulos/scoped-values/README.md) | 21 | `ScopedValue` como alternativa a `ThreadLocal` para hilos virtuales |
+| [`scoped-values`](submodulos/scoped-values/README.md) | 21–24 | `ScopedValue` como alternativa a `ThreadLocal` para hilos virtuales (estable en Java 24) |
+| [`structured-concurrency`](submodulos/structured-concurrency) | 25 | `StructuredTaskScope.open(Joiner)`: `allSuccessfulOrThrow`, `anySuccessfulResultOrThrow`, `awaitAll` |
 
 ### Modularidad (JPMS)
 
@@ -84,9 +85,10 @@ mvn compile -pl submodulos/streams -am
 
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
-| [`vectorapi`](submodulos/vectorapi/README.md) | 25 | Vector API SIMD: suma de arrays con instrucciones vectoriales nativas (referencia, código comentado) |
+| [`vectorapi`](submodulos/vectorapi) | 16–25 | Vector API SIMD (incubator): suma de arrays, producto punto, máximo con máscara, benchmark escalar vs vectorial |
 | [`function_memory`](submodulos/function_memory/README.md) | 22 | Foreign Function & Memory API: llamada a `strlen` nativo desde Java con `Linker` y `Arena` |
 | [`crypto`](submodulos/crypto/README.md) | 25 | HKDF-SHA256 (nueva API `KDF`) + AES-GCM: derivación de clave y cifrado autenticado |
+| [`classfile-api`](submodulos/classfile-api) | 24 | Class-File API: `parse` (inspeccionar `.class`), `build` (generar bytecode), `transformClass` (eliminar métodos) |
 
 ### Otras features
 
@@ -138,5 +140,7 @@ ejemplos-java-modulosv2/
     ├── mainapp/                    ← App modular (JPMS)
     ├── dao/                        ← Interfaz DAO (JPMS)
     ├── servicio/                   ← Servicio con ServiceLoader (JPMS)
-    └── hijo/                       ← Modelo con Lombok (JPMS)
+    ├── hijo/                       ← Modelo con Lombok (JPMS)
+    ├── structured-concurrency/     ← Structured Concurrency (Java 25)
+    └── classfile-api/              ← Class-File API (Java 24)
 ```

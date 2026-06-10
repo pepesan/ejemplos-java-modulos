@@ -208,6 +208,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Novedad | Fichero(s) |
 |---------|-----------|
 | Foreign Function & Memory API estable — `Linker`, `Arena`, `MemorySegment` | `submodulos/function_memory/src/test/java/com/cursosdedesarrollo/AppTest.java` |
+| Class-File API (primera preview, JEP 457) | ver Java 24 — estable en `submodulos/classfile-api` |
 | Cuerpos de constructor flexibles (primera preview) — lógica antes de `super(...)` | `submodulos/flexible_constructor/src/main/java/com/cursosdedesarrollo/Coche.java` |
 | Variables sin nombre `_` estables | `submodulos/misc/src/main/java/com/cursosdedesarrollo/UnnamedMain.java` |
 | Nuevo método `main` (segunda preview) | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` |
@@ -220,6 +221,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Novedad | Fichero(s) |
 |---------|-----------|
 | `import module java.base` — importación de módulo completo (primera preview) | `submodulos/module_import/src/test/java/com/cursosdedesarrollo/AppTest.java` |
+| Class-File API (segunda preview, JEP 466) | ver Java 24 — estable en `submodulos/classfile-api` |
 | Javadoc en Markdown con `///` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/Calculadora.java` |
 | Cuerpos de constructor flexibles (segunda preview) | `submodulos/flexible_constructor/src/main/java/com/cursosdedesarrollo/Coche.java` |
 | `SimpleMain` — `void main()` sin clase pública (preview) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/SimpleMain.java` |
@@ -235,6 +237,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Gatherers estables — `windowFixed`, `windowSliding`, `scan`, `fold` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` |
 | Gatherers — `mapConcurrent` con hilos virtuales | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` — `ejemploMapConcurrent()` |
 | Gatherer personalizado | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/DistinctConsecutiveGatherer.java` |
+| Class-File API estable (JEP 484) — `parse`, `build`, `transformClass`, `ClassTransform.dropping` | `submodulos/classfile-api/src/main/java/com/cursosdedesarrollo/classfile/App.java` |
 
 ---
 
@@ -247,6 +250,9 @@ Las rutas son relativas a la raíz del proyecto.
 | `import module` estable | `submodulos/module_import/src/test/java/com/cursosdedesarrollo/AppTest.java` |
 | Cuerpos de constructor flexibles estables | `submodulos/flexible_constructor/src/main/java/com/cursosdedesarrollo/Coche.java` |
 | Nuevo método `main` estable | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/App.java` |
+| Primitive Types in Patterns (preview) — `instanceof int i`, widening, switch con `case int n when` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `Java 25` |
+| Structured Concurrency (preview) — `StructuredTaskScope.open(Joiner)`, `allSuccessfulOrThrow`, `anySuccessfulResultOrThrow`, `awaitAll` | `submodulos/structured-concurrency/src/main/java/com/cursosdedesarrollo/structured/App.java` |
+| Vector API (incubator desde Java 16, JEP 517 en Java 25) — suma de arrays, producto punto, máximo con máscara, benchmark | `submodulos/vectorapi/src/main/java/com/cursosdedesarrollo/App.java` |
 
 ---
 
@@ -260,7 +266,6 @@ Las rutas son relativas a la raíz del proyecto.
 | Java 13 | Reimplementación de sockets con NIO |
 | Java 14 | `jpackage` — empaquetado de aplicaciones nativas |
 | Java 18 | UTF-8 como charset por defecto |
-| Java 19 | Structured Concurrency (incubator) |
-| Java 21 | Structured Concurrency (preview) |
+| Java 19 | Structured Concurrency (incubator) — API distinta, ver módulo `structured-concurrency` para la versión final |
+| Java 21 | Structured Concurrency (preview) — API distinta, ver módulo `structured-concurrency` para la versión final |
 | Java 23 | String Templates retirado definitivamente |
-| Java 24 | `Stream.gather(Gatherer)` como operación intermedia genérica |

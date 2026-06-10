@@ -38,6 +38,8 @@
     <module>submodulos/scoped-values</module>
     <module>submodulos/module_import</module>
     <module>submodulos/crypto</module>
+    <module>submodulos/structured-concurrency</module>
+    <module>submodulos/classfile-api</module>
     <module>submodulos/var</module>
     <module>submodulos/funcional</module>
     <module>submodulos/modulos-migracion</module>

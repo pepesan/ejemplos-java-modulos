@@ -73,5 +73,44 @@ public class MainApp {
         }
 
         // más información: https://softwaremill.com/java-21-switch-the-power-on/
+
+        // Java 25 — Primitive Types in Patterns (JEP 507)
+        // Permite usar tipos primitivos en instanceof y en switch,
+        // incluyendo conversiones widening automáticas.
+
+        // instanceof con primitivos
+        Object numero = 42;
+        if (numero instanceof int i) {
+            System.out.println("Es un int: " + i);
+        }
+        if (numero instanceof long l) {
+            // widening: int → long
+            System.out.println("Cabe en long: " + l);
+        }
+        if (!(numero instanceof double d)) {
+            // narrowing no aplica: double no hace widening desde int
+            System.out.println("No es double directamente");
+        }
+
+        // switch con tipos primitivos
+        Object valor = 3.14f;
+        switch (valor) {
+            case Integer i  -> System.out.println("Integer: " + i);
+            case Float f    -> System.out.println("Float: " + f);
+            case Double d   -> System.out.println("Double: " + d);
+            case String s   -> System.out.println("String: " + s);
+            default         -> System.out.println("Otro tipo");
+        }
+
+        // switch sobre primitivo directo con guard
+        int nivel = 7;
+        String categoria = switch (nivel) {
+            case int n when n < 0  -> "negativo";
+            case int n when n == 0 -> "cero";
+            case int n when n < 5  -> "bajo";
+            case int n when n < 10 -> "medio";
+            default                -> "alto";
+        };
+        System.out.println("Nivel " + nivel + " → " + categoria);
     }
 }
