@@ -35,7 +35,7 @@ mvn compile -pl submodulos/streams -am
 
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
-| [`funcional`](submodulos/funcional/README.md) | 8+ | `Function`, `Predicate`, `Consumer`, `Supplier`, `BiFunction`, `@FunctionalInterface` propia |
+| [`funcional`](submodulos/funcional/README.md) | 8+ | `Function`, `Predicate`, `Consumer`, `Supplier`, `BiFunction`, `@FunctionalInterface` propia; referencias a métodos (4 tipos), `UnaryOperator`, `BinaryOperator`, funciones especializadas para primitivos, currying, aplicación parcial, wrapper para checked exceptions, memoización |
 | [`streams`](submodulos/streams/README.md) | 9–25 | `takeWhile`, `dropWhile`, `ofNullable`, `toList`, Gatherers (`windowFixed`, `scan`, `fold`, `mapConcurrent`) |
 | [`optional`](submodulos/optional/README.md) | 9–11 | `ifPresentOrElse`, `or`, `stream`, `orElseThrow` |
 
