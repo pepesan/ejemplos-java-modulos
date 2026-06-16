@@ -1,8 +1,11 @@
 package com.cursosdedesarrollo;
 
-// non-sealed: rompe el sellado a partir de aquí.
-// Cualquier clase puede extender InvestmentAccount libremente,
-// lo que permite a terceros (librerías, frameworks) añadir subtipos.
+/**
+ * Subclase non-sealed (no sellada) que extiende la clase sellada Account.
+ * - Al declararse 'non-sealed', rompe la restricción de sellado a partir de esta clase.
+ * - Cualquier clase puede extender libremente de InvestmentAccount (como hace EtfAccount),
+ *   permitiendo puntos de extensión abiertos en la jerarquía si fuera necesario.
+ */
 public non-sealed class InvestmentAccount extends Account {
 
     private final String portfolio;

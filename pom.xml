@@ -44,7 +44,7 @@
     <module>submodulos/funcional</module>
     <module>submodulos/modulos-migracion</module>
     <module>submodulos/jshell</module>
-
+    <module>submodulos/threads</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>

@@ -1,6 +1,11 @@
 package com.cursosdedesarrollo;
 
-// final: nadie puede extender CheckingAccount
+/**
+ * Subclase final que extiende la clase sellada Account.
+ * - Al ser declarada 'final', no puede ser heredada por ninguna otra clase.
+ * - Esta es una de las tres opciones obligatorias para los subtipos de una jerarquía sellada
+ *   (final, sealed o non-sealed).
+ */
 public final class CheckingAccount extends Account {
 
     private final double overdraftLimit;

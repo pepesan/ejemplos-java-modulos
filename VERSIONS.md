@@ -23,6 +23,10 @@ Las rutas son relativas a la raíz del proyecto.
 | Métodos `default` en interfaces | `submodulos/privatemethodsinterfaces/src/main/java/com/cursosdedesarrollo/privatemethodsinterfaces/Foo.java` |
 | `CompletableFuture` — `supplyAsync`, `thenApply`, `thenCombine`, `whenComplete` | `submodulos/futures/src/main/java/org/example/App.java` |
 | `Base64` encode/decode | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` |
+| Hilos tradicionales — Creación, Daemon y ciclo de vida | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/ThreadCreationDemo.java` |
+| Coordinación clásica — `synchronized`, `wait()` y `notifyAll()` | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/ClassicProducerConsumer.java` |
+| Coordinación moderna — `ReentrantLock` y `Condition` | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/LockConditionDemo.java` |
+| Ayudantes de concurrencia — `CountDownLatch`, `CyclicBarrier` y `Semaphore` | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/ConcurrencyHelpersDemo.java` |
 
 ---
 
@@ -136,7 +140,7 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Records estables | `submodulos/record/src/main/java/com/cursosdedesarrollo/Person.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Rectangle.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` |
+| Records estables | `submodulos/record/src/main/java/com/cursosdedesarrollo/Person.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Student.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Rectangle.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` |
 | Pattern Matching `instanceof` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `instanceof` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` |
 | Encapsulamiento fuerte activado por defecto | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — `demoAccesoPrivadoClaseJDK()` y `demoAccesoClaseNoExportada()` |
 | `Stream.toList()` directo (sin collect) | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` — bloque `Gatherers` al final |
@@ -147,10 +151,11 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Sealed classes estables — `sealed … permits` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Account.java` |
-| Sealed classes — subtipo `final` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/SavingsAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CheckingAccount.java` |
-| Sealed classes — subtipo `non-sealed` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/InvestmentAccount.java` |
-| Switch exhaustivo sobre jerarquía sealed | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/App.java` — método `describir()` |
+| Sealed classes e interfaces estables — `sealed … permits` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Account.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/PaymentMethod.java` |
+| Sealed types — subtipo `final` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/SavingsAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CheckingAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Paypal.java` |
+| Sealed types — subtipo `non-sealed` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/InvestmentAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/BankTransfer.java` |
+| Sealed types — implementado por `record` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CreditCard.java` |
+| Switch exhaustivo sobre jerarquía sellada | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/App.java` — métodos `describirCuenta()` y `describirMetodoPago()` |
 | Encapsulamiento fuerte sin opción de retroceso | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — comentario de cabecera |
 | `RandomGeneratorFactory` — nueva API de aleatoriedad | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 17 / Random` |
 | Pattern Matching en switch (primera preview) | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |
@@ -169,7 +174,7 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Virtual threads (primera preview) | `submodulos/virtual/src/main/java/org/example/App.java` — `virtualThreads()` |
+| Virtual threads (primera preview) | `submodulos/virtual/src/main/java/org/example/App.java` — `demoVirtualThreadsScale()` |
 | Scoped Values (incubator) | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java` |
 
 ---
@@ -178,7 +183,7 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Virtual threads (segunda preview) | `submodulos/virtual/src/main/java/org/example/App.java` — `virtualThreads()` |
+| Virtual threads (segunda preview) | `submodulos/virtual/src/main/java/org/example/App.java` — `demoVirtualThreadsScale()` |
 | Scoped Values (segunda preview) | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java` `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesAdvancedExample.java` |
 | Record patterns en `instanceof` | `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` — bloques `instanceof` |
 
@@ -188,8 +193,13 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Virtual threads estables — `Thread.startVirtualThread` | `submodulos/virtual/src/main/java/org/example/App.java` — `virtualThreads()` |
-| Comparativa plataforma vs virtual (50.000 hilos) | `submodulos/virtual/src/main/java/org/example/App.java` — `platformThreads()` vs `virtualThreads()` |
+| Virtual threads estables — `Thread.startVirtualThread` | `submodulos/virtual/src/main/java/org/example/App.java` — `demoVirtualThreadsScale()` |
+| Comparativa plataforma vs virtual | `submodulos/virtual/src/main/java/org/example/App.java` — `demoPlatformThreadsLimit()` vs `demoVirtualThreadsScale()` |
+| ExecutorService con Hilos Virtuales | `submodulos/virtual/src/main/java/org/example/App.java` — `demoVirtualThreadExecutor()` |
+| Sincronización en hilos virtuales — Carrier Thread Pinning y ReentrantLock | `submodulos/virtual/src/main/java/org/example/VirtualThreadSynchronizationDemo.java` |
+| Hilos Virtuales con Pool de Conexiones — Comparativa de hilos físicos JMX | `submodulos/virtual/src/main/java/org/example/ConnectionPoolDemo.java` |
+| Antipatrón de tareas CPU-bound en hilos virtuales | `submodulos/virtual/src/main/java/org/example/CpuIntensiveTaskDemo.java` |
+| Servidor Web (HttpServer) — Comparativa Platform vs Virtual | `submodulos/virtual/src/main/java/org/example/HttpServerComparisonDemo.java` |
 | Scoped Values (preview) | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java` |
 | Scoped Values avanzado | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesAdvancedExample.java` |
 | Pattern Matching en switch estable — tipos | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |
@@ -197,9 +207,14 @@ Las rutas son relativas a la raíz del proyecto.
 | Deconstrucción de records en switch — `case Point(var x, var y) when` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `Point` |
 | Colecciones secuenciadas — `getFirst`, `getLast` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Java 21` |
 | Colecciones secuenciadas — `addFirst`, `addLast`, `reversed` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `LinkedHashSet` y `LinkedHashMap` |
+| `String.indexOf` con rango de búsqueda | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — métodos `indexOf(String, int, int)` y `indexOf(char, int, int)` |
+| `String.splitWithDelimiters` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — división conservando delimitadores |
+| `StringBuilder.repeat` / `StringBuffer.repeat` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — repetición eficiente de texto y caracteres |
+| `Character` y métodos para Emojis | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — `isEmoji`, `isEmojiModifier`, etc. |
 | Variables sin nombre `_` en `catch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 21` |
 | Variables sin nombre `_` en `for`, `instanceof`, `switch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/UnnamedMain.java` |
 | Nuevo método `main` de instancia (primera preview) | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` |
+| Platform Thread Builder — `Thread.ofPlatform()` | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/ThreadCreationDemo.java` |
 
 ---
 
@@ -233,6 +248,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Novedad | Fichero(s) |
 |---------|-----------|
 | Scoped Values estables | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java` `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesAdvancedExample.java` |
+| Comparativa ThreadLocal vs ScopedValue | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ThreadLocalVsScopedValueDemo.java` |
 | `import module` (segunda preview) | `submodulos/module_import/src/test/java/com/cursosdedesarrollo/AppTest.java` |
 | Gatherers estables — `windowFixed`, `windowSliding`, `scan`, `fold` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` |
 | Gatherers — `mapConcurrent` con hilos virtuales | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` — `ejemploMapConcurrent()` |
@@ -252,6 +268,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Nuevo método `main` estable | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/App.java` |
 | Primitive Types in Patterns (preview) — `instanceof int i`, widening, switch con `case int n when` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `Java 25` |
 | Structured Concurrency (preview) — `StructuredTaskScope.open(Joiner)`, `allSuccessfulOrThrow`, `anySuccessfulResultOrThrow`, `awaitAll` | `submodulos/structured-concurrency/src/main/java/com/cursosdedesarrollo/structured/App.java` |
+| Structured Concurrency — Cancelación en cascada y timeouts | `submodulos/structured-concurrency/src/main/java/com/cursosdedesarrollo/structured/StructuredConcurrencyCancellationDemo.java` |
 | Vector API (incubator desde Java 16, JEP 517 en Java 25) — suma de arrays, producto punto, máximo con máscara, benchmark | `submodulos/vectorapi/src/main/java/com/cursosdedesarrollo/App.java` |
 
 ---

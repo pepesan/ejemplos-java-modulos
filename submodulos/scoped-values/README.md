@@ -19,9 +19,21 @@
 
 | Clase | Descripción |
 |-------|-------------|
-| `ScopedValuesExample` | Binding básico con `ScopedValue.where(...).run(...)` y propagación a hilo virtual hijo |
-| `ScopedValuesAdvancedExample` | Uso avanzado con múltiples scoped values y tareas paralelas |
+| [ScopedValuesExample](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java) | Binding básico con `ScopedValue.where(...).run(...)` y propagación manual a hilo virtual hijo. |
+| [ScopedValuesAdvancedExample](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesAdvancedExample.java) | Uso avanzado con múltiples scoped values, sombreado (shadowing) y tareas en paralelo. |
+| [ThreadLocalVsScopedValueDemo](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ThreadLocalVsScopedValueDemo.java) | Comparación lado a lado de `ThreadLocal` frente a `ScopedValue`, ejemplificando los peligros de mutación/fuga y el impacto en memoria. |
 
-## Clase principal
+## Ejecución de los Ejemplos
 
-`com.cursosdedesarrollo.ScopedValuesExample`
+Puedes ejecutar cualquiera de las clases individualmente desde el directorio raíz del proyecto (es necesario pasar `MAVEN_OPTS="--enable-preview"` si tu entorno requiere habilitar preview):
+
+```bash
+# 1. Ejecutar el ejemplo básico de Scoped Values
+MAVEN_OPTS="--enable-preview" mvn exec:java -Dexec.mainClass="com.cursosdedesarrollo.ScopedValuesExample" -pl submodulos/scoped-values
+
+# 2. Ejecutar el ejemplo avanzado de Scoped Values
+MAVEN_OPTS="--enable-preview" mvn exec:java -Dexec.mainClass="com.cursosdedesarrollo.ScopedValuesAdvancedExample" -pl submodulos/scoped-values
+
+# 3. Ejecutar la comparativa ThreadLocal vs ScopedValue
+MAVEN_OPTS="--enable-preview" mvn exec:java -Dexec.mainClass="com.cursosdedesarrollo.ThreadLocalVsScopedValueDemo" -pl submodulos/scoped-values
+```

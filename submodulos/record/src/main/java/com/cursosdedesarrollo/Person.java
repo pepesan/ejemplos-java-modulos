@@ -1,16 +1,9 @@
 package com.cursosdedesarrollo;
 
-// las clases record son final
-// pueden tener atributos, métodos e inicializadores estáticos
-// tienen setter y getter ??
-// pueden implementar interfaces
-// todos los campos van en la constructora
-// pueden declarar una constructora aparte
-// pueden tener accesors explícitos
-// pueden definir más métodos
-// pueden ser clases inner
-// pueden ser genéricas
-// se pueden anotar
-// no pueden ser abstractas
-
+/**
+ * El ejemplo de Record más simple posible (Java 16 - JEP 395).
+ * - Es implícitamente final y sus campos son privados e inmutables (final).
+ * - Genera automáticamente el constructor canónico, getters (name(), gender(), age()),
+ *   y los métodos equals(), hashCode() y toString().
+ */
 public record Person(String name, String gender, int age) {}

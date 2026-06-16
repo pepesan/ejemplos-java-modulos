@@ -1,6 +1,9 @@
 package com.cursosdedesarrollo;
 
-// final: nadie puede extender SavingsAccount
+/**
+ * Subclase final que extiende la clase sellada Account.
+ * - Al estar marcada como 'final', cierra esta rama de la jerarquía de herencia.
+ */
 public final class SavingsAccount extends Account {
 
     private final double interestRate;

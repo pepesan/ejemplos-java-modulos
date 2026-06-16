@@ -1,8 +1,12 @@
 package com.cursosdedesarrollo;
 
-// Extiende InvestmentAccount (non-sealed) sin ninguna restricción.
-// Esta clase está fuera de la jerarquía sellada original,
-// pero puede participar en el switch porque es un subtipo de InvestmentAccount.
+/**
+ * Clase que extiende de InvestmentAccount.
+ * - Dado que InvestmentAccount fue declarada 'non-sealed', EtfAccount puede extenderla
+ *   sin necesidad de declarar 'final', 'sealed' o 'non-sealed' (es una clase de herencia convencional).
+ * - Aunque no forma parte del conjunto sellado original de Account, al ser un subtipo de
+ *   InvestmentAccount, es capturada correctamente en las comprobaciones polimórficas.
+ */
 public class EtfAccount extends InvestmentAccount {
 
     private final String isin;

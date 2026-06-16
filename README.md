@@ -24,9 +24,9 @@ mvn compile -pl submodulos/streams -am
 |--------|------|-----------|
 | [`var`](submodulos/var/README.md) | 10 | Inferencia de tipos locales: variables, bucles, `try-with-resources`, lambdas, límites |
 | [`switch`](submodulos/switch/README.md) | 14–25 | Switch como expresión, sintaxis `->`, `yield`, pattern matching, `case null`, deconstrucción de records, primitive types in patterns (`case int n when`) |
-| [`record`](submodulos/record/README.md) | 16 | Records inmutables: constructor compacto, métodos, campos estáticos, `instanceof` con binding |
-| [`sealed`](submodulos/sealed/README.md) | 17 | Clases selladas: `sealed`, `final`, `non-sealed`, switch exhaustivo sin `default` |
-| [`strings`](submodulos/strings/README.md) | 11–15 | `strip`, `isBlank`, `lines`, `indent`, `transform`, `formatted`, Text Blocks `"""..."""` |
+| [`record`](submodulos/record/README.md) | 16 | Records inmutables: constructor compacto, interfaz Comparable, campos estáticos, pattern matching e instanceof con binding |
+| [`sealed`](submodulos/sealed/README.md) | 17 | Clases e interfaces selladas: `sealed`, `final`, `non-sealed`, implementación por record, switch exhaustivo sin `default` |
+| [`strings`](submodulos/strings/README.md) | 11–21 | `strip`, `isBlank`, `lines`, `indent`, `transform`, `formatted`, Text Blocks `"""..."""`, `indexOf` en rango, `splitWithDelimiters`, `repeat` y validaciones Emoji |
 | [`misc`](submodulos/misc/README.md) | 12–21 | NPE con mensajes detallados, `instanceof`, CompletableFuture, formateo compacto, UTF-8 por defecto (JEP 400), variables sin nombre `_` |
 | [`nuevo_main`](submodulos/nuevo_main/README.md) | 21–25 | Método `main` de instancia sin `static`, sin array de args |
 | [`flexible_constructor`](submodulos/flexible_constructor/README.md) | 22–25 | Lógica antes de `super(...)` en constructores de subclase |
@@ -51,9 +51,10 @@ mvn compile -pl submodulos/streams -am
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
 | [`virtual`](submodulos/virtual/README.md) | 21 | Hilos virtuales (Project Loom): comparativa práctica con hilos de plataforma |
+| [`threads`](submodulos/threads/README.md) | 8+ | Hilos tradicionales (Platform Threads) y mecanismos de coordinación (`synchronized`, `wait`/`notify`, `Lock`/`Condition`, `CountDownLatch`, `CyclicBarrier`, `Semaphore`) |
 | [`futures`](submodulos/futures/README.md) | 5–8 | `Future`, `CompletableFuture`: `supplyAsync`, `thenCombine`, `thenApply`, `whenComplete` |
-| [`scoped-values`](submodulos/scoped-values/README.md) | 21–24 | `ScopedValue` como alternativa a `ThreadLocal` para hilos virtuales (estable en Java 24) |
-| [`structured-concurrency`](submodulos/structured-concurrency) | 25 | `StructuredTaskScope.open(Joiner)`: `allSuccessfulOrThrow`, `anySuccessfulResultOrThrow`, `awaitAll` |
+| [`scoped-values`](submodulos/scoped-values/README.md) | 21–24 | `ScopedValue` como alternativa a `ThreadLocal` para hilos virtuales, comparación ThreadLocal vs ScopedValue |
+| [`structured-concurrency`](submodulos/structured-concurrency/README.md) | 25 | `StructuredTaskScope.open(Joiner)`, ciclo de vida, cancelación en cascada y timeouts |
 
 ### Modularidad (JPMS)
 
@@ -118,7 +119,8 @@ ejemplos-java-modulosv2/
     ├── record/                     ← Records
     ├── sealed/                     ← Sealed classes
     ├── misc/                       ← NPE, instanceof, CompletableFuture...
-    ├── virtual/                    ← Virtual threads
+    ├── virtual/                    ← Hilos virtuales
+    ├── threads/                    ← Hilos tradicionales y coordinación
     ├── futures/                    ← Future y CompletableFuture
     ├── scoped-values/              ← Scoped Values
     ├── javatime/                   ← Java Time API
