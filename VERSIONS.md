@@ -41,15 +41,15 @@ Las rutas son relativas a la raíz del proyecto.
 | `List.of`, `Set.of` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` |
 | `Map.of` — hasta 10 pares | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Map.of` |
 | `Map.ofEntries` + `Map.entry` — más de 10 pares | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Map.ofEntries` |
-| `Stream.takeWhile` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
-| `Stream.dropWhile` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
-| `Stream.ofNullable` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
-| `Stream.iterate` con predicado de parada | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
-| `Collectors.filtering` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
-| `Collectors.flatMapping` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` |
+| `Stream.takeWhile` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
+| `Stream.dropWhile` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
+| `Stream.ofNullable` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
+| `Stream.iterate` con predicado de parada | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
+| `Collectors.filtering` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
+| `Collectors.flatMapping` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` |
 | `Optional.ifPresentOrElse` | `submodulos/optional/src/main/java/com/cursosdedesarrollo/optional/App.java` |
 | `Optional.or` | `submodulos/optional/src/main/java/com/cursosdedesarrollo/optional/App.java` |
-| `Optional.stream()` | `submodulos/optional/src/main/java/com/cursosdedesarrollo/optional/App.java` |
+| `Optional.stream()` | `submodulos/optional/src/main/java/com/cursosdedesarrollo/optional/App.java` — ejemplos con `OptionalInt` y `Optional` genérico |
 | Métodos `private` en interfaces | `submodulos/privatemethodsinterfaces/src/main/java/com/cursosdedesarrollo/privatemethodsinterfaces/Foo.java` |
 | Flow API — `Publisher`, `Subscriber` | `submodulos/reactivestreams-flow/src/main/java/com/cursosdedesarrollo/reactivestreams/AppPublisherSubscriber.java` `submodulos/reactivestreams-flow/src/main/java/com/cursosdedesarrollo/reactivestreams/MySubscriber.java` |
 | Flow API — `Processor` | `submodulos/reactivestreams-flow/src/main/java/com/cursosdedesarrollo/reactivestreams/MainProcessor.java` `submodulos/reactivestreams-flow/src/main/java/com/cursosdedesarrollo/reactivestreams/CustomProcessor.java` |
@@ -68,7 +68,7 @@ Las rutas son relativas a la raíz del proyecto.
 | `var` — límites (campos, parámetros, retorno, null) | `submodulos/var/src/main/java/com/cursosdedesarrollo/var_inference/App.java` — bloque de comentarios al final |
 | `List.copyOf` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `copyOf` |
 | `Map.copyOf` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Map.copyOf` |
-| `Collectors.toUnmodifiableList` / `toUnmodifiableMap` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` — bloque `toUnmodifiableList` |
+| `Collectors.toUnmodifiableList` / `toUnmodifiableMap` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java` — bloque `toUnmodifiableList` |
 | `Optional.orElseThrow()` sin argumento | `submodulos/optional/src/main/java/com/cursosdedesarrollo/optional/App.java` |
 
 ---
@@ -143,7 +143,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Records estables | `submodulos/record/src/main/java/com/cursosdedesarrollo/Person.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Student.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Rectangle.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` |
 | Pattern Matching `instanceof` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `instanceof` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` |
 | Encapsulamiento fuerte activado por defecto | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — `demoAccesoPrivadoClaseJDK()` y `demoAccesoClaseNoExportada()` |
-| `Stream.toList()` directo (sin collect) | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` — bloque `Gatherers` al final |
+| `Stream.toList()` directo (sin collect) | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` y `EjemplosStreamsMejorasIntermedias.java` |
 
 ---
 
@@ -250,9 +250,9 @@ Las rutas son relativas a la raíz del proyecto.
 | Scoped Values estables | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesExample.java` `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ScopedValuesAdvancedExample.java` |
 | Comparativa ThreadLocal vs ScopedValue | `submodulos/scoped-values/src/main/java/com/cursosdedesarrollo/ThreadLocalVsScopedValueDemo.java` |
 | `import module` (segunda preview) | `submodulos/module_import/src/test/java/com/cursosdedesarrollo/AppTest.java` |
-| Gatherers estables — `windowFixed`, `windowSliding`, `scan`, `fold` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` |
-| Gatherers — `mapConcurrent` con hilos virtuales | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosGatherers.java` — `ejemploMapConcurrent()` |
-| Gatherer personalizado | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/DistinctConsecutiveGatherer.java` |
+| Gatherers estables — `windowFixed`, `windowSliding`, `scan`, `fold` | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsGatherersAvanzado.java` |
+| Gatherers — `mapConcurrent` con hilos virtuales | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsGatherersAvanzado.java` — `ejemploMapConcurrent()` |
+| Gatherer personalizado | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsGathererPersonalizado.java` |
 | Class-File API estable (JEP 484) — `parse`, `build`, `transformClass`, `ClassTransform.dropping` | `submodulos/classfile-api/src/main/java/com/cursosdedesarrollo/classfile/App.java` |
 
 ---

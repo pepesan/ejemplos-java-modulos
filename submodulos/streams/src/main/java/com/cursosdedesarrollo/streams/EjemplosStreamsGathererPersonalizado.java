@@ -7,8 +7,9 @@ import java.util.stream.Gatherer;
  * Gatherer personalizado (Java 24, API final):
  *  - Quita duplicados consecutivos.
  *  - Usa estado mutable y un integrator que devuelve boolean.
+ * Nivel: Avanzado.
  */
-class DistinctConsecutiveGatherer {
+public class EjemplosStreamsGathererPersonalizado {
 
     public static <T> Gatherer<T, ?, T> of() {
         // Estado mutable: guarda el último valor emitido

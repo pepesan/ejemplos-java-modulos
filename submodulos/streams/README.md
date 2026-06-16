@@ -24,4 +24,8 @@ Mejoras progresivas de la API de Streams desde Java 9, incluyendo los nuevos mé
 
 ## Clases
 
-`App`, `EjemplosGatherers`, `DistinctConsecutiveGatherer`, `Persona`
+* **[App](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java)**: Guía didáctica paso a paso desde conceptos básicos (Java 8) hasta APIs avanzadas.
+* **[EjemplosStreamsMejorasIntermedias](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsMejorasIntermedias.java)**: Características intermedias y mejoras específicas introducidas en Java 9, 10 y 16.
+* **[EjemplosStreamsGatherersAvanzado](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsGatherersAvanzado.java)**: Ejemplos prácticos y avanzados de la API de Gatherers (Java 24/25).
+* **[EjemplosStreamsGathererPersonalizado](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/EjemplosStreamsGathererPersonalizado.java)**: Implementación de un colector intermedio (Gatherer) a medida para eliminar duplicados consecutivos.
+* **[Persona](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/Persona.java)**: Clase POJO auxiliar.

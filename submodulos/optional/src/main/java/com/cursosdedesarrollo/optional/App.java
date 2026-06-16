@@ -64,10 +64,25 @@ public class App
             System.out.println("Ha saltado la excepción");
         }
         // Stream
+        System.out.println("OptionalInt.stream()");
         OptionalInt opt1 = IntStream.of(2, 5, 6).max();
         OptionalInt opt2 = IntStream.of(1, 3, 7).max();
         IntStream.concat(opt1.stream(), opt2.stream())
                 .forEach(System.out::println);
 
+        // Stream genérico (Java 9)
+        System.out.println("Optional.stream() genérico");
+        java.util.List<Optional<String>> optionalsList = java.util.List.of(
+                Optional.of("Java"),
+                Optional.empty(),
+                Optional.of("Streams"),
+                Optional.empty(),
+                Optional.of("Optional")
+        );
+        java.util.List<String> filteredList = optionalsList.stream()
+                .flatMap(Optional::stream)
+                .map(String::toUpperCase)
+                .toList();
+        System.out.println(filteredList); // [JAVA, STREAMS, OPTIONAL]
     }
 }

@@ -6,8 +6,12 @@ import java.util.Optional;
 import java.util.stream.Gatherers;
 import java.util.stream.Stream;
 
-public class EjemplosGatherers {
-    static void main(String[] args) {
+/**
+ * Ejemplos avanzados de Stream Gatherers (Java 24/25).
+ * Nivel: Avanzado.
+ */
+public class EjemplosStreamsGatherersAvanzado {
+    public static void main(String[] args) {
         ejemploWindowFixed();
         ejemploWindowSliding();
         ejemploScan();
@@ -141,7 +145,7 @@ public class EjemplosGatherers {
 
         urls.stream()
                 // hasta 3 transformaciones concurrentes a la vez
-                .gather(Gatherers.mapConcurrent(3, EjemplosGatherers::descargarSimulado))
+                .gather(Gatherers.mapConcurrent(3, EjemplosStreamsGatherersAvanzado::descargarSimulado))
                 .forEach(System.out::println);
 
         // Salida (orden preservado, ejecución concurrente simulada):
@@ -154,10 +158,11 @@ public class EjemplosGatherers {
     }
 
     private static void gathererPersonalizado() {
+        System.out.println("=== Gatherer Personalizado: DistinctConsecutive ===");
         Stream<Integer> datos = Stream.of(1, 1, 2, 2, 3, 1, 1, 4, 4, 5);
 
         // Usamos el gatherer personalizado que quita duplicados consecutivos
-        datos.gather(DistinctConsecutiveGatherer.of())
+        datos.gather(EjemplosStreamsGathererPersonalizado.of())
                 .forEach(System.out::println);
 
         // Salida esperada:
