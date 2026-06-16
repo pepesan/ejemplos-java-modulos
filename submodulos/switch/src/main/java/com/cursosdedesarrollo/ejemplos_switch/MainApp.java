@@ -12,8 +12,13 @@ public class MainApp {
         // No se requiere la palabra clave 'break'.
         // Permite agrupar múltiples valores en un solo case separados por comas.
         switch (mes) {
+
             case JANUARY, FEBRUARY, MARCH -> System.out.println("First Quarter");
-            case APRIL, MAY, JUNE -> System.out.println("Second Quarter");
+            // En el caso de varias líneas hay que poner {}
+            case APRIL, MAY, JUNE -> {
+                    System.out.println("Second Quarter");
+                    System.out.println("Otro valor");
+            }
             case JULY, AUGUST, SEPTEMBER -> System.out.println("Third Quarter");
             case OCTOBER, NOVEMBER, DECEMBER -> System.out.println("Forth Quarter");
             default -> System.out.println("Unknown Quarter");
