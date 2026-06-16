@@ -93,10 +93,10 @@ Las rutas son relativas a la raíz del proyecto.
 |---------|-----------|
 | `String.indent(n)` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — bloque `Indent` |
 | `String.transform(Function)` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — bloque `transformaciones` |
-| `NumberFormat.getCompactNumberInstance` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — métodos `formatForLocale` y `formatForLocaleHalf` |
+| `NumberFormat.getCompactNumberInstance` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — métodos `formatForLocale` y `formatForLocaleHalf` |
 | `Files.mismatch(Path, Path)` | `submodulos/nio/src/main/java/com/cursosdedesarrollo/nio/App.java` — bloque `Java 12` |
 | `Collectors.teeing` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Java 12` |
-| `CompletableFuture.exceptionallyAsync` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `Java 12 / Manejo de excepciones` |
+| `CompletableFuture.exceptionallyAsync` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 12 / Manejo de excepciones` |
 | Switch expressions (preview) | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` |
 
 ---
@@ -115,10 +115,10 @@ Las rutas son relativas a la raíz del proyecto.
 |---------|-----------|
 | Switch expressions — sintaxis `->` estable | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — primeros dos bloques `switch` |
 | Switch expressions — `yield` con bloque multilínea | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — tercer bloque `switch` |
-| NullPointerException con mensajes detallados | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `NPE con variable directamente null` |
-| NPE en acceso a array null | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `NPE en acceso a array null` |
-| NPE en cadena de llamadas | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloques `NPE en cadena de llamadas` y `NPE en cadena más larga` |
-| Pattern Matching `instanceof` (preview) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` |
+| NullPointerException con mensajes detallados | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `NPE con variable directamente null` |
+| NPE en acceso a array null | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `NPE en acceso a array null` |
+| NPE en cadena de llamadas | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloques `NPE en cadena de llamadas` y `NPE en cadena más larga` |
+| Pattern Matching `instanceof` (preview) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `instanceof` |
 | Records (preview) | `submodulos/record/src/main/java/com/cursosdedesarrollo/Person.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Rectangle.java` |
 
 ---
@@ -137,7 +137,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Novedad | Fichero(s) |
 |---------|-----------|
 | Records estables | `submodulos/record/src/main/java/com/cursosdedesarrollo/Person.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/Rectangle.java` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` |
-| Pattern Matching `instanceof` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` |
+| Pattern Matching `instanceof` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `instanceof` `submodulos/record/src/main/java/com/cursosdedesarrollo/App.java` — bloque `instanceof` |
 | Encapsulamiento fuerte activado por defecto | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — `demoAccesoPrivadoClaseJDK()` y `demoAccesoClaseNoExportada()` |
 | `Stream.toList()` directo (sin collect) | `submodulos/streams/src/main/java/com/cursosdedesarrollo/streams/App.java` — bloque `Gatherers` al final |
 
@@ -152,7 +152,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Sealed classes — subtipo `non-sealed` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/InvestmentAccount.java` |
 | Switch exhaustivo sobre jerarquía sealed | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/App.java` — método `describir()` |
 | Encapsulamiento fuerte sin opción de retroceso | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — comentario de cabecera |
-| `RandomGeneratorFactory` — nueva API de aleatoriedad | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `Java 17 / Random` |
+| `RandomGeneratorFactory` — nueva API de aleatoriedad | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 17 / Random` |
 | Pattern Matching en switch (primera preview) | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |
 
 ---
@@ -161,7 +161,7 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Javadoc con snippets `@snippet` (precursor del Markdown) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/PreTest.java` — comentario `<pre>` en Javadoc |
+| Javadoc con snippets `@snippet` (precursor del Markdown) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/PreTest.java` — comentario `<pre>` en Javadoc |
 
 ---
 
@@ -197,8 +197,8 @@ Las rutas son relativas a la raíz del proyecto.
 | Deconstrucción de records en switch — `case Point(var x, var y) when` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `Point` |
 | Colecciones secuenciadas — `getFirst`, `getLast` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Java 21` |
 | Colecciones secuenciadas — `addFirst`, `addLast`, `reversed` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `LinkedHashSet` y `LinkedHashMap` |
-| Variables sin nombre `_` en `catch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/App.java` — bloque `Java 21` |
-| Variables sin nombre `_` en `for`, `instanceof`, `switch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/UnnamedMain.java` |
+| Variables sin nombre `_` en `catch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 21` |
+| Variables sin nombre `_` en `for`, `instanceof`, `switch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/UnnamedMain.java` |
 | Nuevo método `main` de instancia (primera preview) | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` |
 
 ---
@@ -210,9 +210,9 @@ Las rutas son relativas a la raíz del proyecto.
 | Foreign Function & Memory API estable — `Linker`, `Arena`, `MemorySegment` | `submodulos/function_memory/src/test/java/com/cursosdedesarrollo/AppTest.java` |
 | Class-File API (primera preview, JEP 457) | ver Java 24 — estable en `submodulos/classfile-api` |
 | Cuerpos de constructor flexibles (primera preview) — lógica antes de `super(...)` | `submodulos/flexible_constructor/src/main/java/com/cursosdedesarrollo/Coche.java` |
-| Variables sin nombre `_` estables | `submodulos/misc/src/main/java/com/cursosdedesarrollo/UnnamedMain.java` |
+| Variables sin nombre `_` estables | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/UnnamedMain.java` |
 | Nuevo método `main` (segunda preview) | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` |
-| Ficheros fuente multi-clase ejecutables | `submodulos/misc/src/main/java/com/cursosdedesarrollo/MultiFile.java` `submodulos/misc/src/main/java/com/cursosdedesarrollo/Biblioteca.java` |
+| Ficheros fuente multi-clase ejecutables | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/MultiFile.java` `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/Biblioteca.java` |
 
 ---
 
@@ -222,9 +222,9 @@ Las rutas son relativas a la raíz del proyecto.
 |---------|-----------|
 | `import module java.base` — importación de módulo completo (primera preview) | `submodulos/module_import/src/test/java/com/cursosdedesarrollo/AppTest.java` |
 | Class-File API (segunda preview, JEP 466) | ver Java 24 — estable en `submodulos/classfile-api` |
-| Javadoc en Markdown con `///` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/Calculadora.java` |
+| Javadoc en Markdown con `///` estable | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/Calculadora.java` |
 | Cuerpos de constructor flexibles (segunda preview) | `submodulos/flexible_constructor/src/main/java/com/cursosdedesarrollo/Coche.java` |
-| `SimpleMain` — `void main()` sin clase pública (preview) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/SimpleMain.java` |
+| `SimpleMain` — `void main()` sin clase pública (preview) | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/SimpleMain.java` |
 
 ---
 
