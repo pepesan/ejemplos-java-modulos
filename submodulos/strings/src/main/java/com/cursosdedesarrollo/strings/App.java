@@ -72,14 +72,7 @@ public class App
         String resultado = plantilla.formatted("Ana", 30, 1.65);
         System.out.println(resultado);
 
-        // Útil para formatear bloques de texto multilínea con Text Blocks (Java 15)
-        String json = """
-                {
-                  "nombre": "%s",
-                  "edad": %d
-                }
-                """.formatted("Luis", 42);
-        System.out.println(json);
+
 
         // Java 12
         // indentado
@@ -89,6 +82,8 @@ public class App
         System.out.println(str.length());
         System.out.println("-- indented string --");
         String indentedStr = str.indent(5);
+        System.out.println(indentedStr);
+        indentedStr = str.indent(10);
         System.out.println(indentedStr);
         System.out.println(indentedStr.length());
         // con saltos de línea
@@ -121,6 +116,7 @@ public class App
 
         // transformaciones
         str = "1000";
+        // Integer integer = str.transform((s) -> Integer.parseInt(s));
         Integer integer = str.transform(Integer::parseInt);
         System.out.println(integer);
         // Java 13
@@ -141,6 +137,15 @@ public class App
 
         System.out.println(inputElement);
 
+        // Formatear bloques de texto multilínea con Text Blocks (Java 15)
+        String json = """
+                
+        {
+            "nombre": "%s",
+                "edad": %d
+        }
+        """.formatted("Luis", 42);
+        System.out.println(json);
         // String to encode
         String message = "This is a secret message!";
 
@@ -175,6 +180,56 @@ public class App
             isEmojiPresentation(int codePoint)
             isExtendedPictographic(int codePoint)
          */
+
+        // Ejemplos de uso de nuevos métodos de String (Java 21)
+        String texto = "Java is fun and Java is powerful";
+        
+        // String.indexOf(String str, int beginIndex, int endIndex)
+        // Busca "Java" en el rango de índices [10, 30) -> Debería encontrar el segundo "Java"
+        int indiceSubString = texto.indexOf("Java", 10, 30);
+        System.out.println("indexOf(\"Java\", 10, 30): " + indiceSubString); // 16
+        
+        // String.indexOf(char ch, int beginIndex, int endIndex)
+        // Busca la letra 'a' en el rango de índices [5, 15)
+        int indiceChar = texto.indexOf('a', 5, 15);
+        System.out.println("indexOf('a', 5, 15): " + indiceChar); // 12 (la 'a' de "and")
+
+        // String.splitWithDelimiters(String regex, int limit)
+        // Divide incluyendo los delimitadores en el array de salida
+        String csv = "uno,dos,tres,cuatro";
+        String[] partesConDelim = csv.splitWithDelimiters(",", 3);
+        System.out.println("splitWithDelimiters(\",\", 3): " + java.util.Arrays.toString(partesConDelim));
+        // Esperado: [uno, ,, dos, ,, tres,cuatro]
+
+        // StringBuilder / StringBuffer repeat(CharSequence cs, int count) y repeat(int codePoint, int count)
+        StringBuilder sb = new StringBuilder();
+        sb.repeat("abc", 3);
+        System.out.println("StringBuilder.repeat(CharSequence, 3): " + sb.toString()); // abcabcabc
+
+        StringBuilder sbChar = new StringBuilder();
+        sbChar.repeat('*', 5);
+        System.out.println("StringBuilder.repeat(char, 5): " + sbChar.toString()); // *****
+
+        StringBuffer sbf = new StringBuffer();
+        sbf.repeat("xyz", 2);
+        System.out.println("StringBuffer.repeat(CharSequence, 2): " + sbf.toString()); // xyzxyz
+
+        StringBuffer sbfChar = new StringBuffer();
+        sbfChar.repeat('!', 4);
+        System.out.println("StringBuffer.repeat(char, 4): " + sbfChar.toString()); // !!!!
+
+        // Character emojis
+        int emojiGRINNING = 0x1F600; // 😀
+        int emojiComponente = 0x1F3FB; // Fitzpatrick skin tone modifier type-1-2
+        int noEmoji = 'A';
+
+        System.out.println("Character.isEmoji(😀): " + Character.isEmoji(emojiGRINNING));
+        System.out.println("Character.isEmoji('A'): " + Character.isEmoji(noEmoji));
+        System.out.println("Character.isEmojiComponent(modifier): " + Character.isEmojiComponent(emojiComponente));
+        System.out.println("Character.isEmojiModifier(modifier): " + Character.isEmojiModifier(emojiComponente));
+        System.out.println("Character.isEmojiModifierBase(😀): " + Character.isEmojiModifierBase(emojiGRINNING));
+        System.out.println("Character.isEmojiPresentation(😀): " + Character.isEmojiPresentation(emojiGRINNING));
+        System.out.println("Character.isExtendedPictographic(😀): " + Character.isExtendedPictographic(emojiGRINNING));
 
         // String Templates (preview)
         int a = 2;
