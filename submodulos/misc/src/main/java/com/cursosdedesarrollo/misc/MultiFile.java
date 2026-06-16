@@ -1,4 +1,4 @@
-package com.cursosdedesarrollo;
+package com.cursosdedesarrollo.misc;
 // Java 22
 // ejecutable de varios ficheros
 // java --enable-preview --source=22 -cp . MultiFile.java

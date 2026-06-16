@@ -1,4 +1,4 @@
-package com.cursosdedesarrollo;
+package com.cursosdedesarrollo.misc;
 
 import javax.swing.*;
 import java.math.RoundingMode;
