@@ -45,6 +45,7 @@
     <module>submodulos/modulos-migracion</module>
     <module>submodulos/jshell</module>
     <module>submodulos/threads</module>
+    <module>submodulos/migracion-lts</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>

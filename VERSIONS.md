@@ -88,6 +88,7 @@ Las rutas son relativas a la raíz del proyecto.
 | `var` en parámetros de lambda | `submodulos/var/src/main/java/com/cursosdedesarrollo/var_inference/App.java` — sección 6 |
 | `Predicate.not(Predicate)` | `submodulos/funcional/src/main/java/com/cursosdedesarrollo/funcional/App.java` — `demoPredicate()` |
 | `List.toArray(IntFunction)` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `toArray` |
+| **Guía de Migración de Java 8 a 11** | `submodulos/migracion-lts/src/main/java/com/cursosdedesarrollo/migracionlts/Java8to11Migration.java` |
 
 ---
 
@@ -159,6 +160,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Encapsulamiento fuerte sin opción de retroceso | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — comentario de cabecera |
 | `RandomGeneratorFactory` — nueva API de aleatoriedad | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 17 / Random` |
 | Pattern Matching en switch (primera preview) | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |
+| **Guía de Migración de Java 11 a 17** | `submodulos/migracion-lts/src/main/java/com/cursosdedesarrollo/migracionlts/Java11to17Migration.java` |
 
 ---
 
@@ -215,6 +217,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Variables sin nombre `_` en `for`, `instanceof`, `switch` | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/UnnamedMain.java` |
 | Nuevo método `main` de instancia (primera preview) | `submodulos/nuevo_main/src/main/java/com/cursosdedesarrollo/Greeter.java` |
 | Platform Thread Builder — `Thread.ofPlatform()` | `submodulos/threads/src/main/java/com/cursosdedesarrollo/threads/ThreadCreationDemo.java` |
+| **Guía de Migración de Java 17 a 21** | `submodulos/migracion-lts/src/main/java/com/cursosdedesarrollo/migracionlts/Java17to21Migration.java` |
 
 ---
 
@@ -270,6 +273,7 @@ Las rutas son relativas a la raíz del proyecto.
 | Structured Concurrency (preview) — `StructuredTaskScope.open(Joiner)`, `allSuccessfulOrThrow`, `anySuccessfulResultOrThrow`, `awaitAll` | `submodulos/structured-concurrency/src/main/java/com/cursosdedesarrollo/structured/App.java` |
 | Structured Concurrency — Cancelación en cascada y timeouts | `submodulos/structured-concurrency/src/main/java/com/cursosdedesarrollo/structured/StructuredConcurrencyCancellationDemo.java` |
 | Vector API (incubator desde Java 16, JEP 517 en Java 25) — suma de arrays, producto punto, máximo con máscara, benchmark | `submodulos/vectorapi/src/main/java/com/cursosdedesarrollo/App.java` |
+| **Guía de Migración de Java 21 a 25** | `submodulos/migracion-lts/src/main/java/com/cursosdedesarrollo/migracionlts/Java21to25Migration.java` |
 
 ---
 
