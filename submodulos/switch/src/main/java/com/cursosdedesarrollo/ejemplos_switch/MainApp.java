@@ -122,14 +122,22 @@ public class MainApp {
             default         -> System.out.println("Otro tipo");
         }
 
-        // Switch usando patrones de tipo primitivo con filtros 'when'
+        // 8. Switch usando patrones de tipo primitivo con filtros 'when' (Java 25 - JEP 507)
+        // Antes de Java 25, un switch sobre un tipo primitivo (como 'int') solo permitía comparar
+        // contra valores constantes exactos (ej. case 1, case 2). No se podían evaluar rangos numéricos.
+        // A partir de Java 25:
+        // - 'case int n' actúa como un patrón de tipo primitivo que captura cualquier valor entero
+        //   y lo asigna a la variable local 'n'.
+        // - Al combinarse con 'when', podemos evaluar condiciones booleanas complejas (rangos) sobre 'n'.
+        // - El orden de los cases es fundamental, ya que se evalúan de arriba a abajo.
+        // - Es necesario un 'default' (o un case int n sin 'when' al final) para garantizar la exhaustividad del switch.
         int nivel = 7;
         String categoria = switch (nivel) {
-            case int n when n < 0  -> "negativo";
-            case int n when n == 0 -> "cero";
-            case int n when n < 5  -> "bajo";
-            case int n when n < 10 -> "medio";
-            default                -> "alto";
+            case int n when n < 0  -> "negativo"; // Captura 'nivel' en 'n' si es menor que 0
+            case int n when n == 0 -> "cero";     // Captura 'nivel' en 'n' si es exactamente 0
+            case int n when n < 5  -> "bajo";     // Captura 'nivel' en 'n' si está entre 1 y 4 (por descarte anterior)
+            case int n when n < 10 -> "medio";    // Captura 'nivel' en 'n' si está entre 5 y 9 (por descarte anterior)
+            default                -> "alto";     // Se ejecuta para cualquier otro caso (nivel >= 10)
         };
         System.out.println("Nivel " + nivel + " → " + categoria);
     }
