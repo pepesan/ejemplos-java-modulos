@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args) throws IOException {
 
         // ----------------------------------------------------------------
-        // 1. Variable local simple
+        // 1. Variable local simple !!
         //    Sin var: ArrayList<String> lista = new ArrayList<>();
         //    Con var: el compilador infiere ArrayList<String>
         // ----------------------------------------------------------------
@@ -91,6 +91,8 @@ public class App {
                 // el tipo de p se infiere como String; var permite anotarlo si fuera necesario
                 .filter((var p) -> p.length() > 3)
                 .map((var p) -> p.toUpperCase())
+                // Foreach es un for in pero con función asociada
+                // .forEach((obj) -> System.out.println(obj))
                 .forEach(System.out::println);
 
         // ----------------------------------------------------------------

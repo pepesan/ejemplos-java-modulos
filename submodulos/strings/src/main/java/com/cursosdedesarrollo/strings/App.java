@@ -61,7 +61,7 @@ public class App
         s= "\uD83D\uDC83 Woman Dancing";
         System.out.println(s); //Woman Dancing EMOJI
 
-        // De momento no funciona XD (Oct 2025)
+        // De momento no funciona XD (Jun 2026)
         // String Vampire🧛 = "\uD83E\uDDDB";
 
 
