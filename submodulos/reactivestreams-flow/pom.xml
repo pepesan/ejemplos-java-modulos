@@ -13,7 +13,7 @@
     <groupId>com.cursosdedesarrollo.reactivestreams</groupId>
     <artifactId>reactivestreams-flow</artifactId>
 
-    <name>reactivestreams</name>
+    <name>reactivestreams-flow</name>
     <url>http://cursosdedesarrollo.com</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
