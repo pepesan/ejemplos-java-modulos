@@ -37,14 +37,42 @@ public class App
         integersList.add(12);
         System.out.println(integersList);
 
-        // ================================================================
-        // Java 11 — Método toArray(IntFunction)
-        // Permite convertir una colección a Array sin casting manual
-        // ================================================================
-        System.out.println("\n--- Java 11: toArray(IntFunction) ---");
-        List<String> list = List.of("apple", "banana", "orange");
-        String[] array = list.toArray(String[]::new);
-        System.out.println(Arrays.toString(array));
+        // Java 9 — Map.of (hasta 10 pares clave-valor) (JEP 269)
+        System.out.println("\n--- Java 9: Map.of ---");
+        Map<String, Integer> codigosHttp = Map.of(
+                "OK",                   200,
+                "Created",              201,
+                "Bad Request",          400,
+                "Unauthorized",         401,
+                "Not Found",            404,
+                "Internal Server Error",500
+        );
+        System.out.println(codigosHttp);
+
+        // Intento de modificación: lanza UnsupportedOperationException
+        try {
+            codigosHttp.put("Conflict", 409);
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Map.of es inmutable: " + e.getClass().getSimpleName());
+        }
+
+        // Java 9 — Map.ofEntries y Map.entry (más de 10 pares) (JEP 269)
+        System.out.println("\n--- Java 9: Map.ofEntries ---");
+        Map<String, String> capitales = Map.ofEntries(
+                Map.entry("España",     "Madrid"),
+                Map.entry("Francia",    "París"),
+                Map.entry("Alemania",   "Berlín"),
+                Map.entry("Italia",     "Roma"),
+                Map.entry("Portugal",   "Lisboa"),
+                Map.entry("Países Bajos","Ámsterdam"),
+                Map.entry("Bélgica",    "Bruselas"),
+                Map.entry("Austria",    "Viena"),
+                Map.entry("Suecia",     "Estocolmo"),
+                Map.entry("Polonia",    "Varsovia"),
+                Map.entry("Grecia",     "Atenas")
+        );
+        System.out.println("Número de entradas: " + capitales.size());
+        System.out.println("Capital de España: " + capitales.get("España"));
 
         // ================================================================
         // Java 10 — Método copyOf() para List, Set y Map
@@ -64,51 +92,7 @@ public class App
         System.out.println(list2);
         System.out.println(integers2);
 
-        // ================================================================
-        // Java 9 — Map.of (hasta 10 pares clave-valor) (JEP 269)
-        // ================================================================
-        System.out.println("\n--- Java 9: Map.of ---");
-        Map<String, Integer> codigosHttp = Map.of(
-                "OK",                   200,
-                "Created",              201,
-                "Bad Request",          400,
-                "Unauthorized",         401,
-                "Not Found",            404,
-                "Internal Server Error",500
-        );
-        System.out.println(codigosHttp);
-
-        // Intento de modificación: lanza UnsupportedOperationException
-        try {
-            codigosHttp.put("Conflict", 409);
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Map.of es inmutable: " + e.getClass().getSimpleName());
-        }
-
-        // ================================================================
-        // Java 9 — Map.ofEntries y Map.entry (más de 10 pares) (JEP 269)
-        // ================================================================
-        System.out.println("\n--- Java 9: Map.ofEntries ---");
-        Map<String, String> capitales = Map.ofEntries(
-                Map.entry("España",     "Madrid"),
-                Map.entry("Francia",    "París"),
-                Map.entry("Alemania",   "Berlín"),
-                Map.entry("Italia",     "Roma"),
-                Map.entry("Portugal",   "Lisboa"),
-                Map.entry("Países Bajos","Ámsterdam"),
-                Map.entry("Bélgica",    "Bruselas"),
-                Map.entry("Austria",    "Viena"),
-                Map.entry("Suecia",     "Estocolmo"),
-                Map.entry("Polonia",    "Varsovia"),
-                Map.entry("Grecia",     "Atenas")
-        );
-        System.out.println("Número de entradas: " + capitales.size());
-        System.out.println("Capital de España: " + capitales.get("España"));
-
-        // ================================================================
         // Java 10 — Map.copyOf()
-        // Crea una copia inmutable a partir de un mapa mutable
-        // ================================================================
         System.out.println("\n--- Java 10: Map.copyOf ---");
         Map<String, Integer> mutableMap = new HashMap<>();
         mutableMap.put("a", 1);
@@ -117,6 +101,15 @@ public class App
         mutableMap.put("c", 3);
         System.out.println("Original modificado: " + mutableMap);
         System.out.println("Copia inmutable sin cambios: " + immutableCopy);
+
+        // ================================================================
+        // Java 11 — Método toArray(IntFunction)
+        // Permite convertir una colección a Array sin casting manual
+        // ================================================================
+        System.out.println("\n--- Java 11: toArray(IntFunction) ---");
+        List<String> list = List.of("apple", "banana", "orange");
+        String[] array = list.toArray(String[]::new);
+        System.out.println(Arrays.toString(array));
 
         // ================================================================
         // Java 12 — Collectors.teeing() (JEP 344)
