@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Hello world!
- *
+ * Ejemplos de mejoras en la API de Colecciones en diferentes versiones de Java.
  */
 public class App 
 {
@@ -15,34 +14,48 @@ public class App
     {
         System.out.println( "Cambios de colecciones" );
 
+        // ================================================================
+        // Java 9 — Métodos de factoría of() (JEP 269)
+        // ================================================================
+        System.out.println("\n--- Java 9: List.of y Set.of ---");
         List<Integer> lIntegers = List.of(2, 6, 7, 10);
         System.out.println(lIntegers);
-        // nuevo método of
+        
         Set<Integer> integers = Set.of(2, 6, 7, 10);
         System.out.println(integers);
-        // no se puede modificar porque es inmutable
+        
+        // No se puede modificar porque es inmutable
         try {
             integers.add(12);
-        }catch(UnsupportedOperationException e){
+        } catch(UnsupportedOperationException e){
             System.out.println("Es una variable inmutable");
         }
-        //System.out.println(integers);
-        // si inicializamos el objeto con los valores
-        // que nos devuelve el of podría ser mutable
+        
+        // Si inicializamos el objeto con los valores que nos devuelve of() podemos hacerlo mutable
         List<Integer> integersList = new ArrayList<>(List.of(2, 6, 7, 10));
         System.out.println(integersList);
         integersList.add(12);
         System.out.println(integersList);
 
-        // nuevo método toArray
+        // ================================================================
+        // Java 11 — Método toArray(IntFunction)
+        // Permite convertir una colección a Array sin casting manual
+        // ================================================================
+        System.out.println("\n--- Java 11: toArray(IntFunction) ---");
         List<String> list = List.of("apple", "banana", "orange");
         String[] array = list.toArray(String[]::new);
         System.out.println(Arrays.toString(array));
-        // nuevo método copyOf
+
+        // ================================================================
+        // Java 10 — Método copyOf() para List, Set y Map
+        // Crea una copia inmutable a partir de una colección
+        // ================================================================
+        System.out.println("\n--- Java 10: List.copyOf ---");
         List<Integer> list2 = new ArrayList<>();
         list2.add(1);
         list2.add(2);
         System.out.println(list2);
+        
         // Copy of crea una colección inmutable desde una colección mutable
         List<Integer> integers2 = List.copyOf(list2);
         System.out.println(integers2);
@@ -51,11 +64,10 @@ public class App
         System.out.println(list2);
         System.out.println(integers2);
 
-
-
-        // Java 9 — Map.of y Map.ofEntries
-        System.out.println("\n--- Map.of ---");
-        // Map.of admite hasta 10 pares clave-valor
+        // ================================================================
+        // Java 9 — Map.of (hasta 10 pares clave-valor) (JEP 269)
+        // ================================================================
+        System.out.println("\n--- Java 9: Map.of ---");
         Map<String, Integer> codigosHttp = Map.of(
                 "OK",                   200,
                 "Created",              201,
@@ -65,7 +77,6 @@ public class App
                 "Internal Server Error",500
         );
         System.out.println(codigosHttp);
-        // El orden de iteración NO está garantizado (igual que HashMap)
 
         // Intento de modificación: lanza UnsupportedOperationException
         try {
@@ -74,9 +85,10 @@ public class App
             System.out.println("Map.of es inmutable: " + e.getClass().getSimpleName());
         }
 
-        // Map.entry crea una entrada suelta (útil para construir listas de entradas)
-        System.out.println("\n--- Map.ofEntries (más de 10 pares) ---");
-        // Map.of solo acepta hasta 10 pares; para más se usa Map.ofEntries + Map.entry
+        // ================================================================
+        // Java 9 — Map.ofEntries y Map.entry (más de 10 pares) (JEP 269)
+        // ================================================================
+        System.out.println("\n--- Java 9: Map.ofEntries ---");
         Map<String, String> capitales = Map.ofEntries(
                 Map.entry("España",     "Madrid"),
                 Map.entry("Francia",    "París"),
@@ -88,104 +100,95 @@ public class App
                 Map.entry("Austria",    "Viena"),
                 Map.entry("Suecia",     "Estocolmo"),
                 Map.entry("Polonia",    "Varsovia"),
-                Map.entry("Grecia",     "Atenas")   // par número 11
+                Map.entry("Grecia",     "Atenas")
         );
         System.out.println("Número de entradas: " + capitales.size());
         System.out.println("Capital de España: " + capitales.get("España"));
 
-        // Map.copyOf — copia inmutable de un mapa mutable
-        System.out.println("\n--- Map.copyOf ---");
+        // ================================================================
+        // Java 10 — Map.copyOf()
+        // Crea una copia inmutable a partir de un mapa mutable
+        // ================================================================
+        System.out.println("\n--- Java 10: Map.copyOf ---");
         Map<String, Integer> mutableMap = new HashMap<>();
         mutableMap.put("a", 1);
         mutableMap.put("b", 2);
         Map<String, Integer> immutableCopy = Map.copyOf(mutableMap);
-        mutableMap.put("c", 3);           // modifica el original
+        mutableMap.put("c", 3);
         System.out.println("Original modificado: " + mutableMap);
         System.out.println("Copia inmutable sin cambios: " + immutableCopy);
 
-        // Java 12
-        System.out.println("\nJava 12");
-        //teeing
-        //  tenemos una lista de números enteros
-        //  y queremos calcular la suma total
-        //  y la cantidad de números que son mayores que 10
-        //  de una sola tacada
+        // ================================================================
+        // Java 12 — Collectors.teeing() (JEP 344)
+        // Redirige la entrada del stream a dos collectors y combina sus resultados
+        // ================================================================
+        System.out.println("\n--- Java 12: Collectors.teeing ---");
         List<Integer> numeros = Arrays.asList(4, 12, 6, 8, 15, 17, 20);
 
         int suma = numeros.stream()
                 .collect(Collectors.teeing(
-                        // Primero, utilizamos el colector "summingInt" para calcular la suma total de los números
+                        // Colector 1: suma total de los números
                         Collectors.summingInt(Integer::intValue),
-                        // Luego, utilizamos el colector "filtering" para filtrar los números que son mayores que 10
-                        // y contamos cuántos hay utilizando el colector "counting"
+                        // Colector 2: filtra los números > 10 y los cuenta
                         Collectors.filtering(n -> n > 10, Collectors.counting()),
-                        // utilizamos una función lambda para devolver
-                        // la suma total como resultado de la operación "teeing"
+                        // Función de fusión (merger)
                         (total, mayoresDe10) -> (total+Integer.parseInt(""+mayoresDe10))
                 ));
-        System.out.println("teeing");
         System.out.println("La suma total es: " + suma +" = 82 suma y 4 de count");
-        // uniendo colecciones con un merger
+        
+        // Ejemplo 2 de teeing: Uniendo string resultado y lista original en un array
         Collector<CharSequence, ?, String> joiningCollector = Collectors.joining("-");
         Collector<String, ?, List<String>> listCollector = Collectors.toList();
-        //returns joined string and individual strings as array
+        
         Collector<String, ?, String[]> compositeCollector = Collectors.teeing(joiningCollector, listCollector,
-                (joinedString, strings) -> {
-                    ArrayList<String> list3 = new ArrayList<>(strings);
+                (joinedString, stringsList2) -> {
+                    ArrayList<String> list3 = new ArrayList<>(stringsList2);
                     list3.add(joinedString);
-                    String[] array2 = list3.toArray(new String[0]);
-                    return array2;
+                    return list3.toArray(new String[0]);
                 });
-        System.out.println("teeing colectors");
         String[] strings = Stream.of("Apple", "Banana", "Orange").collect(compositeCollector);
         System.out.println(Arrays.toString(strings));
-        // Java 21
-        // Colleciones Secuenciadas
+
+        // ================================================================
+        // Java 21 — Colecciones Secuenciadas (JEP 431)
+        // Proporciona métodos uniformes para acceder al primer y último elemento
+        // y para procesar las colecciones en orden inverso.
+        // ================================================================
+        System.out.println("\n--- Java 21: Colecciones Secuenciadas ---");
         List<String> cadenas = List.of("hola", "mundo");
-        // pilla el último
-        System.out.println(cadenas.getLast());
-        // pilla el primero
-        System.out.println(cadenas.getFirst());
-        // también tenemos en listados addFirst, addLast,
-        // removeFirst, removeLast y reversed
-        // En el caso de los Set secuenciados
-        // addFirst y addLast si el elemento ya está
-        // presente se moverá al principio o al final
-        // Crear un SequencedSet
+        System.out.println("getLast(): " + cadenas.getLast());
+        System.out.println("getFirst(): " + cadenas.getFirst());
+
+        // SequencedSet (LinkedHashSet conserva orden de inserción)
         LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>(List.of(1, 2, 3));
 
         Integer firstElement = linkedHashSet.getFirst();   // 1
         Integer lastElement = linkedHashSet.getLast();    // 3
 
-        linkedHashSet.addFirst(0);  //Set contiene: [0, 1, 2, 3]
-        linkedHashSet.addLast(4);   //Set contiene: [0, 1, 2, 3, 4]
+        linkedHashSet.addFirst(0);  // Contenido: [0, 1, 2, 3]
+        linkedHashSet.addLast(4);   // Contenido: [0, 1, 2, 3, 4]
 
-        System.out.println(linkedHashSet.reversed());   //Imprime [4, 3, 2, 1, 0]
-        // En el caso de los Map tenemos más mejoras
-        // firstEntry, lastEntry, pollFirstEntry,
-        // pollLastEntry, putFirst y putLast
+        System.out.println("reversed(): " + linkedHashSet.reversed());
+
+        // SequencedMap (LinkedHashMap conserva orden de inserción)
         LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
-
         map.put(1, "One");
         map.put(2, "Two");
         map.put(3, "Three");
 
-        map.firstEntry();   //1=One
-        map.lastEntry();    //3=Three
+        System.out.println("firstEntry(): " + map.firstEntry());   // 1=One
+        System.out.println("lastEntry(): " + map.lastEntry());     // 3=Three
+        System.out.println("Map actual: " + map);
 
-        System.out.println(map);  //{1=One, 2=Two, 3=Three}
+        Map.Entry<Integer, String> first = map.pollFirstEntry();   // extrae 1=One
+        Map.Entry<Integer, String> last = map.pollLastEntry();    // extrae 3=Three
 
-        Map.Entry<Integer, String> first = map.pollFirstEntry();   //1=One
-        Map.Entry<Integer, String> last = map.pollLastEntry();    //3=Three
+        System.out.println("Map tras poll: " + map);  // {2=Two}
 
-        System.out.println(map);  //{2=Two}
+        map.putFirst(1, "One");     // Inserta al principio: {1=One, 2=Two}
+        map.putLast(3, "Three");    // Inserta al final: {1=One, 2=Two, 3=Three}
 
-        map.putFirst(1, "One");     //{1=One, 2=Two}
-        map.putLast(3, "Three");    //{1=One, 2=Two, 3=Three}
-
-        System.out.println(map);  //{1=One, 2=Two, 3=Three}
-        System.out.println(map.reversed());   //{3=Three, 2=Two, 1=One}
-        // más info en https://www.happycoders.eu/java/java-21-features/
-
+        System.out.println("Map reconstruido: " + map);
+        System.out.println("Map reversed(): " + map.reversed());
     }
 }

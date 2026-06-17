@@ -152,11 +152,12 @@ Las rutas son relativas a la raíz del proyecto.
 
 | Novedad | Fichero(s) |
 |---------|-----------|
-| Sealed classes e interfaces estables — `sealed … permits` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Account.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/PaymentMethod.java` |
+| Sealed classes e interfaces estables — `sealed … permits` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Account.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/PaymentMethod.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Service.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/HttpService.java` |
 | Sealed types — subtipo `final` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/SavingsAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CheckingAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/Paypal.java` |
-| Sealed types — subtipo `non-sealed` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/InvestmentAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/BankTransfer.java` |
-| Sealed types — implementado por `record` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CreditCard.java` |
-| Switch exhaustivo sobre jerarquía sellada | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/App.java` — métodos `describirCuenta()` y `describirMetodoPago()` |
+| Sealed types — subtipo `non-sealed` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/InvestmentAccount.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/BankTransfer.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/LocalService.java` |
+| Sealed types — herencia/extensión entre interfaces selladas | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/HttpService.java` (extiende a `Service` como `sealed`), `submodulos/sealed/src/main/java/com/cursosdedesarrollo/LocalService.java` (extiende a `Service` como `non-sealed`) |
+| Sealed types — implementado por `record` | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/CreditCard.java` `submodulos/sealed/src/main/java/com/cursosdedesarrollo/RestService.java` |
+| Switch exhaustivo sobre jerarquía sellada | `submodulos/sealed/src/main/java/com/cursosdedesarrollo/App.java` — métodos `describirCuenta()`, `describirMetodoPago()` y `describirServicio()` |
 | Encapsulamiento fuerte sin opción de retroceso | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — comentario de cabecera |
 | `RandomGeneratorFactory` — nueva API de aleatoriedad | `submodulos/misc/src/main/java/com/cursosdedesarrollo/misc/App.java` — bloque `Java 17 / Random` |
 | Pattern Matching en switch (primera preview) | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |

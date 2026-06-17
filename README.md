@@ -25,7 +25,7 @@ mvn compile -pl submodulos/streams -am
 | [`var`](submodulos/var/README.md) | 10 | Inferencia de tipos locales: variables, bucles, `try-with-resources`, lambdas, límites |
 | [`switch`](submodulos/switch/README.md) | 14–25 | Switch como expresión, sintaxis `->`, `yield`, pattern matching, `case null`, deconstrucción de records, primitive types in patterns (`case int n when`) |
 | [`record`](submodulos/record/README.md) | 16 | Records inmutables: constructor compacto, interfaz Comparable, campos estáticos, pattern matching e instanceof con binding |
-| [`sealed`](submodulos/sealed/README.md) | 17 | Clases e interfaces selladas: `sealed`, `final`, `non-sealed`, implementación por record, switch exhaustivo sin `default` |
+| [`sealed`](submodulos/sealed/README.md) | 17 | Clases e interfaces selladas: `sealed`, `final`, `non-sealed`, herencia entre interfaces selladas, implementación por record, switch exhaustivo sin `default` |
 | [`strings`](submodulos/strings/README.md) | 11–21 | `strip`, `isBlank`, `lines`, `indent`, `transform`, `formatted`, Text Blocks `"""..."""`, `indexOf` en rango, `splitWithDelimiters`, `repeat` y validaciones Emoji |
 | [`misc`](submodulos/misc/README.md) | 12–21 | NPE con mensajes detallados, `instanceof`, CompletableFuture, formateo compacto, UTF-8 por defecto (JEP 400), variables sin nombre `_` |
 | [`nuevo_main`](submodulos/nuevo_main/README.md) | 21–25 | Método `main` de instancia sin `static`, sin array de args |
@@ -43,7 +43,7 @@ mvn compile -pl submodulos/streams -am
 
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
-| [`colecciones`](submodulos/colecciones/README.md) | 9–21 | `List.of`, `Map.of`, `Map.ofEntries`, `Map.copyOf`, `Collectors.teeing`, colecciones secuenciadas |
+| [`colecciones`](submodulos/colecciones/README.md) | 9–21 | Inmutabilidad de colecciones en Java 9 (`of`) y Java 10 (`copyOf`), conversión a array en Java 11 (`toArray`), collectors bifurcados en Java 12 (`Collectors.teeing`) y colecciones secuenciadas en Java 21 |
 | [`javatime`](submodulos/javatime/README.md) | 8 | `LocalDate`, `LocalTime`, `ZonedDateTime`, `DateTimeFormatter`, aritmética de fechas |
 
 ### Concurrencia

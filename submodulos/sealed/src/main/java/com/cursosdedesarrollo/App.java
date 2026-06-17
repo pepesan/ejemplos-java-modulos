@@ -39,6 +39,10 @@ public class App {
         Account etf = new EtfAccount("Rosa", 8000.0, "ETF Global", "IE00B4L5Y983");
         System.out.println(describirCuenta(etf));
 
+        // Subtipo de clase heredada de non-sealed
+        System.out.println("\n--- Subtipo de clase heredada de non-sealed (BitcoinEtfAccount) ---");
+        Account btc = new BitcoinEtfAccount("Rosa", 8000.0, "ETF Global", "IE00B4L5Y983");
+        System.out.println(describirCuenta(btc));
 
         // ----------------------------------------------------------------
         // 2. Jerarquía sealed con interfaces y records (PaymentMethod)
@@ -57,6 +61,28 @@ public class App {
         for (PaymentMethod metodo : metodosPago) {
             metodo.pay(100.0);
             System.out.println("Detalles: " + describirMetodoPago(metodo));
+        }
+
+        // ----------------------------------------------------------------
+        // 3. Jerarquía de interfaces selladas que heredan entre sí (Service)
+        //   Service (sealed interface)
+        //     ├── HttpService (sealed interface)
+        //     │     └── RestService (record - implícitamente final)
+        //     └── LocalService (non-sealed interface)
+        //           └── DatabaseService (clase libre)
+        // ----------------------------------------------------------------
+        System.out.println("\n--- 3. Jerarquía de interfaces selladas que heredan entre sí (Service) ---");
+        List<Service> servicios = List.of(
+                new RestService("https://api.ejemplo.com/v2"),
+                new DatabaseService()
+        );
+
+        for (Service servicio : servicios) {
+            servicio.execute();
+            if (servicio instanceof LocalService ls) {
+                ls.runLocally();
+            }
+            System.out.println("Descripción: " + describirServicio(servicio));
         }
     }
 
@@ -82,6 +108,15 @@ public class App {
             case CreditCard cc -> "Tarjeta de Crédito: " + cc.cardNumber();
             case Paypal p -> "Cuenta de Paypal: " + p.email();
             case BankTransfer bt -> "Transferencia Bancaria (IBAN): " + bt.iban();
+        };
+    }
+
+    // Switch con comprobación exhaustiva sobre una jerarquía de interfaces selladas heredadas
+    // Cubrimos RestService (que agota HttpService) y LocalService (non-sealed)
+    static String describirServicio(Service s) {
+        return switch (s) {
+            case RestService rs -> "Servicio REST en: " + rs.endpoint();
+            case LocalService ls -> "Servicio Local: " + ls.getClass().getSimpleName();
         };
     }
 }
