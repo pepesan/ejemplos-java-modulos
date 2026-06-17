@@ -79,6 +79,7 @@ Las rutas son relativas a la raíz del proyecto.
 |---------|-----------|
 | `HttpClient` estable — GET síncrono y asíncrono | `submodulos/httpclient/src/main/java/com/cursosdedesarrollo/httpclient/App.java` |
 | `HttpClient` — POST con form data y JSON | `submodulos/httpclient/src/main/java/com/cursosdedesarrollo/httpclient/App.java` |
+| `HttpClient` — Petición múltiple asíncrona concurrente (`CompletableFuture.allOf`) | `submodulos/httpclient/src/main/java/com/cursosdedesarrollo/httpclient/App.java` — bloque de peticiones múltiples |
 | `String.strip`, `stripLeading`, `stripTrailing` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — bloque inicial |
 | `String.isBlank` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` |
 | `String.lines()` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` |

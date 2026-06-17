@@ -4,7 +4,9 @@
 
 ## Qué cubre
 
-Los hilos virtuales son hilos ligeros gestionados por la JVM, no por el sistema operativo. Permiten crear millones de hilos concurrentes con un coste de memoria y creación drásticamente inferior al de los hilos de plataforma tradicionales.
+Los hilos virtuales son hilos ligeros gestionados por la JVM, no por el sistema operativo. 
+Permiten crear millones de hilos concurrentes con un coste de memoria y creación drásticamente inferior 
+al de los hilos de plataforma tradicionales.
 
 ## Diferencia clave
 

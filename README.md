@@ -72,7 +72,7 @@ mvn compile -pl submodulos/streams -am
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
 | [`nio`](submodulos/nio/README.md) | 11–12 | `Files.readString`, `writeString`, `Path.of`, `Files.mismatch` |
-| [`httpclient`](submodulos/httpclient/README.md) | 11 | `HttpClient`: GET/POST síncrono y asíncrono, autenticación, cabeceras |
+| [`httpclient`](submodulos/httpclient/README.md) | 11 | `HttpClient`: GET/POST síncrono y asíncrono, peticiones múltiples concurrentes, autenticación, cabeceras |
 
 ### Programación reactiva
 

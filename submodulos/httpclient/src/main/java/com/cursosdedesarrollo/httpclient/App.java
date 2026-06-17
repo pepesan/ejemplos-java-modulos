@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URI;
+import java.util.List;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
@@ -32,7 +33,7 @@ public class App
         System.out.println( "Ejemplos de HttpClient!" );
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://httpbin.org/get?name=hola"))
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -78,7 +79,7 @@ public class App
         HttpRequest request3 = HttpRequest.newBuilder()
                 // defines la llamada post con datos en el body (string param1=2&param2=4)
                 .POST(ofFormData(data))
-                .uri(URI.create("https://httpbin.org/post"))
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 // enviando como si fuera un formulario real
                 .header("Content-Type", "application/x-www-form-urlencoded")
@@ -103,7 +104,7 @@ public class App
 
         HttpRequest request4 = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(json))
-                .uri(URI.create("https://httpbin.org/post"))
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 // body en formato json
                 .header("Content-Type", "application/json")
@@ -118,7 +119,7 @@ public class App
         System.out.println(response4.body());
         System.out.println( "Ejemplos de Petición Patch JSON Síncrona!" );
         HttpRequest request5 = HttpRequest.newBuilder()
-                .uri(URI.create("https://httpbin.org/patch"))
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 // petición con verbo Patch
                 .method("PATCH", HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type", "application/json")
@@ -161,6 +162,101 @@ public class App
             .sslParameters(new SSLParameters())
             .build();
          */
+
+        // ================================================================
+        // Peticiones múltiples de HttpClient de manera asíncrona (Java 11+)
+        // ================================================================
+        System.out.println("\n--- Ejemplos de Peticiones Múltiples Asíncronas ---");
+        List<URI> uris = List.of(
+                URI.create("https://jsonplaceholder.typicode.com/posts/1"),
+                URI.create("https://jsonplaceholder.typicode.com/posts/2"),
+                URI.create("https://jsonplaceholder.typicode.com/posts/3")
+        );
+
+        System.out.println("Lanzando " + uris.size() + " peticiones HTTP asíncronas concurrentes...");
+        long startAsync = System.currentTimeMillis();
+
+        List<CompletableFuture<HttpResponse<String>>> futures = uris.stream()
+                .map(uri -> {
+                    HttpRequest req = HttpRequest.newBuilder()
+                            .GET()
+                            .uri(uri)
+                            .setHeader("User-Agent", "Java 11 HttpClient Bot")
+                            .build();
+                    // Envía cada petición de forma asíncrona
+                    return httpClient.sendAsync(req, HttpResponse.BodyHandlers.ofString());
+                })
+                .toList();
+
+        // Combinamos todos los CompletableFuture usando CompletableFuture.allOf.
+        // Nota: allOf() requiere un varargs (que compila como array CompletableFuture<?>[]).
+        // Usamos toArray(new CompletableFuture[0]) para convertir la lista a un array tipado;
+        // el tamaño 0 le indica a Java el tipo y la JVM instancia un array del tamaño exacto de forma óptima.
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+
+        // Procesamos los resultados de todas las peticiones cuando terminen
+        CompletableFuture<List<String>> allResults = allOf.thenApply(v -> {
+            return futures.stream()
+                    .map(future -> {
+                        try {
+                            HttpResponse<String> resp = future.join(); // join() es seguro porque allOf garantiza finalización
+                            return "  [Éxito] URI: " + resp.uri() + " | Código: " + resp.statusCode() + " | Longitud Body: " + resp.body().length() + " bytes";
+                        } catch (Exception e) {
+                            return "  [Error] en petición: " + e.getMessage();
+                        }
+                    })
+                    .toList();
+        });
+
+        // Esperamos a que finalice la combinación de todos los resultados con un timeout prudente
+        List<String> resultados = allResults.get(15, TimeUnit.SECONDS);
+        long endAsync = System.currentTimeMillis();
+
+        System.out.println("Resultados de las peticiones múltiples:");
+        resultados.forEach(System.out::println);
+        System.out.println("Peticiones concurrentes completadas en: " + (endAsync - startAsync) + " ms");
+
+        // ================================================================
+        // Peticiones múltiples procesadas al vuelo (según van llegando)
+        // ================================================================
+        System.out.println("\n--- Ejemplos de Peticiones Múltiples Procesadas al Vuelo ---");
+        List<URI> urisAlVuelo = List.of(
+                URI.create("https://jsonplaceholder.typicode.com/posts/1"),
+                URI.create("https://jsonplaceholder.typicode.com/posts/2"),
+                URI.create("https://jsonplaceholder.typicode.com/posts/3")
+        );
+
+        System.out.println("Lanzando " + urisAlVuelo.size() + " peticiones HTTP asíncronas independientes...");
+        long startAlVuelo = System.currentTimeMillis();
+
+        List<CompletableFuture<Void>> futurosAlVuelo = urisAlVuelo.stream()
+                .map(uri -> {
+                    HttpRequest req = HttpRequest.newBuilder()
+                            .GET()
+                            .uri(uri)
+                            .setHeader("User-Agent", "Java 11 HttpClient Bot")
+                            .build();
+
+                    // sendAsync retorna un CompletableFuture. Encadenamos thenAccept para procesar
+                    // la respuesta individual de forma inmediata tan pronto como finalice la petición.
+                    return httpClient.sendAsync(req, HttpResponse.BodyHandlers.ofString())
+                            .thenAccept(resp -> {
+                                long tiempoLlegada = System.currentTimeMillis() - startAlVuelo;
+                                System.out.println("  [Llegada al vuelo - " + tiempoLlegada + " ms] URI: " + resp.uri() 
+                                        + " | Código: " + resp.statusCode() 
+                                        + " | Longitud: " + resp.body().length() + " bytes");
+                            })
+                            .exceptionally(ex -> {
+                                System.err.println("  [Fallo al vuelo] Petición fallida: " + ex.getMessage());
+                                return null;
+                            });
+                })
+                .toList();
+
+        // Para evitar que el hilo principal (main) termine antes de que las peticiones asíncronas
+        // finalicen e impriman por consola, bloqueamos temporalmente esperando al grupo de futuros.
+        CompletableFuture.allOf(futurosAlVuelo.toArray(new CompletableFuture[0])).join();
+        System.out.println("Procesamiento al vuelo completado.");
     }
 
     public static HttpRequest.BodyPublisher ofFormData(Map<Object, Object> data) {

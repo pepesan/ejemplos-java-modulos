@@ -17,6 +17,8 @@
 | Autenticación básica | `HttpClient.newBuilder().authenticator(...)` |
 | Lectura de cabeceras | `response.headers().map()` |
 | Timeout de conexión | `connectTimeout(Duration.ofSeconds(10))` |
+| Petición múltiple asíncrona | `CompletableFuture.allOf(...)` combinando múltiples `sendAsync(...)` en paralelo |
+| Peticiones al vuelo (streaming) | `.thenAccept(...)` procesando la respuesta asíncrona individual inmediatamente según llega |
 
 ## Clase principal
 

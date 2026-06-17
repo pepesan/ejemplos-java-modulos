@@ -9,17 +9,28 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Ejemplo avanzado de sincronización con Hilos Virtuales.
  * 
- * Ilustra el concepto de "Pinning" (anclaje de hilos portadores):
- * 1. Qué es: Ocurre cuando un hilo virtual se ejecuta dentro de un bloque/método 'synchronized'
- *    o realiza llamadas nativas y se bloquea (por ejemplo, con Thread.sleep o E/S).
- *    Durante este bloqueo, el hilo virtual queda fijado ("pinned") a su Carrier Thread (hilo físico del SO),
- *    impidiendo que otros hilos virtuales utilicen ese hilo portador.
+ * Ilustra el concepto de "Pinning" (anclaje de hilos portadores) y la solución mediante ReentrantLock:
  * 
- * 2. La consecuencia: La JVM se ve obligada a crear hilos físicos adicionales para compensar,
- *    lo que destruye el beneficio de ligereza y velocidad de los hilos virtuales.
+ * 1. El Problema: "Carrier Thread Pinning" (Anclaje)
+ *    - ¿Qué es? Ocurre cuando un hilo virtual entra en una sección crítica usando la palabra clave 'synchronized'
+ *      (método o bloque) y posteriormente se bloquea (por ejemplo, haciendo E/S, llamadas a base de datos o Thread.sleep).
+ *    - ¿Por qué ocurre? La instrucción 'synchronized' está ligada a monitores internos de la JVM (a nivel de C++). Cuando
+ *      el hilo virtual se bloquea dentro de ella, la JVM no puede desasociar ("desmontar") de forma segura el hilo virtual 
+ *      del hilo físico subyacente (Carrier Thread). El hilo queda anclado ("pinned").
+ *    - Consecuencia: El hilo físico del sistema operativo queda bloqueado inutilizado. Para compensar esta pérdida de hilos
+ *      portadores, el planificador de la JVM se ve forzado a crear hilos nativos físicos adicionales (hasta un máximo de 256),
+ *      saturando la memoria del sistema y destruyendo los beneficios de ligereza de los hilos virtuales.
  * 
- * 3. La solución: Sustituir bloques 'synchronized' por bloqueos explícitos 'ReentrantLock'
- *    cuando la sección crítica contenga operaciones de E/S o bloqueantes.
+ * 2. La Solución: ¿Qué es ReentrantLock y cómo ayuda?
+ *    - ¿Qué es? ReentrantLock es un cerrojo de exclusión mutua explícito de Java (paquete java.util.concurrent.locks).
+ *    - ¿Cómo funciona exactamente? A diferencia de 'synchronized', ReentrantLock está implementado a nivel de código Java
+ *      usando la clase abstracta AbstractQueuedSynchronizer (AQS) y llamadas a LockSupport.park() para pausar la ejecución.
+ *    - ¿Por qué evita el anclaje? Al ser una estructura de software en Java y no un monitor nativo de la JVM, el planificador
+ *      de Project Loom entiende perfectamente cuándo un hilo virtual se pausa para adquirir el lock o cuando se bloquea
+ *      mientras lo retiene (ej. en un sleep o lectura de red). En ese momento, la JVM puede desmontar ("yield") el hilo 
+ *      virtual con total éxito, liberando el Carrier Thread físico del sistema operativo para que ejecute otros hilos virtuales.
+ *    - Regla general en Java 21+: Sustituir bloques 'synchronized' por bloqueos explícitos 'ReentrantLock' en secciones
+ *      críticas de código concurrentes que involucren operaciones bloqueantes de entrada/salida (I/O) o esperas.
  */
 public class VirtualThreadSynchronizationDemo {
 
@@ -73,9 +84,14 @@ public class VirtualThreadSynchronizationDemo {
             // Cada hilo tiene su propio objeto lock exclusivo para simular operaciones independientes
             final Object localLock = new Object();
             Thread t = Thread.startVirtualThread(() -> {
+                // Al entrar en un bloque synchronized, la JVM monitoriza el lock a nivel nativo.
                 synchronized (localLock) {
                     try {
-                        // El sleep aquí dentro causa PINNING porque estamos dentro de un synchronized
+                        // DETALLE CRÍTICO: Thread.sleep es una operación bloqueante. Al ejecutarse dentro
+                        // de 'synchronized', el planificador de la JVM no puede desmontar ("yield") el
+                        // hilo virtual de su hilo físico (Carrier Thread).
+                        // Esto provoca "PINNING" (anclaje), bloqueando el Carrier Thread y forzando
+                        // a la JVM a crear hilos nativos adicionales de compensación.
                         Thread.sleep(Duration.ofMillis(SLEEP_MS));
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -101,13 +117,19 @@ public class VirtualThreadSynchronizationDemo {
             // Cada hilo tiene su propio ReentrantLock exclusivo
             final ReentrantLock localLock = new ReentrantLock();
             Thread t = Thread.startVirtualThread(() -> {
+                // Adquirimos el bloqueo usando ReentrantLock. Al ser código Java (AQS),
+                // el planificador de hilos virtuales sabe perfectamente cómo suspender y restaurar su ejecución.
                 localLock.lock();
                 try {
-                    // El sleep aquí NO causa pinning; la JVM desmonta el hilo virtual liberando el Carrier Thread
+                    // DETALLE CRÍTICO: Thread.sleep es bloqueante, pero al estar bajo ReentrantLock, 
+                    // la JVM desmonta ("yield") el hilo virtual de forma limpia del Carrier Thread.
+                    // El Carrier Thread físico del SO queda 100% libre para atender a otros hilos virtuales, 
+                    // evitando la saturación de hilos del SO y finalizando de forma cooperativa óptima.
                     Thread.sleep(Duration.ofMillis(SLEEP_MS));
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 } finally {
+                    // Siempre liberar el lock en un bloque finally
                     localLock.unlock();
                 }
             });
