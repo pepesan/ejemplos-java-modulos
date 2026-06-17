@@ -43,7 +43,7 @@ mvn compile -pl submodulos/streams -am
 
 | Módulo | Java | Qué cubre |
 |--------|------|-----------|
-| [`colecciones`](submodulos/colecciones/README.md) | 9–21 | Inmutabilidad de colecciones en Java 9 (`of`) y Java 10 (`copyOf`), conversión a array en Java 11 (`toArray`), collectors bifurcados en Java 12 (`Collectors.teeing`) y colecciones secuenciadas en Java 21 |
+| [`colecciones`](submodulos/colecciones/README.md) | 9–21 | Inmutabilidad de colecciones en Java 9 (`of`) y Java 10 (`copyOf`), conversión a array en Java 11 (`toArray`), collectors bifurcados en Java 12 (`Collectors.teeing`) y colecciones secuenciadas en Java 21 (incluyendo FIFO/LIFO unificando `Deque`/`ArrayDeque` de Java 6) |
 | [`javatime`](submodulos/javatime/README.md) | 8 | `LocalDate`, `LocalTime`, `ZonedDateTime`, `DateTimeFormatter`, aritmética de fechas |
 
 ### Concurrencia

@@ -17,7 +17,7 @@ Métodos de factoría para crear colecciones inmutables, nuevos collectors y las
 | `Map.copyOf` | 10 | API Java 10 | Copia inmutable de un mapa mutable |
 | `toArray(IntFunction)` | 11 | API Java 11 | `list.toArray(String[]::new)` sin necesidad de casting manual |
 | `Collectors.teeing` | 12 | [JEP 344](https://openjdk.org/jeps/344) | Dos collectors en paralelo sobre el mismo stream combinando sus resultados |
-| Colecciones secuenciadas | 21 | [JEP 431](https://openjdk.org/jeps/431) | `getFirst`, `getLast`, `addFirst`, `addLast`, `reversed` en `List`, `LinkedHashSet`, `LinkedHashMap` |
+| Colecciones secuenciadas | 21 | [JEP 431](https://openjdk.org/jeps/431) | `getFirst`, `getLast`, `addFirst`, `addLast`, `reversed` en `List`, `LinkedHashSet`, `LinkedHashMap`, y estructuras FIFO/LIFO con `SequencedCollection` (unificando `Deque` y `ArrayDeque` creados en Java 6) |
 
 ## Referencias
 
@@ -25,6 +25,7 @@ Métodos de factoría para crear colecciones inmutables, nuevos collectors y las
 * [JEP 431: Sequenced Collections](https://openjdk.org/jeps/431)
 * [JEP 269: Convenience Factory Methods for Collections](https://openjdk.org/jeps/269)
 
-## Clase principal
+## Clases principales
 
-[App](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java)
+* [App](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java)
+* [Persona](file:///home/pepesan/IdeaProjects/ejemplos-java-modulosv2/submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/Persona.java) (modelo de prueba para colecciones secuenciadas)

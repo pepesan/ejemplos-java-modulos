@@ -152,6 +152,16 @@ public class App
         System.out.println("getLast(): " + cadenas.getLast());
         System.out.println("getFirst(): " + cadenas.getFirst());
 
+        // Ejemplo de reversed() con una lista de objetos Persona
+        List<Persona> personas = List.of(
+                new Persona("Ana", 25),
+                new Persona("Carlos", 30),
+                new Persona("David", 22)
+        );
+        System.out.println("Lista de personas original: " + personas);
+        List<Persona> personasReversed = personas.reversed();
+        System.out.println("Lista de personas invertida (.reversed()): " + personasReversed);
+
         // SequencedSet (LinkedHashSet conserva orden de inserción)
         LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>(List.of(1, 2, 3));
 
@@ -162,6 +172,7 @@ public class App
         linkedHashSet.addLast(4);   // Contenido: [0, 1, 2, 3, 4]
 
         System.out.println("reversed(): " + linkedHashSet.reversed());
+        System.out.println("linkedHashSet después de reversed(): " + linkedHashSet);
 
         // SequencedMap (LinkedHashMap conserva orden de inserción)
         LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
@@ -183,5 +194,36 @@ public class App
 
         System.out.println("Map reconstruido: " + map);
         System.out.println("Map reversed(): " + map.reversed());
+
+        // ================================================================
+        // Java 21 — Estructuras LIFO y FIFO con SequencedCollection (JEP 431)
+        // Nota histórica: La interfaz Deque y su implementación ArrayDeque fueron
+        // incorporadas en Java 6, pero a partir de Java 21 (JEP 431) se unificaron
+        // bajo la interfaz SequencedCollection.
+        // Usamos ArrayDeque como la implementación física.
+        // ================================================================
+        System.out.println("\n--- Java 21: FIFO (Cola) de Personas ---");
+        // FIFO: Insertamos al final (addLast) y extraemos/removemos del principio (removeFirst)
+        SequencedCollection<Persona> fifoQueue = new ArrayDeque<>();
+        fifoQueue.addLast(new Persona("Ana", 25));
+        fifoQueue.addLast(new Persona("Carlos", 30));
+        fifoQueue.addLast(new Persona("David", 22));
+
+        System.out.println("Estado FIFO (Cola): " + fifoQueue);
+        System.out.println("FIFO - Procesando primero: " + fifoQueue.removeFirst()); // Ana
+        System.out.println("FIFO - Procesando segundo: " + fifoQueue.removeFirst()); // Carlos
+        System.out.println("Estado FIFO tras procesar: " + fifoQueue); // [David (22 años)]
+
+        System.out.println("\n--- Java 21: LIFO (Pila) de Personas ---");
+        // LIFO: Insertamos al principio (addFirst) y extraemos/removemos del principio (removeFirst)
+        SequencedCollection<Persona> lifoStack = new ArrayDeque<>();
+        lifoStack.addFirst(new Persona("Ana", 25));
+        lifoStack.addFirst(new Persona("Carlos", 30));
+        lifoStack.addFirst(new Persona("David", 22));
+
+        System.out.println("Estado LIFO (Pila): " + lifoStack);
+        System.out.println("LIFO - Procesando primero: " + lifoStack.removeFirst()); // David
+        System.out.println("LIFO - Procesando segundo: " + lifoStack.removeFirst()); // Carlos
+        System.out.println("Estado LIFO tras procesar: " + lifoStack); // [Ana (25 años)]
     }
 }

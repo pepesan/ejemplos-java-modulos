@@ -208,8 +208,9 @@ Las rutas son relativas a la raíz del proyecto.
 | Pattern Matching en switch estable — tipos | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case String s` |
 | Pattern Matching en switch — `case null` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `case null` |
 | Deconstrucción de records en switch — `case Point(var x, var y) when` | `submodulos/switch/src/main/java/com/cursosdedesarrollo/ejemplos_switch/MainApp.java` — bloque `Point` |
-| Colecciones secuenciadas — `getFirst`, `getLast` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Java 21` |
+| Colecciones secuenciadas — `getFirst`, `getLast`, `reversed` (ejemplo con `Persona`) | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `Java 21` |
 | Colecciones secuenciadas — `addFirst`, `addLast`, `reversed` | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque `LinkedHashSet` y `LinkedHashMap` |
+| Colecciones secuenciadas — FIFO y LIFO con `ArrayDeque` (unificando `Deque` de Java 6) | `submodulos/colecciones/src/main/java/com/cursosdedesarrollo/colecciones/App.java` — bloque LIFO/FIFO |
 | `String.indexOf` con rango de búsqueda | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — métodos `indexOf(String, int, int)` y `indexOf(char, int, int)` |
 | `String.splitWithDelimiters` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — división conservando delimitadores |
 | `StringBuilder.repeat` / `StringBuffer.repeat` | `submodulos/strings/src/main/java/com/cursosdedesarrollo/strings/App.java` — repetición eficiente de texto y caracteres |
