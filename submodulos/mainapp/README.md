@@ -29,11 +29,19 @@ mainapp
 
 ## Ejecución manual (tras `mvn clean package install` en la raíz)
 
+Si estás en la carpeta `submodulos/`:
 ```bash
-java -p dao/target/classes:hijo/target/classes:servicio/target/classes \
-     :mainapp/target/classes:~/.m2/.../lombok.jar \
+java -p dao/target/classes:hijo/target/classes:servicio/target/classes:mainapp/target/classes:$HOME/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar \
      -m com.cursosdedesarrollo.mainapp/com.cursosdedesarrollo.mainapp.App
 ```
+
+Si estás en la raíz del proyecto:
+```bash
+java -p submodulos/dao/target/classes:submodulos/hijo/target/classes:submodulos/servicio/target/classes:submodulos/mainapp/target/classes:$HOME/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar \
+     -m com.cursosdedesarrollo.mainapp/com.cursosdedesarrollo.mainapp.App
+```
+
+
 
 ## Empaquetado nativo con `jpackage` (Java 14+)
 
