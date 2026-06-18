@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
+import com.cursosdedesarrollo.reflexion.Reflector;
 
 /**
  * Encapsulamiento fuerte (Strong Encapsulation) y migración de librerías.
@@ -42,7 +43,7 @@ import java.util.List;
  *       qué paquetes propios abres para reflexión de otros módulos.
  *       No controla paquetes del JDK; eso sigue requiriendo --add-opens.
  *
- * 3. Actualizar la librería  (solución definitiva)
+ * 3. Actualizar la biblioteca  (solución definitiva)
  *       Las versiones modernas de Hibernate (6+), Jackson (2.12+),
  *       Spring (6+) y Lombok (1.18.22+) ya no dependen de reflexión
  *       sobre internos del JDK.
@@ -54,6 +55,7 @@ public class App {
         demoAccesoPrivadoClaseJDK();
         demoAccesoClaseNoExportada();
         demoSimulacionFramework();
+        demoAccesoModuloReflector();
     }
 
     // ====================================================================
@@ -241,6 +243,32 @@ public class App {
     // Los módulos del JDK (java.base, java.sql, etc.) NO pueden modificarse,
     // por eso su apertura requiere --add-opens en línea de comandos.
     // ====================================================================
+
+    // ====================================================================
+    // ESCENARIO 5: reflexión a través de un módulo de utilidades propio
+    // ====================================================================
+    // Demuestra cómo interactúan dos módulos del proyecto cuando uno de ellos
+    // (com.cursosdedesarrollo.reflexion) intenta acceder reflexivamente a una
+    // clase del otro (com.cursosdedesarrollo.migracion).
+    // Requiere la directiva 'opens' en el module-info.java de este módulo.
+    // ====================================================================
+    static void demoAccesoModuloReflector() {
+        System.out.println("\n=== 5. Reflexión a través de módulo propio (Reflector API) ===");
+
+        Producto p = new Producto("Monitor Gamer", 299.99);
+
+        try {
+            // Invocamos el reflector del otro módulo
+            Reflector.inspect(p);
+        } catch (InaccessibleObjectException e) {
+            System.out.println("BLOQUEADO por el encapsulamiento fuerte de JPMS:");
+            System.out.println("  " + e.getMessage());
+            System.out.println("Solución:");
+            System.out.println("  Asegúrate de declarar 'opens com.cursosdedesarrollo.migracion to com.cursosdedesarrollo.reflexion;' en tu module-info.java.");
+        } catch (Exception e) {
+            System.out.println("Error reflexivo: " + e.getClass().getSimpleName() + ": " + e.getMessage());
+        }
+    }
 
     // Clases auxiliares de ejemplo
     static class Producto {

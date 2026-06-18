@@ -43,6 +43,7 @@
     <module>submodulos/var</module>
     <module>submodulos/funcional</module>
     <module>submodulos/modulos-migracion</module>
+    <module>submodulos/reflexion</module>
     <module>submodulos/jshell</module>
     <module>submodulos/threads</module>
     <module>submodulos/migracion-lts</module>

@@ -65,6 +65,7 @@ mvn compile -pl submodulos/streams -am
 | [`dao`](submodulos/dao/README.md) | 9 | `exports` (interfaz pública del módulo) |
 | [`hijo`](submodulos/hijo/README.md) | 9 | `exports` + `requires lombok` (modelo de dominio) |
 | [`modulos-migracion`](submodulos/modulos-migracion/README.md) | 9–25 | Encapsulamiento fuerte, `InaccessibleObjectException`, `--add-opens`, impacto en librerías |
+| [`reflexion`](submodulos/reflexion/README.md) | 9 | API de Reflexión entre módulos y directiva `opens ... to ...` |
 | [`module_import`](submodulos/module_import/README.md) | 23–25 | `import module java.base` — importación de módulo completo |
 
 ### I/O y red

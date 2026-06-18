@@ -22,6 +22,14 @@
         <maven.compiler.target>25</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.cursosdedesarrollo.reflexion</groupId>
+            <artifactId>reflexion</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -79,22 +87,44 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.cursosdedesarrollo.migracion.App</mainClass>
-                    <!--
-                        Para ejecutar CON acceso reflexivo concedido,
-                        descomenta el bloque jvmArgs siguiente
-                        (sustituye "add-opens" por el flag real con doble guion):
-                    -->
-                    <!--
-                    <jvmArgs>
-                        <jvmArg>[doble-guion]add-opens</jvmArg>
-                        <jvmArg>java.base/java.util=ALL-UNNAMED</jvmArg>
-                        <jvmArg>[doble-guion]add-opens</jvmArg>
-                        <jvmArg>java.base/java.lang=ALL-UNNAMED</jvmArg>
-                    </jvmArgs>
-                    -->
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>--module-path</argument>
+                        <modulepath />
+                        <argument>-m</argument>
+                        <argument>com.cursosdedesarrollo.migracion/com.cursosdedesarrollo.migracion.App</argument>
+                    </arguments>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!--
+            Perfil para ejecutar en una JVM separada con el workaround de encapsulamiento.
+            Uso: mvn exec:exec -pl submodulos/modulos-migracion -Pworkaround
+        -->
+        <profile>
+            <id>workaround</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>--add-opens</argument>
+                                <argument>java.base/java.util=com.cursosdedesarrollo.migracion</argument>
+                                <argument>--module-path</argument>
+                                <modulepath />
+                                <argument>-m</argument>
+                                <argument>com.cursosdedesarrollo.migracion/com.cursosdedesarrollo.migracion.App</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

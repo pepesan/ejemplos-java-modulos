@@ -35,6 +35,8 @@ Las rutas son relativas a la raíz del proyecto.
 | Novedad | Fichero(s) |
 |---------|-----------|
 | `module-info.java` — `exports`, `requires` | `submodulos/dao/src/main/java/module-info.java` `submodulos/hijo/src/main/java/module-info.java` `submodulos/mainapp/src/main/java/module-info.java` `submodulos/servicio/src/main/java/module-info.java` |
+| `opens … to …` (Apertura reflexiva selectiva de módulo) | `submodulos/modulos-migracion/src/main/java/module-info.java` |
+| API de Reflexión entre módulos (`Reflector.inspect`) | `submodulos/reflexion/src/main/java/com/cursosdedesarrollo/reflexion/Reflector.java` `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` |
 | `provides … with` (ServiceLoader proveedor) | `submodulos/servicio/src/main/java/module-info.java` |
 | `uses` (ServiceLoader consumidor) | `submodulos/mainapp/src/main/java/module-info.java` |
 | Encapsulamiento fuerte — advertencias (Java 9–15) | `submodulos/modulos-migracion/src/main/java/com/cursosdedesarrollo/migracion/App.java` — comentario de cabecera |
