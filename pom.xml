@@ -47,6 +47,7 @@
     <module>submodulos/jshell</module>
     <module>submodulos/threads</module>
     <module>submodulos/migracion-lts</module>
+    <module>ejercicios</module>
   </modules>
 
   <name>ejemplos-java-modulos</name>
